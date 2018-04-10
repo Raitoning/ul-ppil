@@ -71,4 +71,93 @@ Personne associé a un évenements possède un statut placé à :
 	
 Scenarios:
 
+- Un utilisateur s'inscrit:
+	- L'utilisateur clique sur s'inscrire.
+	- Le navigateur redirige vers la page d'inscription.
+	- L'utilisateur remplit ses informations
+	- L'utilisateur valide et envoie sa demande.
+	- Si la requete est valide, Le systeme traite la requete reçue, et ajoute l'utilisateur a la base de donnes.
+	- Le navigateur va ensuite afficher la reponse du systeme. Et l'utilisateur est desormais inscrit.
+Scenario Alternatif:
+	- La demande est invalide
+	- Le navigateur illumine les champs invalides.
+	- L'utilisateur doit alors corriger ces champs et renvoyer la demande
+	- revenir au scenario normal
+Scenario Exceptionnel:
+	- L'utilisateur tente d'acceder a la page d'acceptation de requete sans avoir rempli le formulaire.
+	- Le navigateur va alors afficher une page d'erreur, et proposer un lien de redirection vers l'acceuil.
+	
+- Un utilisateur se Connecte:
+	- L'utilisateur clique sur se connecter.
+	- Le navigateur le redirige vers la page connexion
+	- L'utilisateur inscrit ses identifiants et mots de passe dans les emplacements appropriés.
+	- L'utilisateur clique sur valider.
+	- Le systeme verifie les informatiosn entré
+	- Le systeme ensuite redirige l'utilisateur vers la page d'acceuil de son compte.
+Scenario Alternatif:
+	- Les informations entrés n'ont pas permis d'authentifier l'utilisateur
+	- Le navigateur affichera que la requête de connexion a échoué et que les informations n'ont pas permis de l'authentifier.
+	- L'utilisateur pourra a nouveau entrer ses informations et reprendre le scenario normal.
+Scenario Exceptionnel:
+	- L'utilisateur tente d'acceder a la page des utilisateurs connectés sans s'être authentifié
+	- Le navigateur affiche une erreur et le redirige vers la page de connexion.
+
+- Un utilisateur consulte la liste des evenements publics:
+	- L'utilisateur clique sur consulter la liste d'evenements publics.
+	- Le navigateur redirige l'utilisateur vers la page demandé.
+	- L'utilisateur peut ensuite scroll a travers la liste s'il le désire.
+	- L'utilisateur peut cliquer sur un evenement pour avoir d'avantages d'informations.
+	- Si l'utilisateur est connecté il peut cliquer sur rejoindre l'evenement pour envoyer une notification au proprietaire
+	- Sinon Il est redirigé vers la page de connexion.
+	
+- Un utilisateur connecté consulte un evenement et le modifie:
+	- L'utilisateur clique sur un evenement.
+	- Le navigateur redirige l'utilisateur vers la page demandé.
+	- L'utilisateur peut interagir avec divers composantes.
+	- L'utilisateur essaye de modifier une tache.
+	- Les modifications sont envoyes le role de l'utilisateur est identifé, et s'il possede les droits d'edition
+	- Le navigateur afficher un message validant la modficiation
+Scenario Alternatif:
+	- Le role de l'utilisateur est non-éditeur, la modifications est rejeté, un message signalant
+	que l'utilisateur ne possede pas les droits suffisants et affiché la page est alors restaurée.
+Scenario Exceptionnel:
+	- Un utilisateur non connecté, ou ne participant pas a une tache tente d'y acceder
+	- Les informations ne s'affichent pas et un message signalant que l'utilisateur n'a pas accès a la page s'affiche.
+
+- Un utilisateur connecté souhaite creer un evenement:
+	- L'utilisateur clique sur creer un nouvel evenement
+	- Le systeme le redirige vers le formulaire de creation:
+	- L'utilisateur entre les donnes qu'il désire
+	- L'utilisateur valide et envoie au systeme.
+	- Les informations sont controlees par le systeme et si elles sont valides
+	- Le systeme cree l'evenement et le navigateur de l'utilisateur affiche que la creation a reussie.
+	- Le navigateur propose un lien vers l'evenement ainsi crée
+Scenario Alternatif:
+	- Les informations entrees ne sont pas valides
+	- Le navigateur affichera que la requête de creation a échoué car invalide.
+	- Le navigateur met en evidence les problemes
+	- L'utilisateur pourra a nouveau entrer ses informations et reprendre le scenario normal.
+Scenario Exceptionnel:
+	- Un utilisateur non connecté accede a la page de creation:
+	- Les informations ne s'affichent pas et un message signalant que l'utilisateur doit être connecté pour creer un evenement.
+
+- Un utilisateur connecté souhaite partager un evenement avec un autre:
+	- L'utilisateur clique sur un evenement.
+	- Le navigateur redirige l'utilisateur vers la page demandé.
+	- L'utilisateur clique sur inviter un autre utilisateur.
+	- Le navigateur affiche une liste d'utilisateur.
+	- L'utilisateur selectionne quelqu'un.
+	- L'utilisateur a ensuite a possiblité d'assigner le selectionné a une tache.
+	- L'utilisateur valide puis envoie l'invitation.
+	- Le systeme envoie une notification (mail) au selectionné
+Scenario Alternatif:
+	- L'utilisateur n'a pas les droits d'invitation/modification de tache.
+	- la modifications est rejeté, un message signalant
+	que l'utilisateur ne possede pas les droits suffisants et affiché.
+Scenario Exceptionnel:
+	- L'utilisateur selectionné n'existe pas est invalide ou récamment supprimé
+	- Un message signalant que l'utilisateur selectionné n'existe pas ou plus s'affiche l'action est annulée.
+	
+
+
 
