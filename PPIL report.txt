@@ -1,0 +1,74 @@
+Ce que nous voulons:
+Un systeme de gestion de taches à faire (TODO lists), Potentiellement partageables.
+
+Exigeances - Description des services et contraintes :
+
+- Une application web et mobile:
+C'est à dire un site web fonctionnant sur navigateur pc tout comme mobile.
+
+- Un mode d'emploi utilisateur: 
+C'est à dire une page d'aide a l'utilisation pour les differentes personnes
+qui vont interagir avec le systeme.
+
+- Un mode d'emploi d'installation:
+Un guide qui servira à mettre en place le systeme produit.
+
+- Un site git hub:
+Un historique d'avencement du produit en ligne.
+
+- La plateforme a des utilisateurs:
+Chaque utilisateur aura besoin d'un compte utilisateur donc
+d'être inscrit puis connecté.
+
+- Un utilisateur connecté à access:
+	- A la liste des utilisateurs inscrits.
+
+- Une tache peuvent être de differents types:
+	- Les taches simples: Contiennent un intitulé.
+	- Les taches assignés: Contiennent une personne en charge en plus d'un intitulé.
+	- Les taches de répartition: Contiennet une liste de quantités (un nombre ou répartition)
+	assigné a une personne en plus d'un intitulé pour l'intégralité de la tache.
+
+- Un evenement contient:
+	- Une liste de taches.
+	- Un champ pour définir s'il s'agit d'un evenement privé ou public.
+	- Au minimum un intitulé et une date.
+	- Potentiellement une date de fin, un lieu, des informations complémentaires (texte a remplir)
+- Un evenement est partageable avex differents utilisateurs de la plateforme:
+	- Chaque evenement partagé donne des droits non-éditeurs a l'invité,
+	sauf si les droits d'édition ont été spécifiés dans l'invitation.
+- Il est biensur possible de modifier divers éléments d'un évenement
+	
+- Chaque utilisateur possède une liste d'évenements.
+Chaque compte utilisateur définit plus tot, contiendra une liste d'evenements.
+
+- Different droits sur les evenements:
+Personne associé a un évenements possède un statut placé à :
+	- Propriétaire: Tous les droits y compris supression.
+	- Editeur: Modification de taches et assignations.
+	- Non-éditeur: Droit de lecture et completion de taches assignés.
+	
+- Un proprietaire peut partager un evenement avec un autre utilisateur:
+	- Dans le cas d'une invitation, l'invité doit accepter l'invitation (valider)
+	pour etre ajouté a l'évenement, l'invitation contiendra les informations sur
+	l'évenement et eventuellement une tache assigné, il faudra accepter pour avoir la liste complete
+	des taches de l'evenement et les autres utilisateurs participants a l'evenement.
+
+- Tout participants peut se désiscrire d'un evenement sans validation du proprietaire:
+	- Dans une telle sittuation le proprietaire est prévenu de la désiscription de l'utilisateur.
+
+- Dans le cas d'un evenement public:
+	- Les utilisateurs non connectés peuvent la consulter.
+	- Les utilisateurs connectés peuvent envoyer une requete pour rejoindre l'evenement au proprietaire.
+	
+	
+- Suppression:
+	- Automatique: Si la date de fin est connue, un evenement est automatiquement supprimé une fois la date de fin arrivée.
+	- Manuelle: Un proprietaire peut décider de supprimer un evenement entierement, dans un tel cas
+	les utilisateurs participants recevront une notification de supression de l'evenement.
+	
+- Les notifications tels que la reception d'inviation seront effectués par Email.
+	
+Scenarios:
+
+
