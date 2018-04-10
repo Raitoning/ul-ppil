@@ -1,0 +1,16 @@
+@startuml
+actor Utilisateur
+actor :Utilisateur connecté: as UtilisateurConnecte
+
+Utilisateur <|-down- UtilisateurConnecte
+
+Utilisateur -left-> (S'inscrire)
+Utilisateur -right-> (Se connecter)
+Utilisateur -up-> (Voir les listes publiques)
+
+UtilisateurConnecte --> (Gérer des favoris)
+UtilisateurConnecte --> (Demander à rejoindre une liste publique)
+UtilisateurConnecte -down-> (S'inscrire à une liste)
+UtilisateurConnecte -left-> (Se désinscrire d'une liste)
+UtilisateurConnecte -right-> (Gérer une liste)
+@enduml
