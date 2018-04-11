@@ -18,6 +18,7 @@
     UtilisateurConnecte --> (Consulter un évenement)
     UtilisateurConnecte --> (Gérer un évenement)
     UtilisateurConnecte --> (Se déconnecter)
+    UtilisateurConnecte --> (Consulter sa liste personnelle)
 
     (Gérer ses favoris) --> (Consulter les utilisateurs) : include
     (Gérer un évenement) <-- (Modifier les informations) : extends
