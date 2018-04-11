@@ -27,6 +27,7 @@
     (Gérer un évenement) <-- (Supprimer une tâche) : extends
     (Gérer un évenement) <-- (Supprimer l'évenement) : extends
     (Gérer un évenement) <-- (Modifier les droits d'accès) : extends
+    (Gérer un évenement) <-- (Modifier une tâche) : extends
 
     note left of (Gérer un évenement) 
         Si l'utilisateur est 
