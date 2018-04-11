@@ -180,6 +180,22 @@ Scenario Alternatif:
 Scenario Exceptionnel:
 	- L'utilisateur selectionné n'existe pas est invalide ou récamment supprimé
 	- Un message signalant que l'utilisateur selectionné n'existe pas ou plus s'affiche l'action est annulée.
+	
+- Un utilisateur connecté souhaite supprimer un evenement :
+	- L'utilisateur clique sur un evenement.
+	- Le navigateur redirige l'utilisateur vers la page demandé.
+	- L'utilisateur clique sur supprimer l'evenement.
+	- Le navigateur demande si l'utilisateur est certain de vouloir supprimer l'evenement.
+	- L'utilisateur selectionne oui.
+	- Le systeme suppime alors l'evenement, notifie tous les participants y compris le proprietaire de la suppression.
+	- Le navigateur redirige l'utilisateur vers sa liste d'evenements.
+Scenario Alternatif:
+	- L'utilisateur n'est pas proprietaire.
+	- la modifications est rejeté, un message signalant
+	que l'utilisateur ne possede pas les droits suffisants et affiché.
+Scenario Exceptionnel:
+	- L'utilisateur tente d'acceder a un evenement déja supprimé ou inexistant
+	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
 
 
 
