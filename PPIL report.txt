@@ -197,5 +197,15 @@ Scenario Exceptionnel:
 	- L'utilisateur tente d'acceder a un evenement déja supprimé ou inexistant
 	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
 
-
+- Un utilisateur souhaite se retirer d'un evenement:
+	- L'utilisateur clique sur un evenement
+	- Le navigateur redirige l'utilisateur vers la page demandé.
+	- L'utilisateur clique sur se retirer de l'evenement.
+	- Le navigateur demande si l'utilisateur est certain de vouloir supprimer l'evenement.
+	- L'utilisateur selectionne oui.
+	- Le systeme retire l'utilisateur de la liste des participants a l'evenement et envoie un mail au proprietaire.
+	- Le navigateur redirige l'utilisateur vers sa liste d'evenements.
+Scenario Exceptionnel:
+	- L'utilisateur tente d'acceder a un evenement supprimé, inexistant ou au quel il n'a pas accès
+	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
 
