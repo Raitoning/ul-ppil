@@ -1,18 +1,38 @@
 @startuml
-actor Utilisateur
-actor :Utilisateur connecté: as UtilisateurConnecte
 
-Utilisateur <|-down- UtilisateurConnecte
+    left to right direction
 
-Utilisateur -left-> (S'inscrire)
-Utilisateur -right-> (Se connecter)
-Utilisateur -up-> (Voir les listes publiques)
+    actor Utilisateur
+    actor :Utilisateur connecté: as UtilisateurConnecte
 
-UtilisateurConnecte --> (Gérer ses favoris)
-UtilisateurConnecte --> (Demander à rejoindre un événement)
-UtilisateurConnecte --> (Gérer son compte)
-UtilisateurConnecte -left-> (Se désinscrire d'une liste)
-UtilisateurConnecte -right-> (Consulter une liste)
+    Utilisateur <|-right- UtilisateurConnecte
 
-(Gérer ses favoris) --> (Consulter les utilisateurs) : include
+    Utilisateur --> (S'inscrire)
+    Utilisateur --> (Se connecter)
+    Utilisateur --> (Voir les évenements publics)
+
+    UtilisateurConnecte --> (Gérer ses favoris)
+    UtilisateurConnecte --> (Demander à rejoindre un événement public)
+    UtilisateurConnecte --> (Gérer son compte)
+    UtilisateurConnecte --> (Se désinscrire d'un évenement)
+    UtilisateurConnecte --> (Consulter un évenement)
+    UtilisateurConnecte --> (Gérer un évenement)
+    UtilisateurConnecte --> (Se déconnecter)
+
+    (Gérer ses favoris) --> (Consulter les utilisateurs) : include
+    (Gérer un évenement) <-- (Modifier les informations) : extends
+    (Gérer un évenement) <-- (Ajouter un utilisateur) : extends
+    (Gérer un évenement) <-- (Supprimer un utilisateur) : extends
+    (Gérer un évenement) <-- (Ajouter une tâche) : extends
+    (Gérer un évenement) <-- (Supprimer une tâche) : extends
+    (Gérer un évenement) <-- (Supprimer l'évenement) : extends
+    (Gérer un évenement) <-- (Modifier les droits d'accès) : extends
+
+    note left of (Gérer un évenement) 
+        Si l'utilisateur est 
+        le propriétaire 
+        ou à les droits d'administration 
+        de l'évenement
+    end note
+
 @enduml
