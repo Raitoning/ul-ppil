@@ -9,7 +9,7 @@ Ce dépôt est hébergé et géré par @Raitoning. N'hésitez pas à le contacte
 Vous devez **absolument** lire les documents suivants afin que tout le monde travail de manière homogène et organisée:
 [Comment contribuer ?](https://github.com/Raitoning/ul-ppil/blob/master/CONTRIBUTING.md)  
 [Comment créer une Issue ?](https://github.com/Raitoning/ul-ppil/blob/master/ISSUE_TEMPLATE.md)  
-[Comment créer une Pull Request ou un merge ?](https://github.com/Raitoning/ul-ppil/blob/master/CONTRIBUTING.md)  
+[Comment créer une Pull Request ou un merge ?](https://github.com/Raitoning/ul-ppil/blob/master/PULL_REQUEST_TEMPLATE.md)  
 
 **Attention: Le non respect de ses règles peut entrainer un rollback du projet à une version correcte, une suppression d'une partie de votre travail, une interdiction de _commit_ et _push_, voire une exclusion temporaire ou définitive du dépôt.**
 
