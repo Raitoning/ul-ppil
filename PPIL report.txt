@@ -1,232 +1,231 @@
 Ce que nous voulons:
-Un systeme de gestion de taches à faire (TODO lists), Potentiellement partageables.
+Un système de gestion de tâches à faire (TODO lists), potentiellement partageables.
 
-Exigeances - Description des services et contraintes :
+Exigences - Description des services et contraintes :
 
 - Une application web et mobile:
 C'est à dire un site web fonctionnant sur navigateur pc tout comme mobile.
 
 - Un mode d'emploi utilisateur: 
-C'est à dire une page d'aide a l'utilisation pour les differentes personnes
-qui vont interagir avec le systeme.
+C'est à dire une page d'aide à l'utilisation pour les différentes personnes
+qui vont interagir avec le système.
 
 - Un mode d'emploi d'installation:
-Un guide qui servira à mettre en place le systeme produit.
+Un guide qui servira à mettre en place le système produit.
 
-- Un site git hub:
-Un historique d'avencement du produit en ligne.
+- Un site GitHub:
+Un historique d'avancement du produit en ligne.
 
-- La plateforme a des utilisateurs:
+- La plateforme à des utilisateurs:
 Chaque utilisateur aura besoin d'un compte utilisateur donc
 d'être inscrit puis connecté.
 
-- Un utilisateur connecté à access:
+- Un utilisateur connecté à accès:
 	- A la liste des utilisateurs inscrits.
 
-- Une tache peuvent être de differents types:
-	- Les taches simples: Contiennent un intitulé.
-	- Les taches assignés: Contiennent une personne en charge en plus d'un intitulé.
-	- Les taches de répartition: Contiennet une liste de quantités (un nombre ou répartition)
-	assigné a une personne en plus d'un intitulé pour l'intégralité de la tache.
+- Une tâche peut être de différents types:
+	- Les tâches simples: Contiennent un intitulé.
+	- Les tâches assignés: Contiennent une personne en charge en plus d'un intitulé.
+	- Les tâches de répartition: Contiennent une liste de quantités (un nombre ou répartition)
+	assignée à une personne en plus d'un intitulé pour l'intégralité de la tâche.
 
-- Un evenement contient:
-	- Une liste de taches.
-	- Un champ pour définir s'il s'agit d'un evenement privé ou public.
+- Un évènement contient:
+	- Une liste de tâches.
+	- Un champ pour définir s'il s'agit d'un évènement privé ou public.
 	- Au minimum un intitulé et une date.
-	- Potentiellement une date de fin, un lieu, des informations complémentaires (texte a remplir)
-- Un evenement est partageable avex differents utilisateurs de la plateforme:
-	- Chaque evenement partagé donne des droits non-éditeurs a l'invité,
+	- Potentiellement une date de fin, un lieu, des informations complémentaires (texte à remplir)
+- Un évènement est partageable avec différents utilisateurs de la plateforme:
+	- Chaque évènement partagé donne des droits non-éditeurs à l'invité,
 	sauf si les droits d'édition ont été spécifiés dans l'invitation.
-- Il est biensur possible de modifier divers éléments d'un évenement
+- Il est bien sûr possible de modifier divers éléments d'un évènement
 	
-- Chaque utilisateur possède une liste d'évenements.
-Chaque compte utilisateur définit plus tot, contiendra une liste d'evenements.
+- Chaque utilisateur possède une liste d'évènements.
+Chaque compte utilisateur définit plus tôt contiendra une liste d'évènements.
 
-- Different droits sur les evenements:
-Personne associé a un évenements possède un statut placé à :
-	- Propriétaire: Tous les droits y compris supression.
-	- Editeur: Modification de taches et assignations.
-	- Non-éditeur: Droit de lecture et completion de taches assignés.
+- Différent droits sur les évènements:
+Personne associée à un évènement possède un statut placé à :
+	- Propriétaire: Tous les droits y compris suppression.
+	- Editeur: Modification de tâches et assignations.
+	- Non-éditeur: Droit de lecture et complétion de tâches assignées.
 	
-- Un proprietaire peut partager un evenement avec un autre utilisateur:
+- Un propriétaire peut partager un évènement avec un autre utilisateur:
 	- Dans le cas d'une invitation, l'invité doit accepter l'invitation (valider)
-	pour etre ajouté a l'évenement, l'invitation contiendra les informations sur
-	l'évenement et eventuellement une tache assigné, il faudra accepter pour avoir la liste complete
-	des taches de l'evenement et les autres utilisateurs participants a l'evenement.
+	pour être ajouté à l'évènement, l'invitation contiendra les informations sur
+	l'évènement et éventuellement une tâche assignée, il faudra accepter pour avoir la liste complète
+	des tâches de l'évènement et les autres utilisateurs participants à l'évènement.
 
-- Tout participants peut se désiscrire d'un evenement sans validation du proprietaire:
-	- Dans une telle sittuation le proprietaire est prévenu de la désiscription de l'utilisateur.
+- Tout participants peut se désinscrire d'un évènement sans validation du propriétaire:
+	- Dans une telle situation le propriétaire est prévenu de la désinscription de l'utilisateur.
 
-- Dans le cas d'un evenement public:
-	- Les utilisateurs non connectés peuvent la consulter.
-	- Les utilisateurs connectés peuvent envoyer une requete pour rejoindre l'evenement au proprietaire.
+- Dans le cas d'un évènement public:
+	- Les utilisateurs non connectés peuvent le consulter.
+	- Les utilisateurs connectés peuvent envoyer une requête pour rejoindre l'évènement au propriétaire.
 	
 	
 - Suppression:
-	- Automatique: Si la date de fin est connue, un evenement est automatiquement supprimé une fois la date de fin arrivée.
-	- Manuelle: Un proprietaire peut décider de supprimer un evenement entierement, dans un tel cas
-	les utilisateurs participants recevront une notification de supression de l'evenement.
+	- Automatique: Si la date de fin est connue, un évènement est automatiquement supprimé une fois la date de fin arrivée.
+	- Manuelle: Un propriétaire peut décider de supprimer un évènement entièrement, dans un tel cas
+	les utilisateurs participants recevront une notification de suppression de l'évènement.
 	
-- Les notifications tels que la reception d'inviation seront effectués par Email.
+- Les notifications tels que la réception d'invitation seront effectuées par mail.
 	
-Scenarios:
+Scénarios:
 
 - Un utilisateur s'inscrit:
-	- L'utilisateur clique sur s'inscrire.
+	- L'utilisateur clique sur "s'inscrire".
 	- Le navigateur redirige vers la page d'inscription.
 	- L'utilisateur remplit ses informations
 	- L'utilisateur valide et envoie sa demande.
-	- Si la requete est valide, Le systeme traite la requete reçue, et ajoute l'utilisateur a la base de donnes.
-	- Le navigateur va ensuite afficher la reponse du systeme. Et l'utilisateur est desormais inscrit.
-Scenario Alternatif:
+	- Si la requête est valide, le système traite la requête reçue, et ajoute l'utilisateur à la base de données.
+	- Le navigateur va ensuite afficher la réponse du système. Et l'utilisateur est désormais inscrit.
+Scénario Alternatif:
 	- La demande est invalide
 	- Le navigateur illumine les champs invalides.
 	- L'utilisateur doit alors corriger ces champs et renvoyer la demande
-	- revenir au scenario normal
-Scenario Exceptionnel:
-	- L'utilisateur tente d'acceder a la page d'acceptation de requete sans avoir rempli le formulaire.
-	- Le navigateur va alors afficher une page d'erreur, et proposer un lien de redirection vers l'acceuil.
+	- revenir au scénario normal
+Scénario Exceptionnel:
+	- L'utilisateur tente d'accéder à la page d'acceptation de requête sans avoir rempli le formulaire.
+	- Le navigateur va alors afficher une page d'erreur, et proposer un lien de redirection vers l'accueil.
 	
 - Un utilisateur se Connecte:
-	- L'utilisateur clique sur se connecter.
+	- L'utilisateur clique sur "se connecter".
 	- Le navigateur le redirige vers la page connexion
 	- L'utilisateur inscrit ses identifiants et mots de passe dans les emplacements appropriés.
-	- L'utilisateur clique sur valider.
-	- Le systeme verifie les informatiosn entré
-	- Le systeme ensuite redirige l'utilisateur vers la page d'acceuil de son compte.
-Scenario Alternatif:
-	- Les informations entrés n'ont pas permis d'authentifier l'utilisateur
-	- Le navigateur affichera que la requête de connexion a échoué et que les informations n'ont pas permis de l'authentifier.
-	- L'utilisateur pourra a nouveau entrer ses informations et reprendre le scenario normal.
-Scenario Exceptionnel:
-	- L'utilisateur tente d'acceder a la page des utilisateurs connectés sans s'être authentifié
+	- L'utilisateur clique sur "valider".
+	- Le système vérifie les informations entrées
+	- Le système ensuite redirige l'utilisateur vers la page d'accueil de son compte.
+Scénario Alternatif:
+	- Les informations entrées n'ont pas permis d'authentifier l'utilisateur
+	- Le navigateur affichera que la requête de connexion a échouée et que les informations n'ont pas permis de l'authentifier.
+	- L'utilisateur pourra à nouveau entrer ses informations et reprendre le scénario normal.
+Scénario Exceptionnel:
+	- L'utilisateur tente d'accéder à la page des utilisateurs connectés sans s'être authentifié
 	- Le navigateur affiche une erreur et le redirige vers la page de connexion.
 
-- Un utilisateur consulte la liste des evenements publics:
-	- L'utilisateur clique sur consulter la liste d'evenements publics.
-	- Le navigateur redirige l'utilisateur vers la page demandé.
-	- L'utilisateur peut ensuite scroll a travers la liste s'il le désire.
-	- L'utilisateur peut cliquer sur un evenement pour avoir d'avantages d'informations.
-	- Si l'utilisateur est connecté il peut cliquer sur rejoindre l'evenement pour envoyer une notification au proprietaire
+- Un utilisateur consulte la liste des évènements publics:
+	- L'utilisateur clique sur "consulter la liste d'évènements publics".
+	- Le navigateur redirige l'utilisateur vers la page demandée.
+	- L'utilisateur peut ensuite faire défiler la liste s'il le désire.
+	- L'utilisateur peut cliquer sur un évènement pour avoir d'avantages d'informations.
+	- Si l'utilisateur est connecté il peut cliquer sur rejoindre l'évènement pour envoyer une notification au propriétaire
 	- Sinon Il est redirigé vers la page de connexion.
 	
-- Un utilisateur connecté consulte un evenement et le modifie:
-	- L'utilisateur clique sur un evenement.
-	- Le navigateur redirige l'utilisateur vers la page demandé.
+- Un utilisateur connecté consulte un évènement et le modifie:
+	- L'utilisateur clique sur un évènement.
+	- Le navigateur redirige l'utilisateur vers la page demandée.
 	- L'utilisateur peut interagir avec divers composantes.
-	- L'utilisateur essaye de modifier une tache.
-	- Les modifications sont envoyes le role de l'utilisateur est identifé, et s'il possede les droits d'edition
-	- Le navigateur afficher un message validant la modficiation
-Scenario Alternatif:
-	- Le role de l'utilisateur est non-éditeur, la modifications est rejeté, un message signalant
-	que l'utilisateur ne possede pas les droits suffisants et affiché la page est alors restaurée.
-Scenario Exceptionnel:
-	- Un utilisateur non connecté, ou ne participant pas a une tache tente d'y acceder
-	- Les informations ne s'affichent pas et un message signalant que l'utilisateur n'a pas accès a la page s'affiche.
-Scenario Exceptionnel2:
-	- L'utilisateur tente d'acceder a un evenement supprimé ou inexistant
-	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
-Scenario Exceptionnel3:
-	- L'utilisateur tente d'assigner une tache a un utilisateur qui n'existe pas est invalide ou récamment supprimé
-	- Un message signalant que l'utilisateur selectionné n'existe pas ou plus s'affiche l'action est annulée.
+	- L'utilisateur essaye de modifier une tâche.
+	- Les modifications sont envoyées, le rôle de l'utilisateur est vérifié, et s'il possède les droits d'édition
+	- Le navigateur afficher un message validant la modification
+Scénario Alternatif:
+	- Le rôle de l'utilisateur est non-éditeur, la modifications est rejeté, un message signalant
+	que l'utilisateur ne possède pas les droits suffisants et affiché la page est alors restaurée.
+Scénario Exceptionnel:
+	- Un utilisateur non connecté, ou ne participant pas à une tâche tente d'y accéder
+	- Les informations ne s'affichent pas et un message signalant que l'utilisateur n'a pas accès à la page s'affiche.
+Scénario Exceptionnel 2:
+	- L'utilisateur tente d'accéder à un évènement supprimé ou inexistant
+	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'évènements
+Scénario Exceptionnel 3:
+	- L'utilisateur tente d'assigner une tâche à un utilisateur qui n'existe pas est invalide ou récemment supprimé
+	- Un message signalant que l'utilisateur sélectionné n'existe pas ou plus s'affiche l'action est annulée.
 
-- Un utilisateur connecté souhaite creer un evenement:
-	- L'utilisateur clique sur creer un nouvel evenement
-	- Le systeme le redirige vers le formulaire de creation:
-	- L'utilisateur entre les donnes qu'il désire
-	- L'utilisateur valide et envoie au systeme.
-	- Les informations sont controlees par le systeme et si elles sont valides
-	- Le systeme cree l'evenement et le navigateur de l'utilisateur affiche que la creation a reussie.
-	- Le navigateur propose un lien vers l'evenement ainsi crée
-Scenario Alternatif:
-	- Les informations entrees ne sont pas valides
-	- Le navigateur affichera que la requête de creation a échoué car invalide.
-	- Le navigateur met en evidence les problemes
-	- L'utilisateur pourra a nouveau entrer ses informations et reprendre le scenario normal.
-Scenario Exceptionnel:
-	- Un utilisateur non connecté accede a la page de creation:
-	- Les informations ne s'affichent pas et un message signalant que l'utilisateur doit être connecté pour creer un evenement.
+- Un utilisateur connecté souhaite créer un évènement:
+	- L'utilisateur clique sur "créer un nouvel évènement"
+	- Le système le redirige vers le formulaire de création:
+	- L'utilisateur entre les données qu'il désire
+	- L'utilisateur valide et envoie au système.
+	- Les informations sont contrôlées par le système et si elles sont valides
+	- Le système créé l'évènement et le navigateur de l'utilisateur affiche que la création à réussie.
+	- Le navigateur propose un lien vers l'évènement ainsi créé
+Scénario Alternatif:
+	- Les informations entrées ne sont pas valides
+	- Le navigateur affichera que la requête de création a échoué car invalide.
+	- Le navigateur met en évidence les problèmes
+	- L'utilisateur pourra à nouveau entrer ses informations et reprendre le scénario normal.
+Scénario Exceptionnel:
+	- Un utilisateur non connecté accède à la page de création:
+	- Les informations ne s'affichent pas et un message signalant que l'utilisateur doit être connecté pour créer un évènement.
 
-- Un utilisateur connecté souhaite partager un evenement avec un autre:
-	- L'utilisateur clique sur un evenement.
-	- Le navigateur redirige l'utilisateur vers la page demandé.
-	- L'utilisateur clique sur inviter un autre utilisateur.
+- Un utilisateur connecté souhaite partager un évènement avec un autre:
+	- L'utilisateur clique sur un évènement.
+	- Le navigateur redirige l'utilisateur vers la page demandée.
+	- L'utilisateur clique sur "inviter un autre utilisateur".
 	- Le navigateur affiche une liste d'utilisateur.
-	- L'utilisateur selectionne quelqu'un.
-	- L'utilisateur a ensuite a possiblité d'assigner le selectionné a une tache.
+	- L'utilisateur sélectionne quelqu'un.
+	- L'utilisateur à ensuite la possibilité d'assigner l'utilisateur sélectionné à une tâche.
 	- L'utilisateur valide puis envoie l'invitation.
-	- Le systeme envoie une notification (mail) au selectionné
-Scenario Alternatif:
-	- L'utilisateur n'a pas les droits d'invitation/modification de tache.
+	- Le système envoie une notification (mail) à l'utilisateur sélectionné
+Scénario Alternatif:
+	- L'utilisateur n'a pas les droits d'invitation/modification de tâche.
 	- la modifications est rejeté, un message signalant
-	que l'utilisateur ne possede pas les droits suffisants et affiché.
-Scenario Exceptionnel:
-	- L'utilisateur selectionné n'existe pas est invalide ou récamment supprimé
-	- Un message signalant que l'utilisateur selectionné n'existe pas ou plus s'affiche l'action est annulée.
+	que l'utilisateur ne possède pas les droits suffisants et affiché.
+Scénario Exceptionnel:
+	- L'utilisateur sélectionné n'existe pas est invalide ou récemment supprimé
+	- Un message signalant que l'utilisateur sélectionné n'existe pas ou plus est affiché et l'action est annulée.
 
 - Un utilisateur connecté souhaite consulter la liste des contacts ses favoris et ajouter un nouveau favori:
 	- L'utilisateur clique sur contacts:
 	- Le navigateur le redirige vers la page de contacts
-	- Grace aux donnés fournies par le systeme la page affiche une liste d'utilisateurs enregistés et une liste de favoris
-	- L'utilisateur scroll a travers la liste des utilisateurs et clique sur un nom
+	- Grace aux données fournies par le système la page affiche une liste d'utilisateurs enregistrés et une liste de favoris
+	- L'utilisateur faire défiler la page à travers la liste des utilisateurs et clique sur un nom
 	- Un bouton permettant de l'ajouter aux favoris apparait alors.
 	- L'utilisateur est alors ajouté aux contacts favoris.
 	- Le navigateur recharge alors la liste des favoris avec le nouvel ajout.
-Scenario Alternatif:
-	- L'utilisateur selectionné existe déja dans la liste des favoris | Ou l'utilisateur a cliqué sur un utilisateur dans la liste de favoris.
+Scénario Alternatif:
+	- L'utilisateur sélectionné existe déjà dans la liste des favoris | Ou l'utilisateur a cliqué sur un utilisateur dans la liste de favoris.
 	- Un bouton permettant de supprimer l'utilisateur de la liste des favoris apparait alors.
 	- L'utilisateur clique alors sur supprimer.
 	- Le navigateur recharge alors la liste des favoris.
-Scenario Exceptionnel:
-	- L'utilisateur selectionné n'existe pas est invalide ou récamment supprimé
-	- Un message signalant que l'utilisateur selectionné n'existe pas ou plus s'affiche l'action est annulée.
+Scénario Exceptionnel:
+	- L'utilisateur sélectionné n'existe pas est invalide ou récemment supprimé
+	- Un message signalant que l'utilisateur sélectionné n'existe pas ou plus s'affiche l'action est annulée.
 	
-- Un utilisateur connecté souhaite supprimer un evenement :
-	- L'utilisateur clique sur un evenement.
-	- Le navigateur redirige l'utilisateur vers la page demandé.
-	- L'utilisateur clique sur supprimer l'evenement.
-	- Le navigateur demande si l'utilisateur est certain de vouloir supprimer l'evenement.
-	- L'utilisateur selectionne oui.
-	- Le systeme suppime alors l'evenement, notifie tous les participants y compris le proprietaire de la suppression.
-	- Le navigateur redirige l'utilisateur vers sa liste d'evenements.
-Scenario Alternatif:
-	- L'utilisateur n'est pas proprietaire.
+- Un utilisateur connecté souhaite supprimer un évènement :
+	- L'utilisateur clique sur un évènement.
+	- Le navigateur redirige l'utilisateur vers la page demandée.
+	- L'utilisateur clique sur supprimer l'évènement.
+	- Le navigateur demande si l'utilisateur est certain de vouloir supprimer l'évènement.
+	- L'utilisateur sélectionne oui.
+	- Le système supprime alors l'évènement, notifie tous les participants y compris le propriétaire de la suppression.
+	- Le navigateur redirige l'utilisateur vers sa liste d'évènements.
+Scénario Alternatif:
+	- L'utilisateur n'est pas propriétaire.
 	- la modifications est rejeté, un message signalant
-	que l'utilisateur ne possede pas les droits suffisants et affiché.
-Scenario Exceptionnel:
-	- L'utilisateur tente d'acceder a un evenement déja supprimé ou inexistant
-	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
+	que l'utilisateur ne possède pas les droits suffisants et affiché.
+Scénario Exceptionnel:
+	- L'utilisateur tente d'accéder à un évènement déjà supprimé ou inexistant
+	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'évènements
 
-- Un utilisateur souhaite se retirer d'un evenement:
-	- L'utilisateur clique sur un evenement
-	- Le navigateur redirige l'utilisateur vers la page demandé.
-	- L'utilisateur clique sur se retirer de l'evenement.
-	- Le navigateur demande si l'utilisateur est certain de vouloir supprimer l'evenement.
-	- L'utilisateur selectionne oui.
-	- Le systeme retire l'utilisateur de la liste des participants a l'evenement et envoie un mail au proprietaire.
-	- Le navigateur redirige l'utilisateur vers sa liste d'evenements.
-Scenario Exceptionnel:
-	- L'utilisateur tente d'acceder a un evenement supprimé, inexistant ou au quel il n'a pas accès
-	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
+- Un utilisateur souhaite se retirer d'un évènement:
+	- L'utilisateur clique sur un évènement
+	- Le navigateur redirige l'utilisateur vers la page demandée.
+	- L'utilisateur clique sur "se retirer de l'évènement".
+	- Le navigateur demande si l'utilisateur est certain de vouloir supprimer l'évènement.
+	- L'utilisateur sélectionne oui.
+	- Le système retire l'utilisateur de la liste des participants à l'évènement et envoie un mail au propriétaire.
+	- Le navigateur redirige l'utilisateur vers sa liste d'évènements.
+Scénario Exceptionnel:
+	- L'utilisateur tente d'accéder à un évènement supprimé, inexistant ou au quel il n'a pas accès
+	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'évènements
 
 - Un utilisateur reçoit une invitation:
 	- L'utilisateur a reçu une invitation par email.
 	- L'utilisateur clique sur le lien.
-	- L'utilisateur est redirigé vers une page contenant les informations minimales sur l'evenement.
-	- L'utilisateur clique sur accepter l'invitation.
-	- L'utilisateur est redirigé vers l'evenement.
-Scenario Alternatif:
-	- L'utilisateur clique sur refuser l'inviation.
-	- L'utilisateur est redirigé vers l'aceuil.
-Scenario Exceptionnel:
-	- L'utilisateur clique a une invitation invalide ou d'un evenement supprimé, inexistant ou au quel il n'a pas été invité.
-	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
+	- L'utilisateur est redirigé vers une page contenant les informations minimales sur l'évènement.
+	- L'utilisateur clique sur "accepter l'invitation".
+	- L'utilisateur est redirigé vers l'évènement.
+Scénario Alternatif:
+	- L'utilisateur clique sur "refuser l'invitation".
+	- L'utilisateur est redirigé vers l'accueil.
+Scénario Exceptionnel:
+	- L'utilisateur clique sur une invitation invalide ou d'un évènement supprimé, inexistant ou auquel il n'a pas été invité.
+	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'évènements
 	
-- Un utilisateur conencté souhaite se déconnecter:
-	- L'utilisateur clique sur le bouton deconnexion
+- Un utilisateur connecté souhaite se déconnecter:
+	- L'utilisateur clique sur le bouton "déconnexion"
 	- Le navigateur annule la session
-	- L'utilisateur est redirigé vers l'acceuil
-Scenario Exceptionnel:
+	- L'utilisateur est redirigé vers l'accueil
+Scénario Exceptionnel:
 	- L'utilisateur n'est pas connecté
-	- Le navigateur affiche une erreur et l'utilisateur est redirigé vers l'acceuil
-	
+	- Le navigateur affiche une erreur et l'utilisateur est redirigé vers l'accueil
