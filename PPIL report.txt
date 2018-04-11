@@ -221,3 +221,12 @@ Scenario Alternatif:
 Scenario Exceptionnel:
 	- L'utilisateur clique a une invitation invalide ou d'un evenement supprimé, inexistant ou au quel il n'a pas été invité.
 	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
+	
+- Un utilisateur conencté souhaite se déconnecter:
+	- L'utilisateur clique sur le bouton deconnexion
+	- Le navigateur annule la session
+	- L'utilisateur est redirigé vers l'acceuil
+Scenario Exceptionnel:
+	- L'utilisateur n'est pas connecté
+	- Le navigateur affiche une erreur et l'utilisateur est redirigé vers l'acceuil
+	
