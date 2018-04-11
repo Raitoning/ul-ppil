@@ -163,7 +163,23 @@ Scenario Alternatif:
 Scenario Exceptionnel:
 	- L'utilisateur selectionné n'existe pas est invalide ou récamment supprimé
 	- Un message signalant que l'utilisateur selectionné n'existe pas ou plus s'affiche l'action est annulée.
-	
+
+- Un utilisateur connecté souhaite consulter la liste des contacts ses favoris et ajouter un nouveau favori:
+	- L'utilisateur clique sur contacts:
+	- Le navigateur le redirige vers la page de contacts
+	- Grace aux donnés fournies par le systeme la page affiche une liste d'utilisateurs enregistés et une liste de favoris
+	- L'utilisateur scroll a travers la liste des utilisateurs et clique sur un nom
+	- Un bouton permettant de l'ajouter aux favoris apparait alors.
+	- L'utilisateur est alors ajouté aux contacts favoris.
+	- Le navigateur recharge alors la liste des favoris avec le nouvel ajout.
+Scenario Alternatif:
+	- L'utilisateur selectionné existe déja dans la liste des favoris | Ou l'utilisateur a cliqué sur un utilisateur dans la liste de favoris.
+	- Un bouton permettant de supprimer l'utilisateur de la liste des favoris apparait alors.
+	- L'utilisateur clique alors sur supprimer.
+	- Le navigateur recharge alors la liste des favoris.
+Scenario Exceptionnel:
+	- L'utilisateur selectionné n'existe pas est invalide ou récamment supprimé
+	- Un message signalant que l'utilisateur selectionné n'existe pas ou plus s'affiche l'action est annulée.
 
 
 
