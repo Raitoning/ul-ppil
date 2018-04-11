@@ -102,13 +102,16 @@ Scénario Exceptionnel:
 	- L'utilisateur tente d'accéder à la page des utilisateurs connectés sans s'être authentifié
 	- Le navigateur affiche une erreur et le redirige vers la page de connexion.
 
-- Un utilisateur consulte la liste des évènements publics:
+- Un utilisateur consulte et souhaite s'inscrire la liste des évènements publics:
 	- L'utilisateur clique sur "consulter la liste d'évènements publics".
 	- Le navigateur redirige l'utilisateur vers la page demandée.
 	- L'utilisateur peut ensuite faire défiler la liste s'il le désire.
 	- L'utilisateur peut cliquer sur un évènement pour avoir d'avantages d'informations.
-	- Si l'utilisateur est connecté il peut cliquer sur rejoindre l'évènement pour envoyer une notification au propriétaire
-	- Sinon Il est redirigé vers la page de connexion.
+	- L'utilisateur clique sur rejoindre l'évènement pour envoyer une notification au propriétaire
+Scénario Exceptionnel:
+	- L'utilisateur n'est pas connecté
+	- Le navigateur affiche une erreur et l'utilisateur est redirigé vers l'accueil
+
 	
 - Un utilisateur connecté consulte un évènement et le modifie:
 	- L'utilisateur clique sur un évènement.
