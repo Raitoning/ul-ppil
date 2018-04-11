@@ -123,6 +123,12 @@ Scenario Alternatif:
 Scenario Exceptionnel:
 	- Un utilisateur non connecté, ou ne participant pas a une tache tente d'y acceder
 	- Les informations ne s'affichent pas et un message signalant que l'utilisateur n'a pas accès a la page s'affiche.
+Scenario Exceptionnel2:
+	- L'utilisateur tente d'acceder a un evenement supprimé ou inexistant
+	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
+Scenario Exceptionnel3:
+	- L'utilisateur tente d'assigner une tache a un utilisateur qui n'existe pas est invalide ou récamment supprimé
+	- Un message signalant que l'utilisateur selectionné n'existe pas ou plus s'affiche l'action est annulée.
 
 - Un utilisateur connecté souhaite creer un evenement:
 	- L'utilisateur clique sur creer un nouvel evenement
