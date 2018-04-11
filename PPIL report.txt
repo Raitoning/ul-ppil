@@ -209,3 +209,15 @@ Scenario Exceptionnel:
 	- L'utilisateur tente d'acceder a un evenement supprimé, inexistant ou au quel il n'a pas accès
 	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
 
+- Un utilisateur reçoit une invitation:
+	- L'utilisateur a reçu une invitation par email.
+	- L'utilisateur clique sur le lien.
+	- L'utilisateur est redirigé vers une page contenant les informations minimales sur l'evenement.
+	- L'utilisateur clique sur accepter l'invitation.
+	- L'utilisateur est redirigé vers l'evenement.
+Scenario Alternatif:
+	- L'utilisateur clique sur refuser l'inviation.
+	- L'utilisateur est redirigé vers l'aceuil.
+Scenario Exceptionnel:
+	- L'utilisateur clique a une invitation invalide ou d'un evenement supprimé, inexistant ou au quel il n'a pas été invité.
+	- Le navigateur affiche une erreur et redirige l'utilisateur vers sa liste d'evenements
