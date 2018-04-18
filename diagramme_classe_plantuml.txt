@@ -1,0 +1,43 @@
+@startuml
+
+Class Utilisateur {
+
+        string pseudo
+        string motDePasse
+        string mail
+        string recevoirInvitation
+    }
+
+    Class Tache {
+
+        string nom
+    }
+
+    Class TacheAssignee
+
+    note top of Dictionnaire: "Classe Dictionary/HashMap Utilisateur => entier"
+    Class Dictionnaire
+
+    Class Evenement {
+
+        booleen public
+        string intitule
+        date dateDebut
+        date dateFin
+        string description
+        string lieu
+        booleen suppressionAutomatique
+    }
+
+    Tache <|-- TacheAssignee
+    Dictionnaire "1,1" <--- TacheAssignee
+    Utilisateur "0,n" <--- Dictionnaire
+    Evenement *--- "0,n" Tache
+
+    Utilisateur "1,1" *--- "0,n" Evenement : "Utilisateur propriétaire"
+    Utilisateur "0,n" o--- "0,n" Evenement : "Utilisateur avec droits d'édition"
+    Utilisateur "0,n" o--- "0,n" Evenement : "Utilisateur standard"
+
+    Utilisateur "0,n" <--- Utilisateur
+
+@enduml
