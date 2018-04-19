@@ -1,0 +1,225 @@
+
+
+				
+
+
+
+
+
+
+Cas d'utilisations
+
+
+
+
+
+
+Mode non-connecté 
+
+
+
+
+
+
+
+
+	
+1)L’utilisateur s’identifie pour se connecter
+		Scénarios possibles :
+Scenario nominal :
+1)L’utilisateur rentre son adresse mail avec sans mot de passe dans le formulaire de connexion puis il    valide ses informations.
+2)l’application vérifie si ces informations ils sont valide.
+3)l’application indique que l’utilisateur est bien connecté et affiche la page d'accueil de son compte.
+
+Scenario alternative :
+1)l'utilisateur se trompe sur son adresse mail, son mot de passe ou bien oublie de remplir un champ(s), 
+2)l’application indique à l’utilisateur que ses informations son incorrectes ou bien qu’il y ait des     champs manquants, puis le scenario nominal reprend au point (1).
+ + l'utilisateur tente de s'authentifier alors qu'il n'a pas de compte, l'application affiche un message « l'adresse mail n 'est associée à aucun compte ».
+
+
+
+2)L’utilisateur s’inscrit à l'application 
+		Scénario possible :
+Scénario nominal : 
+1)l'utilisateur clique sur le bouton « inscription »
+2)l’application affiche la page d’inscription 
+3)l’utilisateur rempli les champs du formulaire d’inscription et valide ses informations,
+4) l’application vérifie que les informations son valide, puis affiche un message pour confirmer la création du compte. (+envoie un mail de validation d’inscription à l’utilisateur).
+5)l’application ouvre la page d'accueil d'utilisateur.
+Scénario alternative :
+1)L’utilisateur se trompe sur ses informations ou bien oublie de remplir un champ(s),
+2)L’application informe l’utilisateur qu’il y a un/des champ(s) manquant(s) ou incorrect(s), puis le scenario nominal reprend au point (2)
+
+
+3)L’utilisateur consulte les évènements publics 
+1) L’utilisateur clique sur le bouton « accueil »
+2) l’application affiche la liste des évènements publics.  
+
+
+
+
+
+4) L’utilisateur Réinitialise son mot de passe
+L’utilisateur réinitialise son mot de passe si jamais il l'a perdu grâce à un mail qu'il recevra.
+       Scénario possible :
+Scénario nominal : 
+1) l’utilisateur clique sur le bouton « mot de passe perdu ».
+2) l’application demande l’adresse e-mail d’utilisateur, pour envoyer un mail de réinitialisation.
+3) l’utilisateur clique sur le lien reçu dans le mail
+4) l’application affiche la page de réinitialisation.
+5)l’utilisateur tape son nouveau mot de passe.
+6)l’application vérifie si le mot de passe est valide et informe l’utilisateur que son mot de passe a changé.
+Scénario alternative : 
+Le mot de passe entré par l’utilisateur n’est pas valide.
+1)l’application informe l’utilisateur que le mot de passe entré n’est pas valide.
+2)le scénario nominal reprend au point 4.
+
+
+
+
+
+
+
+
+
+
+
+Mode connecté 
+
+
+
+
+
+1)L’utilisateur consulte les évènements publics 
+1) L’utilisateur clique sur le bouton « accueil »
+2) l’application affiche la liste des évènements publics.  
+
+2)L’utilisateur consulte sa liste d’évènements 
+1) L’utilisateur clique sur le bouton « mes évènements »
+2) l’application affiche la liste des évènements d’utilisateur.  
+
+3)L’utilisateur modifie un évènement 
+	Scénario possible :
+Scénario nominal : si l’évènement n’est pas protégé en écriture, l’utilisateur modifie, ajoute ou supprime des lignes dans l'évènements.
+1)l’utilisateur clique sur le bouton « modifier l’évènement ».
+2)l’application affiche la page de modification.
+3)l’utilisateur modifie, ajoute ou supprime des lignes dans l’évènement puis valide ses modifications. (L’utilisateur peut aussi créer des nouvelles taches)
+Scénario alternative : si l’évènement est protégé en écriture :
+1)l’application informe l’utilisateur qu’il n’a pas le droit de modifier l’évènement.
+4)L’utilisateur crée un évènement
+	Scenario possible :
+Scénario nominal : L’utilisateur crée un nouvel évènement. 
+1)l’utilisateur clique sur le bouton « créer un évènement ».
+2)l’application affiche la page de création.
+3)l’utilisateur rempli les champs nécessaires et valide ses informations.
+4)l’application vérifie les informations entrées par l’utilisateur.
+5)l’application informe l’utilisateur que son évènement a été bien créer.
+Scénario alternative : la création d’un évènement est un échec à cause d’une erreur dans le formulaire de création.
+1) L’application informe l’utilisateur qu’il y a un/des champ(s) manquant(s) ou incorrect(s), puis le scenario nominal reprend au point (2).
+Types d’évènement :
+			+avec plusieurs taches (personnelles)
+				L’utilisateur crée un évènement avec plusieurs taches
+			+taches a plusieurs (à un groupe d'amis) 
+L’utilisateur crée un évènement avec plusieurs taches, puis associer chaque tache, a un ou un groupe d'amis.
+
+5)L’utilisateur partage un évènement avec d’autres utilisateurs 
+       Scénario possible :
+Scénario nominal : si l’évènement n’est pas protégé en partage, L’utilisateur ajoute des utilisateurs(amis) à un évènement.
+1)l’utilisateur clique sur le bouton « partager ».
+2)l’application affiche la liste des contacts par l’ordre alphabétique.
+3)l’utilisateur choisit les utilisateurs qu’il souhaite ajouter à l’évènement.
+4)l’application informe l’utilisateur que l’évènement a été bien partagé, et prévient les membres ajoutés.
+Scénario alternative : si l’évènement est protégé en partage :
+1)l’application informe l’utilisateur qu’il n’a pas le droit de partager l’évènement.
+
+
+
+
+
+
+
+
+
+
+
+
+6)L'utilisateur consulte sa liste de contacts
+L’utilisateur accède à sa liste des contacts.
+1)l’utilisateur clique sur le bouton « contacts ».
+2)l’application affiche la liste des contacts d’utilisateur.
+
+7)L'utilisateur modifie sa liste de contacts
+L’utilisateur accède à sa liste des contacts.
+1)l’utilisateur clique sur le bouton « contacts ».
+2)l’application affiche la liste des contacts d’utilisateur.
+3)l’utilisateur clique sur le bouton « modifier », puis ajoute ou supprime les utilisateurs qu’il souhaite.
+4)l’application informe l’utilisateur que sa liste de contacts a été bien modifier.
+
+
+
+
+
+8)L’utilisateur supprime des personnes depuis un évènement qu’il a créé :
+L’utilisateur choisit des personnes à supprimer depuis un évènement
+1)l’utilisateur affiche la liste des utilisateurs invités à un évènement, puis clique sur le bouton « modifier ».
+2)l’application affiche la liste des invités avec une possibilité de suppression à côté de chaque invité.
+3)l’utilisateur choisit les invités qu’il souhaite supprimer de l’évènement et valide son choix.
+4)l’application informe l’utilisateur que la tache a été bien effectuer. Puis informe les utilisateurs supprimer de l’évènement.
+
+9)L’utilisateur supprime des personnes depuis une tache dans un évènement qu’il a créé.
+1)L’utilisateur affiche la liste des amis associés à des taches d’un évènement qu'il a créé puis, choisit ceux qui souhaite supprimer de certaines taches (sans les supprimés de tout l’évènement).
+2)L 'application affiche un message de confirmation et prévient les utilisateurs supprimés.
+
+
+		
+
+
+
+
+
+		
+10)L’utilisateur se désinscrit d’un évènement 
+L’utilisateur souhaite se désinscrit d'un évènement (sans que le créateur de l’évènement valide).
+1)l’utilisateur accède à un évènement et clique sur le bouton « désinscrire ».
+2)l’application affiche un message de confirmation, puis prévient le créateur de l’évènement.
+
+11)L’utilisateur accepte d’adhérer à un évènement
+1)L’utilisateur accepte d'adhérer à un évènement.
+2)l’application affiche un message de confirmation et prévient le créateur.
+
+
+
+12)L’utilisateur refuse d’adhérer à un évènement
+1)L’utilisateur accepte d'adhérer à un évènement.
+2)l’application affiche un message de confirmation et prévient le créateur.
+
+13)L’utilisateur demande d’adhérer à un évènement
+1)L’utilisateur clique sur le bouton « adhérer ».
+2)l’application affiche un message « demande envoyée » et prévient le créateur.
+
+14)L’utilisateur consulte et modifie ses informations personnelles
+	Scenario possible :
+Scénario nominal : L’utilisateur consulte son profil et ajoute ou modifie ses informations personnelles (nom, prénom, adresse mail, …)
+1)l’utilisateur clique sur l’onglet « informations personnelles ».
+2)l’application affiche les informations de l’utilisateur.
+3)l’utilisateur ajoute ou modifie ses informations, puis il valide.
+4)l’application vérifie si les informations entrées sont valides.
+5)puis informe l’utilisateur que son profile a été mise à jour.
+Scénario alternative :
+1)L’utilisateur se trompe sur ses informations ou bien oublie de remplir un champ(s),
+2)L’application informe l’utilisateur qu’il y a un/des champ(s) manquant(s) ou incorrect(s), puis le scenario nominal reprend au point (2).
+
+
+
+
+
+15)L’utilisateur se déconnecte
+1) L’utilisateur clique sur le bouton déconnexion.
+2) l’application indique que l’utilisateur est déconnecté.  
+
+
+
+
+
+
+
