@@ -36,6 +36,15 @@
        + Liste<Notification> getNotifications()
     }
 
+    Enum Droits {
+
+        {static} int propietaire
+        {static} int editeur
+        {static} int visiteur 
+    }
+
+    Class DroitsUtilisateurs
+
     Class Tache {
 
         - string nom
@@ -53,8 +62,8 @@
        - entier quantite
     }
 
-    note top of Dictionnaire: "Classe Dictionary/HashMap Utilisateur => entier"
-    Class Dictionnaire
+
+    Class Repartition
 
     Class Evenement {
 
@@ -86,6 +95,7 @@
     }
 
     Class Notification {
+
         - entier identifiant
         - booleen invitation
         - string message
@@ -98,22 +108,23 @@
         + void accepterInvitation()
     }
 
-    Tache <|-- TacheAssignee
-    Dictionnaire "1,1" <--- TacheAssignee
-    Utilisateur "0,n" <--- Dictionnaire
-    Evenement *--- "0,n" Tache
-    Notification <|-- Invitation
+    Utilisateur "0,1" -up- Modele
 
-    Utilisateur "1,1" *--- "0,n" Evenement : "Utilisateur propriétaire"
-    Utilisateur "0,n" o--- "0,n" Evenement : "Utilisateur avec droits d'édition"
-    Utilisateur "0,n" o--- "0,n" Evenement : "Utilisateur standard"
+    TacheAssignee -right-|> Tache 
+    Invitation -up-|> Notification
 
-    Utilisateur "0,n" <--- Utilisateur
+    Utilisateur "1,1" -left- "0,n" Notification 
+    Utilisateur "0,n" <-left- Repartition
+    Utilisateur "0,n" <-- Utilisateur : Contacts
 
-    Utilisateur "1,1" *--- "0,n" Notification
+    Evenement ---left--- "1,1" Invitation
+    Evenement *---right--- "0,n" Tache
 
-    Modele -- "0,1" Utilisateur
+    Droits "1,n" -right- "0,n" DroitsUtilisateurs
 
-    Evenement "1,1" -- Invitation
+    Utilisateur "1,1" *-down- "0,n" DroitsUtilisateurs
+    DroitsUtilisateurs "1,1" o-down- "1,1" Evenement
+
+    Repartition "1,1" <-up- TacheAssignee
 
 @enduml
