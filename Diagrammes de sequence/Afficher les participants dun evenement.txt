@@ -1,0 +1,21 @@
+@startuml
+
+    actor Acteur
+    participant Navigateur
+    participant Modèle
+    participant Evènement
+    database    Evènement as Event
+
+    note over Acteur : L'utilisateur se situe sur sa liste d'évènement
+
+    Acteur -> Navigateur : Clique sur l'évènement choisi
+    Navigateur -> Modèle : Demande la page de l'évènement
+    Modèle -> Evènement : Demande les informations de l'évènement
+    Evènement -> Event : Demande les informations à la base de données
+    Evènement <- Event : Envoie les informations au serveur web
+    Modèle <- Evènement : Envoie les informations de l'évènement
+    Modèle -> Modèle : Génère la page de l'évènement
+    Navigateur <- Modèle : Envoie la page de l'évènement
+    Acteur <- Navigateur : Affiche la page de l'évènement
+
+@enduml

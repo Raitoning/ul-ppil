@@ -1,0 +1,35 @@
+@startuml
+
+    actor Acteur
+    participant Navigateur
+    participant Modèle
+    participant Notification
+    actor "Acteur à ajouter" as cible
+
+    note over Acteur : L'utilisateur se situe déjà\nsur la page de l'évènement
+
+    Acteur -> Navigateur : Clique sur le bouton pour ajouter un participant
+    Navigateur -> Modèle : Demande la page d'ajout d'un participant
+    Navigateur <- Modèle : Envoie la page d'ajout d'un participant
+    Acteur <- Navigateur : Affiche la page d'ajout d'un participant
+
+    Acteur -> Navigateur : Entre l'utilisateur à ajouter et valide l'ajout
+    Navigateur -> Modèle : Envoie les informations entrées par l'utilisateur
+    Modèle -> Modèle : Vérifie les informations
+
+    alt Les informations sont valides
+
+        Modèle -> Modèle : Ajoute le participant à l'évènement
+        Modèle -> Notification : Envoie une notification à la personne ajoutée
+        Notification -> cible : Envoie la notification
+        Modèle -> Navigateur : Envoie un message de succès
+        Navigateur -> Acteur : Affiche le message de succès
+
+    else Les informations sont invalides
+
+        Modèle -> Navigateur : Envoie un message d'erreur
+        Navigateur -> Acteur : Affiche le message d'erreur
+
+    end
+
+@enduml

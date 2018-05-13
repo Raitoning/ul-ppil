@@ -1,0 +1,29 @@
+@startuml
+
+    actor Acteur
+    participant Navigateur
+    participant Modèle
+    participant Tâche
+    database Tâche as Task
+
+    note over Acteur : L'Utilisateur se situe sur la page d'un évènement
+
+    Acteur -> Navigateur : Clique sur la tâche à modifier
+    Navigateur -> Modèle : Demande la page de modification de la tâche
+    Modèle -> Tâche : Demande les informations de la tâche
+    Tâche -> Task : Demande les informations à la base de données
+    Tâche <- Task : Envoie les informations au serveur web
+    Modèle <- Tâche : Envoie les informations de la tâche
+    Modèle -> Modèle : Génère la page de modification la tâche
+    Navigateur <- Modèle : Envoie la page de modification
+    Acteur <- Navigateur : Affiche la page de modification
+
+    Acteur -> Navigateur : Modifie le type de la tâche et valide
+    Navigateur -> Modèle : Envoie les modifications
+    Modèle -> Tâche : Envoie les modifications
+    Tâche -> Task : Envoie les modifications à enregister
+    Task -> Task : Enregistre les modifications
+    Navigateur <- Modèle : Envoie un message de succès
+    Acteur <- Navigateur : Affiche le message de succès
+
+@enduml
