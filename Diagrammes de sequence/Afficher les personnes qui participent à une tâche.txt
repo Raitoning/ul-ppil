@@ -1,0 +1,12 @@
+@startuml
+Actor Acteur
+Participant Navigateur
+Participant Modèle
+Participant Tache
+
+Acteur -> Navigateur : Sélection de la tâche
+Navigateur -> Modèle : getTache(int idTache)
+Modèle -> Tache : getTache(int idTache)
+Modèle -> Navigateur : affichageTache(int idTache)
+Navigateur -> Acteur: Affichage des détails de la tâche
+@enduml

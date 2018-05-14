@@ -1,0 +1,26 @@
+@startuml
+Actor Acteur
+Participant Navigateur
+Participant Modèle
+Participant Evenement
+Actor Utilisateur
+
+Acteur-> Navigateur : Demande à changer les droits d'un inscrits
+Navigateur -> Acteur: Affichage du menu
+Acteur-> Navigateur : Sélectionne les droits à changer
+Navigateur -> Acteur: Demande de confirmation
+
+alt oui
+Acteur-> Navigateur : Validation
+Navigateur -> Modèle : changerDroits(int idUtilisateur, int[] nouveauxDroits)
+Modèle -> Evenement: getEvenement()
+Evenement -> Evenement : changerDroits(int idUtilisateur, int[] nouveauxDroits)
+Evenement -> Utilisateur : notification()
+
+else non
+Acteur-> Navigateur : Annulation
+
+end
+Modèle -> Navigateur : affichageEventUtilisateurs()
+Navigateur --> Acteur: Redirection vers la liste des participants
+@enduml
