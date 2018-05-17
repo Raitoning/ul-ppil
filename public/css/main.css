@@ -44,6 +44,11 @@ body h1 {
     border: 1px solid black;
 }
 
+#content table {
+
+    margin: auto;
+}
+
 #user_actions {
 
     float: left;
