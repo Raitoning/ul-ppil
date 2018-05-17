@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class notification extends Model {
     protected $table = 'notification';
-    protected $primaryKey = "idNotification";
+    protected $primaryKey = "notification_id";
     public $timestamps = false;
 
     public function evenement() {
