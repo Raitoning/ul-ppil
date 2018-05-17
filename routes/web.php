@@ -11,6 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',function(){
+  if(Session::has('utilisateur'))
+    return view('index');
+  else
+    return view('login');
 });
+
+Route::get('signup',function(){
+  if(Session::has('utilisateur'))
+    return view('index');
+  else return view('signup');
+});
+
+Route::get('/lostpw',function(){
+  if(Session::has('utilisateur'))
+    return view('index');
+  else return view('lostpw');
+});
+
+Route::post('/','ControllerConnexion@connexion');
+Route::post('/deconnexion','ControllerConnexion@deconnexion');
+
+/*Route::post('/',function(){
+	return 'test';
+});*/
