@@ -1,0 +1,65 @@
+body {
+
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body h1 {
+
+    text-align: center;
+}
+
+#login {
+
+    text-align: center;
+
+    background-color: rgba(0,0,0,0.25);
+    border: 1px solid black;
+}
+
+#login table {
+
+    margin: auto;
+}
+
+#signup {
+    
+    float: left;
+}
+
+#anon {
+
+    float: right;
+}
+
+#content {
+
+    overflow: auto;
+    text-align: center;
+
+    padding: 20px 20px 20px 20px;
+
+    background-color: rgba(0,0,0,0.25);
+    border: 1px solid black;
+}
+
+#user_actions {
+
+    float: left;
+    width: 50%;
+    text-align: left;
+}
+
+#user_lists {
+
+    float: right;
+    width: 50%;
+    text-align: center;    
+}
+
+#footer {
+
+    padding: 20px 20px 20px 20px;
+    text-align: center;
+}
