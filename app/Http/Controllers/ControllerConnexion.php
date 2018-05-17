@@ -14,7 +14,7 @@ class ControllerConnexion extends Controller
 {
     public function connexion(Request $request){
       if(Session::has('utilisateur'))
-		return view('');
+		return redirect('/');
       else{
 	    $utilisateur = utilisateur::where("pseudo", $request->input("user"))->where("password", $request->input("mdp"))->first();
 		if(!empty($utilisateur)){
@@ -22,7 +22,8 @@ class ControllerConnexion extends Controller
 		  return view('index');
 		}
 		else{
-		  return view("erreur")->with("text","Erreur d'identification.");
+		  Session::put('erreurConnexion','Erreur d\'identification');
+		  return view("login");
 		}
       }
     }

@@ -2,6 +2,9 @@
 <?php include("header.php"); ?>
 	<form action="" method="post">
 		<div class="login" style="background-color:lightblue">
+		<?php if(Session::has('erreurConnexion'))
+				echo "<p>".Session::get('erreurConnexion')."</p>"
+		?>
 		<br>
 			<input type="text" placeholder="Email" name="user"><br>
 			<input type="password" placeholder="Mot de passe" name="mdp"><br>
@@ -23,4 +26,6 @@
 	</form>
 	
 	
-<?php include("footer.php");?>
+<?php include("footer.php");
+	  Session::forget('erreurConnexion');
+?>

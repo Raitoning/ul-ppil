@@ -18,7 +18,7 @@ Route::get('/',function(){
     return view('login');
 });
 
-Route::get('signup',function(){
+Route::get('inscription',function(){
   if(Session::has('utilisateur'))
     return view('index');
   else return view('signup');
@@ -32,6 +32,7 @@ Route::get('/lostpw',function(){
 
 Route::post('/','ControllerConnexion@connexion');
 Route::post('/deconnexion','ControllerConnexion@deconnexion');
+Route::post('/inscription','ControllerInscription@inscription');
 
 /*Route::post('/',function(){
 	return 'test';
