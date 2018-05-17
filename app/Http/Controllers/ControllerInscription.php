@@ -20,12 +20,27 @@ class ControllerInscription extends Controller
 		}
 		else{
 			
-			if()
+			if($request->mdp != $request->cmdp){
+				Session::put('erreurInscription','Les mots de passe sont différents.');
+				return view("signup");
+			}
+			
+			if($request->mdp == "" || $request->cmdp == "" || $request->mail == "" || $request->pseudo == "" || $request->conditions == false){
+				Session::put('erreurInscription','Veuillez remplir tout les champs obligatoires et accepter les conditions d\'utilisations.');
+				return view("signup");
+			}
+			
+			$utilisateur = utilisateur::where("pseudo", $request->input("pseudo"))->first();
+			if(!empty($utilisateur)){
+				Session::put('erreurInscription','Erreur, pseudo déjà existant.');
+				return view("signup");
+			}
 			
 			$newUser = new utilisateur;
-			$newUser->pseudo = $request->pseudo
-			$newUser->password = $request->
-			
+			$newUser->pseudo = $request->pseudo;
+			$newUser->password = $request->mdp;
+			$newUser->mail = $request->mail;
+			$newUser->recevoirInvitation = "";
 			
 			$newUser->save();
 			

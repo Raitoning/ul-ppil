@@ -13,20 +13,20 @@
 
 Route::get('/',function(){
   if(Session::has('utilisateur'))
-    return view('index');
+    return view('accueil');
   else
     return view('login');
 });
 
-Route::get('inscription',function(){
+Route::get('/inscription',function(){
   if(Session::has('utilisateur'))
-    return view('index');
+    return view('accueil');
   else return view('signup');
 });
 
 Route::get('/lostpw',function(){
   if(Session::has('utilisateur'))
-    return view('index');
+    return view('accueil');
   else return view('lostpw');
 });
 

@@ -19,7 +19,7 @@ class ControllerConnexion extends Controller
 	    $utilisateur = utilisateur::where("pseudo", $request->input("user"))->where("password", $request->input("mdp"))->first();
 		if(!empty($utilisateur)){
 		  Session::put('utilisateur',$utilisateur);
-		  return view('index');
+		  return view('accueil');
 		}
 		else{
 		  Session::put('erreurConnexion','Erreur d\'identification');
