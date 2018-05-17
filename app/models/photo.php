@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class photo extends Model {
     protected $table = 'photo';
-    protected $primaryKey = "idPhoto";
+    protected $primaryKey = "photo_id";
     public $timestamps = false;
 
     public function tache() {
