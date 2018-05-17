@@ -29,5 +29,10 @@ class utilisateur extends Model {
         //permet de récuperer les notification associées à un utilisateur
         return $this->hasMany('ppil\models\notification');
     }
+	
+    public function contact() {
+        //permet de récuperer les contact associées à un utilisateur
+        return $this->hasMany('ppil\models\contact');
+    }
 
 }
