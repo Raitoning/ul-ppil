@@ -17,7 +17,7 @@ class tache extends Model {
 
     public function utilisateur() {
         //permet de récuperer les utilisateur associées à une tache
-        return $this->belongsToMany('ppil\models\utilisateur');
+        return $this->belongsToMany('ppil\models\utilisateur')->withPivot('quantite');
     }
 
     public function photo() {

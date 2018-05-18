@@ -13,7 +13,7 @@ class evenement extends Model {
 
     public function utilisateur() {
         //permet de récuperer les utilisateur associées à un evenement
-        return $this->belongsToMany('App\models\utilisateur');
+        return $this->belongsToMany('App\models\utilisateur')->withPivot('droit');
     }
 
     public function tache() {
