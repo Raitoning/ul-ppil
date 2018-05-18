@@ -1,14 +1,17 @@
-----------------------------------------------------------------------------------------------------------------
-//Recup info sur l'utilisateur
+<?php
+//----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------Recup info sur l'utilisateur--------------------------------------------//
 
-utilisateur::where('utilisateur_id', '=', id de l'utilisateur)->first();
-----------------------------------------------------------------------------------------------------------------
-//Liste des utilisateur qui ne sont pas ami de l'utilisateur
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
 
-$idDeLutilisateur = 1;
-$tabIDFavori = array($idDeLutilisateur);
-$utilisateur = utilisateur::where('utilisateur_id', '=', $idDeLutilisateur)->first();
-foreach ($utilisateur->contact as $contact) {
+//----------------------------------------------------------------------------------------------------------------//
+//------------------------------Liste des utilisateur qui ne sont pas ami de l'utilisateur------------------------//
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$tabIDFavori = array($utilisateur_id );
+$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id )->first();
+foreach ($user->contact as $contact) {
     $userContactID = $contact->contact_id;
     array_push($tabIDFavori, $userContactID);
 }
@@ -16,43 +19,55 @@ $pascontact = utilisateur::whereNotIn('utilisateur_id', $tabIDFavori)->get();
 foreach ($pascontact as $utilisateurNonContact) {
     // ICI tu as les utilisateurs qui ne sont pas en contact de ton utilisateur
 }
-----------------------------------------------------------------------------------------------------------------
-//requete de recupération des evenement d'un utilisateur pour la page d'accueil
+//----------------------------------------------------------------------------------------------------------------//
+//--------------------Requete de recupération des evenement d'un utilisateur pour la page d'accueil---------------//
 
-$user = utilisateur::where('utilisateur_id', '=', ID DE L'UTILISATEUR)->first();
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
 foreach ($user->evenement as $event) {
-    //Tu a un event chaque iteration dans le $user->evenement
+    //Chaque evenements de l'utilisateur (variable $user->evenement) dans la variable $event 
 }
 
-// TRIE PAR DATE CROISSANTE 
-$user = utilisateur::where('utilisateur_id', '=', 1)->first();
+//------------------------------------TRIE PAR DATE CROISSANTE----------------------------------------------------// 
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
 foreach ($user->evenement()->orderBy('dateDebut')->get() as $event) {
-    $content .= $event;
+    //Chaque evenements de l'utilisateur (variable $user->evenement) dans la variable $event     
 }
 
-----------------------------------------------------------------------------------------------------------------
-//Recuperer les contact d'un utilisateur 
+//----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------Recuperer les contact d'un utilisateur----------------------------------// 
 
-$user = utilisateur::where('utilisateur_id', '=', ID UTILISATEUR)->first();
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id )->first();
 foreach ($user->contact as $contact) {
     $userContact= utilisateur::where('utilisateur_id', '=', $contact->contact_id)->first();
+    //Chaque $userContact represente l'objet representant l'utilisateur etant un Favori de l'utilisateur ayant 
+    //  pour ID celui de $utilisateur_id
 }
-----------------------------------------------------------------------------------------------------------------
-//Supprimmer un contact
 
-$contact = contact::where('utilisateur_id', '=',  ID UTILISATEUR )->where('contact_id', '=',  ID CONTACT )->first();
+//----------------------------------------------------------------------------------------------------------------//
+//------------------------------------------------Supprimmer un contact-------------------------------------------//
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$contact_id = ID_DU_CONTACT;
+$contact = contact::where('utilisateur_id', '=', $utilisateur_id )->where('contact_id', '=', $contact_id )->first();
 $contact->delete();
-----------------------------------------------------------------------------------------------------------------
-//Ajouter un contact
 
+//----------------------------------------------------------------------------------------------------------------//
+//-------------------------------------------------Ajouter un contact---------------------------------------------//
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$contact_id = ID_DU_CONTACT;
 $contact = new contact();
-$contact->utilisateur_id = ID UTILISATEUR;
-$contact->contact_id = ID CONTACT;
+$contact->utilisateur_id = $utilisateur_id;
+$contact->contact_id = $contact_id;
 $contact->save();
-----------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------------------------------------------------------------------------------//
