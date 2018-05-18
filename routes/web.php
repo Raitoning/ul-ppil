@@ -11,6 +11,13 @@
 |
 */
 
+Route::get('/login',function(){
+  if(Session::has('utilisateur'))
+    return redirect('accueil');
+  else
+    return redirect('/');
+});
+
 Route::get('/',function(){
   if(Session::has('utilisateur'))
     return redirect('accueil');

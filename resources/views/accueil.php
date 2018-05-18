@@ -5,9 +5,9 @@
 <div id="content">
 
     <div id="user_actions">
-        <a>Contacts</a><br>
+        <a href="contacts">Contacts</a><br>
         <a>Evènements</a><br>
-        <a>Options du compte</a><br>
+        <a href="account">Options du compte</a><br>
         <a>Notifications</a><br>
     </div>
 

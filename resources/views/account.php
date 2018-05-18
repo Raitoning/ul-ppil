@@ -1,37 +1,39 @@
-<div class="body"></div>
-<div id="container">
+<?php
+	include 'header.php';
+?>
 	<h1>Gestion du Compte</h1>
-<div class="contents">
-	<form>
-		<div class="account" style="background-color:lightblue">
-			Nom d'utilisateur: <input type="text" placeholder="Pseudo" name="pseudo" required><br>
-			
-			Mot de passe: <input type="password" id="mdp" placeholder="Mot de passe" name="mdp" required><br>
-			Confirmation: <input type="password" id="cmdp" placeholder="Mot de passe" name="cmdp" required><br>
-			Email: <input type="text" placeholder="Email" name="mail" required><br>
-			<div style="background-color:lightgreen"><br>
+	<div id="content">
+		<form>
+			<table>
+				<tr><td><label for="pseudo">Nom d'utilisateur:</label></td><td><input type="text" placeholder="Pseudo" name="pseudo" required></td></tr>
+				<tr><td><label for="mdp">Mot de passe:</label></td><td><input type="password" id="mdp" placeholder="Mot de passe" name="mdp" required></td></tr>
+				<tr><td><label for="cmdp">Confirmation:</label></td><td><input type="password" id="cmdp" placeholder="Mot de passe" name="cmdp" required></td></tr>
+				<tr><td><label for="mail">Email:</label></td><td><input type="text" placeholder="Email" name="mail" required></td></tr>
+			</table>
+
 			Recevoir les invitations <br>
-			<input type="checkbox" id="boxamis" name="amis" value="vamis">
-			<label for="boxamis"> Amis</label>
-			<input type="checkbox" id="boxtous" name="tous" value="vtous">
-			<label for="boxtous"> Tout le monde</label>
-			<input type="checkbox" id="boxnone" name="none" value="vnone">
-			<label for="boxnone"> Personne</label><br>
+			<input type="radio" id="radioamis" name="amis" value="vamis">
+			<label for="radioamis"> Amis</label>
+			<input type="radio" id="radiotous" name="tous" value="vtous">
+			<label for="radiotous"> Tout le monde</label>
+			<input type="radio" id="radionone" name="none" value="vnone">
+			<label for="radionone"> Personne</label><br>
 
 			Reception d'email pour chaque notification <br>
-			<input type="checkbox" id="notifyes" name="nyes" value="vyes">
+			<input type="radio" id="notifyes" name="nyes" value="vyes">
 			<label for="notifyes"> Oui</label>
-			<input type="checkbox" id="notifno" name="nno" value="vno">
+			<input type="radio" id="notifno" name="nno" value="vno">
 			<label for="notifno"> Non</label><br>
-			</div>
 			<input type="submit" id="register" value="Appliquer"><br>
+		</form>
+
+		<div id="delete">
+			<form>
+				<input type="submit" id="suppracc" value="Supprimer Compte">
+			</form>
 		</div>
-	</form>
-	<form>
-		<div class="delete">
-			<input type="submit" id="suppracc" value="Supprimer Compte">
-		</div>
-	</form>
-</div>
-	
-</div>
+	</div>
+
+<?php
+	include 'footer.php';
+?>

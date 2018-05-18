@@ -8,7 +8,7 @@
 
 <body>
 	<div id="top_bar">
-		<a href="index.php"><div class="sName">TODO<span>List</span></div></a>
+		<a href="accueil"><div class="sName">TODO<span>List</span></div></a>
 		
 		<?php 
 		if(Session::has('utilisateur')){

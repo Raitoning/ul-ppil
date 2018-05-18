@@ -10,11 +10,11 @@
 		?>
 		<form action="" method="post">
 			<table>
-				<tr><td><label for="user">Email: </label></td><td><input type="text" placeholder="Email" name="user"></td></tr>
+				<tr><td><label for="user">Pseudo: </label></td><td><input type="text" placeholder="Pseudo" name="user"></td></tr>
 				<tr><td><label for="mdp">Mot de passe: </label></td><td><input type="password" placeholder="Mot de passe" name="mdp"></td></tr>
 			</table>
 			<input type="submit" id="connexion" value="Connexion"><br>
-			<a href="lostpw"> Mot de passe oubli&eacute; ? </a><br>
+			<a href="lostpw"> Mot de passe oublié ? </a><br>
 			<?php echo csrf_field(); ?>
 
 		</form>
