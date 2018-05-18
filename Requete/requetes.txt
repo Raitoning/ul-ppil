@@ -1,0 +1,58 @@
+----------------------------------------------------------------------------------------------------------------
+//Recup info sur l'utilisateur
+
+utilisateur::where('utilisateur_id', '=', id de l'utilisateur)->first();
+----------------------------------------------------------------------------------------------------------------
+//Liste des utilisateur qui ne sont pas ami de l'utilisateur
+
+$idDeLutilisateur = 1;
+$tabIDFavori = array($idDeLutilisateur);
+$utilisateur = utilisateur::where('utilisateur_id', '=', $idDeLutilisateur)->first();
+foreach ($utilisateur->contact as $contact) {
+    $userContactID = $contact->contact_id;
+    array_push($tabIDFavori, $userContactID);
+}
+$pascontact = utilisateur::whereNotIn('utilisateur_id', $tabIDFavori)->get();
+foreach ($pascontact as $utilisateurNonContact) {
+    // ICI tu as les utilisateurs qui ne sont pas en contact de ton utilisateur
+}
+----------------------------------------------------------------------------------------------------------------
+//requete de recupération des evenement d'un utilisateur pour la page d'accueil
+
+$user = utilisateur::where('utilisateur_id', '=', ID DE L'UTILISATEUR)->first();
+foreach ($user->evenement as $event) {
+    //Tu a un event chaque iteration dans le $user->evenement
+}
+
+// TRIE PAR DATE CROISSANTE 
+$user = utilisateur::where('utilisateur_id', '=', 1)->first();
+foreach ($user->evenement()->orderBy('dateDebut')->get() as $event) {
+    $content .= $event;
+}
+
+----------------------------------------------------------------------------------------------------------------
+//Recuperer les contact d'un utilisateur 
+
+$user = utilisateur::where('utilisateur_id', '=', ID UTILISATEUR)->first();
+foreach ($user->contact as $contact) {
+    $userContact= utilisateur::where('utilisateur_id', '=', $contact->contact_id)->first();
+}
+----------------------------------------------------------------------------------------------------------------
+//Supprimmer un contact
+
+$contact = contact::where('utilisateur_id', '=',  ID UTILISATEUR )->where('contact_id', '=',  ID CONTACT )->first();
+$contact->delete();
+----------------------------------------------------------------------------------------------------------------
+//Ajouter un contact
+
+$contact = new contact();
+$contact->utilisateur_id = ID UTILISATEUR;
+$contact->contact_id = ID CONTACT;
+$contact->save();
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
