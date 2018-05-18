@@ -92,7 +92,11 @@ $evenement->utilisateur()->attach($utilisateur_id,['droit'=>$droit]);
 
 //----------------------------------------------------------------------------------------------------------------//
 //--------------------------Modifier les droits d'un utilisateur a un evenement-----------------------------------//
-
+$evenement_id = ID_DE_LEVENEMENT;
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$evenement = evenement::where('evenement_id','=',$evenement_id)->first();
+$nouveauDroit = ; // Au choix : 'proprietaire','editeur','visiteur' 
+$evenement->utilisateur()->updateExistingPivot($utilisateur_id, ['droit' => $nouveauDroit], false);
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------//
