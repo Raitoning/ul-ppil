@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Session;
 use App\models\utilisateur;
+use App\models\evenement;
 
 class ControllerConnexion extends Controller
 {
@@ -31,11 +32,20 @@ class ControllerConnexion extends Controller
 	public function deconnexion(Request $request){
 		
 		if(Session::has('utilisateur')){
-			Session::forget('utilisateur');
-			return redirect('/');
+			Session::flush();
 		}
+		return redirect('/');
 		
 	}
+	
+	
+	//TODO: affichage evenement
+	/*public static function getEventUtil(){
+		
+		$user = utilisateur::where('idUtilisateur', '=', Session::get('utilisateur')->idUtilisateur)->first();
+		return $user->evenement();
+
+	}*/
 }
 
 ?>

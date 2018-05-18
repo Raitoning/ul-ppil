@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class typetache extends Model {
     protected $table = 'typetache';
-    protected $primaryKey = "typetache_id";
+    protected $primaryKey = "idTypetache";
     public $timestamps = false;
 
     public function utilisateur() {
