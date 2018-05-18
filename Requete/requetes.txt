@@ -48,14 +48,6 @@ foreach ($user->contact as $contact) {
 }
 
 //----------------------------------------------------------------------------------------------------------------//
-//------------------------------------------------Supprimmer un contact-------------------------------------------//
-
-$utilisateur_id = ID_DE_LUTILISATEUR;
-$contact_id = ID_DU_CONTACT;
-$contact = contact::where('utilisateur_id', '=', $utilisateur_id )->where('contact_id', '=', $contact_id )->first();
-$contact->delete();
-
-//----------------------------------------------------------------------------------------------------------------//
 //-------------------------------------------------Ajouter un contact---------------------------------------------//
 
 $utilisateur_id = ID_DE_LUTILISATEUR;
@@ -64,6 +56,15 @@ $contact = new contact();
 $contact->utilisateur_id = $utilisateur_id;
 $contact->contact_id = $contact_id;
 $contact->save();
+
+//----------------------------------------------------------------------------------------------------------------//
+//------------------------------------------------Supprimmer un contact-------------------------------------------//
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$contact_id = ID_DU_CONTACT;
+$contact = contact::where('utilisateur_id', '=', $utilisateur_id )->where('contact_id', '=', $contact_id )->first();
+$contact->delete();
+
 //----------------------------------------------------------------------------------------------------------------//
 //-------------------------------------------------Creer un evenement---------------------------------------------//
 $evenement = new evenement();
@@ -92,15 +93,35 @@ $evenement->utilisateur()->attach($utilisateur_id,['droit'=>$droit]);
 
 //----------------------------------------------------------------------------------------------------------------//
 //--------------------------Modifier les droits d'un utilisateur a un evenement-----------------------------------//
+
 $evenement_id = ID_DE_LEVENEMENT;
 $utilisateur_id = ID_DE_LUTILISATEUR;
 $evenement = evenement::where('evenement_id','=',$evenement_id)->first();
 $nouveauDroit = ; // Au choix : 'proprietaire','editeur','visiteur' 
 $evenement->utilisateur()->updateExistingPivot($utilisateur_id, ['droit' => $nouveauDroit], false);
+
 //----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------Ajouter une tache-------------------------------------------------------//
+
+$evenement_id = ID_DE_LEVENEMENT;
+$typetache_id = ID_DU_TYPETACHE;
+$tache = new tache();
+
+$tache->nom = ; // Nom de la tache (max 255char)
+$tache->description = ; // Description de la tache (max 255char)
+$tache->quantiteTotal = ; // SI elle est de type quentitative (max 999999)
+$tache->dateFin = ; // SI elle est de type datedefin , FORMAT : 'YYYY-MM-DD' , Exemple '2018-5-17'
+$tache->evenement_id = $evenement_id; 
+$tache->typetache_id = $typetache_id;
+
+$tache->save();
+
 //----------------------------------------------------------------------------------------------------------------//
-//----------------------------------------------------------------------------------------------------------------//
-//----------------------------------------------------------------------------------------------------------------//
+//------------------------------------------Supprimer un tache----------------------------------------------------//
+$tache_id = ID_DE_LA_TACHE;
+$tache = tache::where('tache_id','=',$tache_id)->first();
+$tache->delete();
+
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------//
