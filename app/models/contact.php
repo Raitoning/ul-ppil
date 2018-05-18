@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class contact extends Model {
     protected $table = 'contact';
-    protected $primaryKey = null;
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
     public function utilisateur() {
