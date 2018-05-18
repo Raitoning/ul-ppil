@@ -65,6 +65,21 @@ $contact->utilisateur_id = $utilisateur_id;
 $contact->contact_id = $contact_id;
 $contact->save();
 //----------------------------------------------------------------------------------------------------------------//
+//-------------------------------------------------Creer un evenement---------------------------------------------//
+$evenement = new evenement();
+$evenement->public = ; // 0 pour privé 
+					   // 1 pour public 
+$evenement->notification = ; // 0 pour privé 
+							 // 1 pour public 
+$evenement->intitule = ; // Titre de l'evenement (max 255char)
+$evenement->dateDebut = ; // FORMAT : 'YYYY-MM-DD' , Exemple '2018-5-17'
+$evenement->dateFin = ; // FORMAT : 'YYYY-MM-DD' , Exemple '2018-5-17'
+$evenement->description = ; // Description de l'evenement (max 255char)
+$evenement->lieu = ; // Lieu de l'evenement (max 255char)
+$evenement->suppressionAutomatique = ; // 1 pour activer ou 0 (default = 0)
+
+$evenement->save(); 
+
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------//
