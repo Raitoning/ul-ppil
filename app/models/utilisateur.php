@@ -21,7 +21,7 @@ class utilisateur extends Model {
         return $this->belongsToMany('App\models\tache')->withPivot('quentite');
     }
 
-	public function typetache() {
+    public function typetache() {
         //permet de récuperer les typetache associées à un utilisateur
         return $this->belongsToMany('App\models\typetache');
     }
@@ -29,6 +29,11 @@ class utilisateur extends Model {
     public function notification() {
         //permet de récuperer les notification associées à un utilisateur
         return $this->hasMany('App\models\notification');
+    }
+    
+    public function contact() {
+        //permet de récuperer les contact associées à un utilisateur
+        return $this->hasMany('ppil\models\contact');
     }
 
 }
