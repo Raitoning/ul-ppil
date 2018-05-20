@@ -33,7 +33,7 @@ class utilisateur extends Model {
     
     public function contact() {
         //permet de récuperer les contact associées à un utilisateur
-        return $this->hasMany('ppil\models\contact');
+        return $this->hasMany('App\models\contact');
     }
 
 }
