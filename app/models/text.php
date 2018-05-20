@@ -12,6 +12,6 @@ class text extends Model {
 
     public function tache() {
         //permet de récuperer les tache associées à un text
-        return $this->belongsToMany('ppil\models\tache');
+        return $this->belongsToMany('App\models\tache');
     }
 }
