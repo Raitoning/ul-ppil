@@ -12,11 +12,11 @@ class notification extends Model {
 
     public function evenement() {
         //permet de récuperer les evenement associées à un notification
-        return $this->belongsTo('ppil\models\evenement');
+        return $this->belongsTo('App\models\evenement');
     }
 
     public function utilisateur() {
         //permet de récuperer les utilisateur associées à un notification
-        return $this->belongsTo('ppil\models\utilisateur');
+        return $this->belongsTo('App\models\utilisateur');
     }
 }
