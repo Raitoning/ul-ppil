@@ -6,7 +6,8 @@
 
     <div id="user_actions">
         <a href="contacts">Contacts</a><br>
-        <a>Evènements</a><br>
+        <a href="newEvent">Créer un nouvel événement</a><br>
+        <a href="events">Evènements</a><br>
         <a href="account">Options du compte</a><br>
         <a>Notifications</a><br>
     </div>

@@ -37,7 +37,7 @@
 				</div>
 
 				<div id="anon">
-					<input type="submit" class="btn btn-primary" id="anon" value="Accès Anonyme">
+					<input type="submit" class="btn btn-primary" onclick="location.href='publicsEvents';" id="anon" value="Accès Anonyme">
 				</div>
 			</div>
 		</div>
