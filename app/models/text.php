@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class text extends Model {
     protected $table = 'text';
-    protected $primaryKey = "idText";
+    protected $primaryKey = "text_id";
     public $timestamps = false;
 
     public function tache() {
