@@ -12,11 +12,11 @@ class typetache extends Model {
 
     public function utilisateur() {
         //permet de récuperer les utilisateur associées à un typetache
-        return $this->belongsToMany('ppil\models\utilisateur');
+        return $this->belongsToMany('App\models\utilisateur');
     }
 
     public function tache() {
         //permet de récuperer les tache associées à un typetache
-        return $this->hasMany('ppil\models\tache');
+        return $this->hasMany('App\models\tache');
     }
 }
