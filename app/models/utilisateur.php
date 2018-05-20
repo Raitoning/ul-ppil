@@ -8,7 +8,7 @@ use App\models\utilisateur;
 
 class utilisateur extends Model {
     protected $table = 'utilisateur';
-    protected $primaryKey = "idUtilisateur";
+    protected $primaryKey = "utilisateur_id";
     public $timestamps = false;
 	
     public function evenement() {
