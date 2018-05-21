@@ -136,27 +136,72 @@ foreach ($evenement->utilisateur as $participant) {
 
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------Supprimmer un participant a un evenement--------------------------------------//
+
+$evenement_id = ID_DE_LEVENEMENT;
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$evenement = evenement::where('evenement_id','=',$evenement_id)->first();
+$evenement->utilisateur()->detach([$utilisateur_id]);
+
 //----------------------------------------------------------------------------------------------------------------//
-//----------------------------------Desinscrie un utilisateur d'un evenement--------------------------------------//
+//---------------------------------------Se desinscrie d'un evenement---------------------------------------------//
+
+$evenement_id = ID_DE_LEVENEMENT;
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id )->first();
+$user->evenement()->detach([$evenement_id]);
+
 //----------------------------------------------------------------------------------------------------------------//
 //-----------------------------------------Supprimmer un evenement------------------------------------------------//
+
+$evenement_id = ID_DE_LEVENEMENT;
+$evenement = evenement::where('evenement_id','=',$evenement_id)->first();
+$evenement->delete();
+// NE PAS OULIER DE DESINSCRIRE TOUT LE MONDE ET DE SUPPRIMER LES INVITATION ETC...
+
 //----------------------------------------------------------------------------------------------------------------//
 //-----------------------------------------Liste evenement public-------------------------------------------------//
+
+$evenement = evenement::where('public','=',1)->first();
+
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------Liste des notification de l'utiisateur----------------------------------------//
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id )->first();
+foreach ($user->notification as $notif) {
+	// Chaque $notif correspond a un objet notification de l'utilisateur $user
+}
+
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------Liste des invitation de l'utilisateur-----------------------------------------//
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id )->first();
+foreach ($user->notification()->where('invitation','=',1)->get() as $invitation) {
+	// Chaque $invitation correspond a un objet notification de l'utilisateur $user qui est une invitation
+}
+
 //----------------------------------------------------------------------------------------------------------------//
 //-------------------------------------Supprimer une notification-------------------------------------------------//
+
+$notification_id = ID_DE_LA_NOTIFICATION;
+$notification = notification::where('notification_id','=',$notification_id)->first();
+$notification->delete();
+
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------------Creer un type de tache--------------------------------------------------//
+
 //----------------------------------------------------------------------------------------------------------------//
 //-----------------------------------Affecter utilisateur a une tache---------------------------------------------//
+
 //----------------------------------------------------------------------------------------------------------------//
 //------------------------------------------Valider une tache-----------------------------------------------------//
+
 //----------------------------------------------------------------------------------------------------------------//
 //--------------------------Modifier contribution d'un utilisateur a une tache------------------------------------//
+
 //----------------------------------------------------------------------------------------------------------------//
 //-----------------------------------Liste participant a une tache------------------------------------------------//
+
 //----------------------------------------------------------------------------------------------------------------//
 //---------------------------------Supprimmer utilisateur d'une tache---------------------------------------------//
