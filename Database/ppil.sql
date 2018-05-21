@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2018 at 03:09 PM
+-- Generation Time: May 21, 2018 at 05:52 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -185,7 +185,7 @@ CREATE TABLE `utilisateur` (
   `pseudo` varchar(40) NOT NULL,
   `password` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
-  `recevoirInvitation` varchar(40) NOT NULL,
+  `recevoirInvitation` varchar(40) NOT NULL DEFAULT 'ami',
   `recevoirMail` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
