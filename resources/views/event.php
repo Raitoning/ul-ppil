@@ -3,6 +3,7 @@
 	<div class="row">
 		<label>Nom événement</label>
 	</div>
+
 	<div id="Desc" class="row">
 		<label>Descriptif de l'événement</label>
 
@@ -62,7 +63,7 @@
 		<div class="col-2">
 			<input type="button" class="btn btn-primary" onclick="location.href='newTask';" value="Ajouter une tâche" />
 		</div>
-		<div class="col-1">
+		<div class="col-2">
 			<input type="button" class="btn btn-primary" onclick="location.href='modifEvent';" value="Modifier l'événement" />
 		</div>
 	</div>

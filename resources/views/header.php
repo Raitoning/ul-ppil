@@ -16,7 +16,7 @@
 			if(Session::has('utilisateur')){
 				echo '<form class="form-inline my-2 my-lg-0" action="deconnexion" method="post">
 					<div class="register">
-						<input type="submit" id="deconnexion" value="deconnexion"><br>
+						<input type="submit" class="btn btn-primary" id="deconnexion" value="deconnexion"><br>
 						'. csrf_field() .'
 					</div>
 				</form>';
