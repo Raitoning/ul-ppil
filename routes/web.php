@@ -103,3 +103,5 @@ Route::post('/','ControllerConnexion@connexion');
 Route::post('/deconnexion','ControllerConnexion@deconnexion');
 Route::post('/inscription','ControllerInscription@inscription');
 Route::post('/newEvent','ControllerEvenement@newEvent');
+Route::post('/account','ControllerUpdate@updateInfo');
+Route::post('/supprimerCompte','ControllerConnexion@supprimerCompte');
