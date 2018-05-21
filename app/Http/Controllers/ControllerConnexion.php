@@ -29,6 +29,14 @@ class ControllerConnexion extends Controller
       }
     }
 	
+	//TODO: affichage evenement
+	/*public static function getEventUtil(){
+		
+		$user = utilisateur::where('idUtilisateur', '=', Session::get('utilisateur')->idUtilisateur)->first();
+		return $user->evenement();
+
+	}*/
+	
 	public function deconnexion(Request $request){
 		
 		if(Session::has('utilisateur')){
@@ -38,14 +46,15 @@ class ControllerConnexion extends Controller
 		
 	}
 	
-	
-	//TODO: affichage evenement
-	/*public static function getEventUtil(){
-		
-		$user = utilisateur::where('idUtilisateur', '=', Session::get('utilisateur')->idUtilisateur)->first();
-		return $user->evenement();
+	public function supprimerCompte(Request $request){
 
-	}*/
+		if(Session::has('utilisateur')){
+			utilisateur::where('idUtilisateur',Session::get('utilisateur')->idUtilisateur)->delete();
+			Session::flush();
+			return redirect('/');
+		}
+		return redirect('/');
+	}
 }
 
 ?>

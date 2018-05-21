@@ -8,7 +8,7 @@ use App\models\utilisateur;
 
 class utilisateur extends Model {
     protected $table = 'utilisateur';
-    protected $primaryKey = "idUtilisateur";
+    protected $primaryKey = "utilisateur_id";
     public $timestamps = false;
 	
     public function evenement() {
@@ -33,7 +33,7 @@ class utilisateur extends Model {
     
     public function contact() {
         //permet de récuperer les contact associées à un utilisateur
-        return $this->hasMany('ppil\models\contact');
+        return $this->hasMany('App\models\contact');
     }
 
 }

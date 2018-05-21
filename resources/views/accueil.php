@@ -6,21 +6,23 @@
 	<div class="row">
 		<!--<div id="content">-->
 			<div class="col-6">
-				<div class="row">
-					<a href="contacts">Contacts</a><br>
-				</div>
-
-				<div class="row">
-					<a>Evènements</a><br>
-				</div>
-
-				<div class="row">
-					<a href="account">Options du compte</a><br>
-				</div>
-
-				<div class="row">
-					<a>Notifications</a><br>
-				</div>
+			    <div id="user_actions">
+			        <div class="row">
+			        	<a href="newEvent">Créer un nouvel événement</a><br>
+			        </div>
+			        <div class="row">
+			        	<a href="events">Evènements</a><br>
+			        </div>
+			        <div class="row">
+			        	<a href="contacts">Contacts</a><br>
+			        </div>
+			        <div class="row">
+			        	<a href="account">Options du compte</a><br>
+			        </div>
+			        <div class="row">
+			        	<a>Notifications</a><br>
+			    	</div>
+			    </div>
 			</div>
 
 		    <div class="col-6">

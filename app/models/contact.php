@@ -12,6 +12,6 @@ class contact extends Model {
 
     public function utilisateur() {
         //permet de récuperer les utilisateur associées à un contact
-        return $this->belongsTo('ppil\models\utilisateur');
+        return $this->belongsTo('App\models\utilisateur');
     }
 }
