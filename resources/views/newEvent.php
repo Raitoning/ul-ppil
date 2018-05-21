@@ -20,7 +20,7 @@
 			<input type="text" placeholder="Description*" name="desc" maxlength="250"><br>
 			<input type="text" placeholder="Lieu*" name="lieu" maxlength="250"><br><br>
 			date de début* : <input type="date" name="dateDeb"><br>
-			date de fin : <input type="date" name="dateFin"><br>
+			date de fin* : <input type="date" name="dateFin"><br>
 			<input type="checkbox" name="suppr" value="suppr"> Supression automatique<br>
 
 			* champs obligatoires<br>
