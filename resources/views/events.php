@@ -8,12 +8,8 @@
 					   <a href="event"> Test Evenement</a><br>
 					   <?php
 						//TODO: affichage evenements
-						/*use App\Http\Controllers\ControllerConnexion;
-						$event = ControllerConnexion::getEventUtil();
-						echo $event->first();
-						foreach($event as $temp){
-							echo $temp;
-						}*/
+						use App\Http\Controllers\ControllerEvenement;
+						ControllerEvenement::getUserEvents();
 						?>
 				</div>
 			</div>
@@ -21,13 +17,8 @@
 				<div id="evenements_publics">
 				   <h1>Evenements Publics</h1>
 				   <?php
-						//TODO: affichage evenements publics
-						/*use App\Http\Controllers\Controller;
-						$event = ;
-						echo $event->first();
-						foreach($event as $temp){
-							echo $temp;
-						}*/
+						//affichage evenements publics
+						ControllerEvenement::getPublicsEvents();
 					?>
 				</div>
 		</div>

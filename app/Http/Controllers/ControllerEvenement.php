@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Session;
 use App\models\evenement;
+use App\models\utilisateur;
 
 class ControllerEvenement extends Controller
 {
@@ -59,33 +60,29 @@ class ControllerEvenement extends Controller
 		
 	}
 
-	public function getEvents(){
-		$utilisateur_id = ID_DE_LUTILISATEUR;
+	public static function getUserEvents(){
+		//TODO patch
+		/*$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
 		$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
 		foreach ($user->evenement as $event) {
 		    //Chaque evenements de l'utilisateur (variable $user->evenement) dans la variable $event 
-			echo $event ;
+			echo $event->intitule ;
+		}*/
+	}
+
+	public static function getPublicsEvents(){
+		//TODO patch (n'affiche que des 1 !)
+		$events = evenement::where('public', '=', 1)->first();
+		foreach ($events as $event) {
+		    //Chaque evenement public dans la variable $event 
+			echo $event."<br>" ;
 		}
 	}
 
-	public static function getEvent(){
-		//TODO général
-		$event_id = 1;
+	public static function getEvent(int $event_id){
 		$event = evenement::where('evenement_id', '=', $event_id)->first();
 		return $event ;
 	}
-
-	/*public static function getNom(){
-		$event_id = 1;
-		$event = evenement::where('evenement_id', '=', $event_id)->first();
-		return $event->intitule ;
-	}
-
-	public static function getDesc(){
-		$event_id = 1;
-		$event = evenement::where('evenement_id', '=', $event_id)->first();
-		return $event->description ;
-	}*/
 
 
 }

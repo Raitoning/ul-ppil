@@ -29,13 +29,8 @@
 			    <div id="user_lists">
 				    <p>Evenements à venir</p>
 					<?php
-						//TODO: affichage evenement
-						/*use App\Http\Controllers\ControllerConnexion;
-						$event = ControllerConnexion::getEventUtil();
-						echo $event->first();
-						foreach($event as $temp){
-							echo $temp;
-						}*/
+						use App\Http\Controllers\ControllerEvenement;
+						ControllerEvenement::getUserEvents();
 					?>
 				</div>
 		    </div>

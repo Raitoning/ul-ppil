@@ -4,15 +4,11 @@
 		<label>Vous êtes en accès anonyme</label>
 	</div>
 	<div id="evenements_publics" class="row">
-		<h1>Evénements Publics</h1>
+		<h1>Evénements Publics</h1><br>
 	   <?php
-			//TODO: affichage evenements publics
-			/*use App\Http\Controllers\Controller;
-			$event = ;
-			echo $event->first();
-			foreach($event as $temp){
-				echo $temp;
-			}*/
+			//affichage evenements publics
+			use App\Http\Controllers\ControllerEvenement;
+			ControllerEvenement::getPublicsEvents();
 		?>
 	</div>
 </div>

@@ -6,7 +6,7 @@
 		<?php
 			//affichage du nom de l'evenement
 			use App\Http\Controllers\ControllerEvenement;
-			$event = ControllerEvenement::getEvent();
+			$event = ControllerEvenement::getEvent(1);  //TODO cas général
 			echo $event->intitule ;
 		?>
 	</div>
