@@ -9,7 +9,9 @@
 				<div id="login">
 					<?php 
 						if(Session::has('erreurConnexion')) {
-							echo "<p>".Session::get('erreurConnexion')."</p>";
+							echo "<div class='alert alert-danger' role='alert'>
+								  ".Session::get('erreurConnexion')."
+								</div>";
 						}
 					?>
 					<form action="" method="post">
