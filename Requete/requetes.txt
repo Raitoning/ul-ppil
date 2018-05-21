@@ -131,6 +131,7 @@ $evenement = evenement::where('evenement_id','=',$evenement_id)->first();
 foreach ($evenement->utilisateur as $participant) {
 	// Chaque $participant correspond a un objet utilisateur etant dans l'evenement $evenement
 
+	// Si besoin le droit du participant
 	$droitDuParticipant = $participant->pivot->droit;
 }
 
@@ -191,17 +192,57 @@ $notification->delete();
 //----------------------------------------------------------------------------------------------------------------//
 //----------------------------------------Creer un type de tache--------------------------------------------------//
 
+$typetache = new typetache();
+$typetache->photo = ; // Le nombre de photo que doit contenir la tache (0 si aucun)
+$typetache->text = ; // Le nombre de text que doit contenir la tache (0 si aucun)
+$typetache->datefin = ; // 0 pour ne pas avoir une date de fin 
+						// 1 pour avoir une date de fin 
+$typetache->quentite = ; // 0 pour ne pas avoir de quentite 
+						 // 1 pour avoir une quentite
+
 //----------------------------------------------------------------------------------------------------------------//
 //-----------------------------------Affecter utilisateur a une tache---------------------------------------------//
+
+$tache_id = ID_DE_LA_TACHE;
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$tache = tache::where('tache_id','=',$tache_id)->first();
+$quentite = ; // Quentite de contribution si on est en type avec quentite 
+$tache->utilisateur()->attach($utilisateur_id,['quentite'=>$quentite]);
 
 //----------------------------------------------------------------------------------------------------------------//
 //------------------------------------------Valider une tache-----------------------------------------------------//
 
+$tache_id = ID_DE_LA_TACHE;
+$tache = tache::where('tache_id','=',$tache_id)->first();
+$tache->valide = 1;
+$tache->save();
+
 //----------------------------------------------------------------------------------------------------------------//
 //--------------------------Modifier contribution d'un utilisateur a une tache------------------------------------//
+
+$tache_id = ID_DE_LA_TACHE;
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$tache = tache::where('tache_id','=',$tache_id)->first();
+$nouvelleQuentite = ; // Quentite de contribution si on est en type avec quentite 
+$tache->utilisateur()->updateExistingPivot($utilisateur_id, ['quentite'=>$nouvelleQuentite], false);
+
 
 //----------------------------------------------------------------------------------------------------------------//
 //-----------------------------------Liste participant a une tache------------------------------------------------//
 
+$tache_id = ID_DE_LA_TACHE;
+$tache = tache::where('tache_id','=',$tache_id)->first();
+foreach ($tache->utilisateur as $participant) {
+	// Chaque $participant correspond a un objet utilisateur etant dans la tache $tache
+
+	// Si besoin la quentite de ce participant
+	$quentiteDuParticipant = $participant->pivot->quentite;
+}
+
 //----------------------------------------------------------------------------------------------------------------//
 //---------------------------------Supprimmer utilisateur d'une tache---------------------------------------------//
+
+$tache_id = ID_DE_LA_TACHE;
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$tache = tache::where('tache_id','=',$tache_id)->first();
+$tache->utilisateur()->detach([$utilisateur_id]);
