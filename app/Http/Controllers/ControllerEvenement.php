@@ -20,7 +20,7 @@ class ControllerEvenement extends Controller
 			return view("newEvent");
 		}
 
-		if( strtotime($request->dateDeb) < time()){
+		if( strtotime($request->dateDeb) < time()-(1 * 23 * 58 * 60)){
 			Session::put('erreurInscription','La date de début ne doit pas être dépassée.');
 			return view("newEvent");
 		}
