@@ -15,11 +15,11 @@
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="user">Pseudo: </label><br>
-							<input type="text" placeholder="Pseudo" name="user">
+							<input type="text" class="form-control" placeholder="Pseudo" name="user">
 						</div>
 						<div class="form-group">	
 							<label for="mdp">Mot de passe: </label><br>
-							<input type="password" placeholder="Mot de passe" name="mdp">
+							<input type="password" class="form-control" placeholder="Mot de passe" name="mdp">
 							<small class="form-text text-muted"> <a href="lostpw"> Mot de passe oublié ? </a></small><br>
 						</div>
 
