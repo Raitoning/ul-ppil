@@ -59,6 +59,35 @@ class ControllerEvenement extends Controller
 		
 	}
 
+	public function getEvents(){
+		$utilisateur_id = ID_DE_LUTILISATEUR;
+		$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
+		foreach ($user->evenement as $event) {
+		    //Chaque evenements de l'utilisateur (variable $user->evenement) dans la variable $event 
+			echo $event ;
+		}
+	}
+
+	public static function getEvent(){
+		//TODO général
+		$event_id = 1;
+		$event = evenement::where('evenement_id', '=', $event_id)->first();
+		return $event ;
+	}
+
+	/*public static function getNom(){
+		$event_id = 1;
+		$event = evenement::where('evenement_id', '=', $event_id)->first();
+		return $event->intitule ;
+	}
+
+	public static function getDesc(){
+		$event_id = 1;
+		$event = evenement::where('evenement_id', '=', $event_id)->first();
+		return $event->description ;
+	}*/
+
+
 }
 
 ?>

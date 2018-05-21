@@ -1,47 +1,53 @@
 <?php include("header.php"); ?>
 <div class="container">
 	<div class="row">
-		<label>Nom événement</label>
+		<label>Nom événement : </label>
+
+		<?php
+			//affichage du nom de l'evenement
+			use App\Http\Controllers\ControllerEvenement;
+			$event = ControllerEvenement::getEvent();
+			echo $event->intitule ;
+		?>
 	</div>
 
 	<div id="Desc" class="row">
-		<label>Descriptif de l'événement</label>
+		<label>Descriptif de l'événement : <br></label>
 
 		<?php
-			//TODO: affichage descriptif evenement
-			/*use App\Http\Controllers\ControllerEvenement;
-			$desc = ControllerConnexion::getDesc();
-			echo $desc ;
-			*/
+			//affichage descriptif de l'evenement
+			echo $event->description ;
+			
 		?>
 	</div>
 
 	<div id="Lieu" class="row">
-		<label>Cet événement aura lieu a :</label>
+		<label>Cet événement aura lieu à : </label>
 
 		<?php
-			//TODO: affichage lieu evenement
-			/*use App\Http\Controllers\ControllerEvenement;
-			$desc = ControllerConnexion::getLieu();
-			echo $desc ;
-			*/
+			//affichage lieu de l'evenement
+			echo $event->lieu ;
+			
 		?>
 
 	</div>
 
 	<div id="dateDebut" class="row">
-		<label>Date de début :</label>
+		<label>Date de début : </label>
 		<?php
-			//TODO: affichage date evenement
-			/*use App\Http\Controllers\ControllerEvenement;
-			$desc = ControllerConnexion::getDate();
-			echo $desc ;
-			*/
+			//affichage date debut evenement
+			echo $event->dateDebut ;
 		?>
 		<br>
 	</div>
 	<div id="dateFin" class="row">
-		<label>Date de fin :</label><br>
+		<label>Date de fin : </label>
+		<?php
+			//affichage date fin evenement
+			echo $event->dateFin ;
+		?>
+		<br>
+
 	</div>
 
 
@@ -50,8 +56,8 @@
 		
 		<?php
 			//TODO: affichage tâches de l'evenement
-			/*use App\Http\Controllers\ControllerEvenement;
-			$desc = ControllerConnexion::getTasks();
+			/*
+			$desc = ControllerEvenement::getTasks();
 			echo $desc ;
 			*/
 		?>
