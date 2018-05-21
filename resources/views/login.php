@@ -32,12 +32,12 @@
 			</div>
 
 			<div class="row">			
-				<div id="signup" style="padding-right: 10px;">
+				<div id="signup">
 					<input type="button" class="btn btn-primary" onclick="location.href='inscription';" value="Inscription" />
 				</div>
 
 				<div id="anon">
-					<input type="submit" class="btn btn-primary" id="anon" value="Accès Anonyme">
+					<input type="submit" class="btn btn-primary" onclick="location.href='publicsEvents';" id="anon" value="Accès Anonyme">
 				</div>
 			</div>
 		</div>

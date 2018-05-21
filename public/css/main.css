@@ -26,6 +26,7 @@ body h1 {
 #signup {
     
     float: left;
+    padding-right: 10px;
 }
 
 #anon {
@@ -88,10 +89,7 @@ body h1 {
     text-align: center;
 }
 
-#signup{
-    padding-right: 10px;
-}
-
-.row{
-    align-content: center;
+#menu{
+    display: flex;
+    justify-content: space-between;
 }
