@@ -69,6 +69,12 @@ Route::get('/account',function(){
   else return redirect('login');
 });
 
+Route::get('/notices',function(){
+  if(Session::has('utilisateur'))
+    return view('notices');
+  else return redirect('login');
+});
+
 
 // Evenements
 
