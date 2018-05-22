@@ -20,7 +20,7 @@
 			        	<a href="account">Options du compte</a><br>
 			        </div>
 			        <div class="row">
-			        	<a>Notifications</a><br>
+			        	<a href="notices">Notifications</a><br>
 			    	</div>
 			    </div>
 			</div>
