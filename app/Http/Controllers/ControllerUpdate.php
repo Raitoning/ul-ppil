@@ -34,6 +34,16 @@ class ControllerUpdate extends Controller
 				return redirect('/account');
 			}
 			
+			if(!($request->mdp == "" && $request->cmdp == "")){
+				if($request->mdp != $request->cmdp){
+					Session::put('erreurUpdate','Erreur à la confirmation du nouveau mot de passe.');
+					return redirect('/account');
+				}
+			}
+			else{
+				$request->mdp = Session::get('utilisateur')->password;
+			}
+			
   			utilisateur::where('idUtilisateur',Session::get('utilisateur')->idUtilisateur)->update(['pseudo'=> $request->pseudo,'password'=> $request->mdp,'mail'=> $request->mail, 'recevoirInvitation'=>$request->invitations,'recevoirNotif'=>$request->notif]);
 			$utilisateur = utilisateur::where("idUtilisateur", Session::get('utilisateur')->idUtilisateur)->first();
 			Session::put('utilisateur',$utilisateur);

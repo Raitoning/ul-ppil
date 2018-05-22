@@ -11,10 +11,12 @@
 		<form action="" method="post">
 			<table>
 				<tr><td><label for="pseudo">Nom d'utilisateur:</label></td><td><input type="text" placeholder="Pseudo" name="pseudo" value=<?php echo Session::get('utilisateur')->pseudo; ?> required></td></tr>
-				<tr><td><label for="mdp">Mot de passe:</label></td><td><input type="password" id="mdp" placeholder="Mot de passe" name="mdp" required></td></tr>
-				<tr><td><label for="cmdp">Confirmation:</label></td><td><input type="password" id="cmdp" placeholder="Mot de passe" name="cmdp" required></td></tr>
 				<tr><td><label for="mail">Email:</label></td><td><input type="text" placeholder="Email" name="mail" value=<?php echo Session::get('utilisateur')->mail; ?> required></td></tr>
+				<tr><td><label for="mdp">*Nouveau mot de passe:</label></td><td><input type="password" id="mdp" placeholder="Mot de passe" name="mdp"></td></tr>
+				<tr><td><label for="cmdp">*Confirmation:</label></td><td><input type="password" id="cmdp" placeholder="Mot de passe" name="cmdp"></td></tr>
+
 			</table>
+			<p style="font-size: 12px">*Laisser vide si vous ne voulez pas changer de mot de passe</p>
 
 			<?php echo csrf_field(); ?>
 			
