@@ -79,7 +79,7 @@ class ControllerEvenement extends Controller
 		}
 	}
 
-	public static function getEvent(int $event_id){
+	public static function getEvent($event_id){
 		$event = evenement::where('evenement_id', '=', $event_id)->first();
 		return $event ;
 	}
