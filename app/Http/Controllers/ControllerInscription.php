@@ -21,7 +21,7 @@ class ControllerInscription extends Controller
 		else{
 			
 			if($request->mdp != $request->cmdp){
-				Session::put('erreurInscription','Les mots de passe sont diffÈrents.');
+				Session::put('erreurInscription','Les mots de passe sont diff√©rents.');
 				return view("signup");
 			}
 			
@@ -32,7 +32,18 @@ class ControllerInscription extends Controller
 			
 			$utilisateur = utilisateur::where("pseudo", $request->input("pseudo"))->first();
 			if(!empty($utilisateur)){
-				Session::put('erreurInscription','Erreur, pseudo dÈj‡ existant.');
+				Session::put('erreurInscription','Erreur, pseudo d√©j√† existant.');
+				return view("signup");
+			}
+			
+			if(!filter_var($request->mail,FILTER_VALIDATE_EMAIL)){
+				Session::put('erreurInscription','Erreur, adresse mail non valide.');
+				return view("signup");	
+			}
+			
+			$utilisateur = utilisateur::where("mail", $request->input("mail"))->first();
+			if(!empty($utilisateur)){
+				Session::put('erreurInscription','Erreur, adresse mail d√©j√† utilis√©e.');
 				return view("signup");
 			}
 			
@@ -44,7 +55,7 @@ class ControllerInscription extends Controller
 			
 			$newUser->save();
 			
-			return redirect('/')->with("Text","Inscription rÈussite");
+			return redirect('/')->with("Text","Inscription r√©ussite");
 		}
 		
 	}
