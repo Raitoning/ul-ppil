@@ -246,3 +246,15 @@ $tache_id = ID_DE_LA_TACHE;
 $utilisateur_id = ID_DE_LUTILISATEUR;
 $tache = tache::where('tache_id','=',$tache_id)->first();
 $tache->utilisateur()->detach([$utilisateur_id]);
+
+//----------------------------------------------------------------------------------------------------------------//
+//---------------------------------Ajouter une notification-------------------------------------------------------//
+
+$evenement_id = ID_DE_LEVENEMENT;
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$notification = new notification();
+$notification->invitation = ; // 0 si c'est pas un invitation
+							  // 1 si c'est une invitation
+$notification->message = ; // Le message de la notification
+$notification->utilisateur_id = $utilisateur_id; 
+$notification->evenement_id = $evenement_id; 
