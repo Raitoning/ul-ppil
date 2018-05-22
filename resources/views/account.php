@@ -4,6 +4,10 @@
 
 	<h1>Gestion du Compte</h1>
 	<div id="content">
+		<?php if(Session::has('erreurUpdate')){
+			echo "<p>".Session::get('erreurUpdate')."</p>";
+			Session::forget('erreurUpdate');
+		}?>
 		<form action="" method="post">
 			<table>
 				<tr><td><label for="pseudo">Nom d'utilisateur:</label></td><td><input type="text" placeholder="Pseudo" name="pseudo" value=<?php echo Session::get('utilisateur')->pseudo; ?> required></td></tr>

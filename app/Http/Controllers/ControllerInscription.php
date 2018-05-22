@@ -51,7 +51,6 @@ class ControllerInscription extends Controller
 			$newUser->pseudo = $request->pseudo;
 			$newUser->password = $request->mdp;
 			$newUser->mail = $request->mail;
-			$newUser->recevoirInvitation = "";
 			
 			$newUser->save();
 			
