@@ -6,7 +6,7 @@
 		<?php
 			//affichage du nom de l'evenement
 			use App\Http\Controllers\ControllerEvenement;
-			$event = ControllerEvenement::getEvent(1);  //TODO cas général
+			$event = ControllerEvenement::getEvent($event_id);  //TODO cas général
 			echo $event->intitule ;
 		?>
 	</div>
@@ -70,7 +70,7 @@
 			<input type="button" class="btn btn-primary" onclick="location.href='newTask';" value="Ajouter une tâche" />
 		</div>
 		<div class="col-2">
-			<input type="button" class="btn btn-primary" onclick="location.href='modifEvent';" value="Modifier l'événement" />
+			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='modifEvent/".$event_id."';\"" ;?> value="Modifier l'événement" />
 		</div>
 	</div>
 </div>

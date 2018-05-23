@@ -90,9 +90,15 @@ Route::get('/events',function(){
   else return redirect('login');  
 });
 
-Route::get('/event',function(){
+Route::get('/event/{event}',function($event){
   if(Session::has('utilisateur'))
-    return view('event');
+    return view('event', ["event_id" => $event]);
+  else return redirect('login');  
+});
+
+Route::get('/event/modifEvent/{event_id}',function($event_id){
+  if(Session::has('utilisateur'))
+    return view('modifEvent', ["event_id" => $event_id]);
   else return redirect('login');  
 });
 
@@ -105,12 +111,17 @@ Route::get('/newTask',function(){
   else return redirect('login');  
 });
 
-Route::get('/supprimerContact/{pseudo}','ControllerContacts@supprimerContact');
-Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
 
 Route::post('/','ControllerConnexion@connexion');
 Route::post('/deconnexion','ControllerConnexion@deconnexion');
 Route::post('/inscription','ControllerInscription@inscription');
-Route::post('/newEvent','ControllerEvenement@newEvent');
+
+
 Route::post('/account','ControllerUpdate@updateInfo');
 Route::post('/supprimerCompte','ControllerConnexion@supprimerCompte');
+
+Route::get('/supprimerContact/{pseudo}','ControllerContacts@supprimerContact');
+Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
+
+Route::post('/newEvent','ControllerEvenement@newEvent');
+Route::post('/event/modifEvent/{event}','ControllerEvenement@updateEvent');
