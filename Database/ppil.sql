@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2018 at 05:52 PM
+-- Generation Time: May 23, 2018 at 02:22 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `contact` (
   `id` int(3) NOT NULL,
-  `utilisateur_id` int(3) NOT NULL,
-  `contact_id` int(3) NOT NULL
+  `utilisateur_utilisateur_id` int(3) NOT NULL,
+  `contact_contact_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -57,8 +57,8 @@ CREATE TABLE `evenement` (
 --
 
 CREATE TABLE `evenement_utilisateur` (
-  `utilisateur_id` int(3) NOT NULL,
-  `evenement_id` int(3) NOT NULL,
+  `utilisateur_utilisateur_id` int(3) NOT NULL,
+  `evenement_evenement_id` int(3) NOT NULL,
   `droit` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,11 +69,13 @@ CREATE TABLE `evenement_utilisateur` (
 --
 
 CREATE TABLE `notification` (
-  `notification_id` int(3) NOT NULL,
-  `invitation` int(1) NOT NULL,
-  `message` varchar(255) NOT NULL,
-  `utilisateur_id` int(3) NOT NULL,
-  `evenement_id` int(3) NOT NULL
+  `notification_id` int(11) NOT NULL,
+  `id_emetteur` int(11) NOT NULL,
+  `id_recepteur` int(11) NOT NULL,
+  `module` varchar(30) NOT NULL,
+  `action` varchar(30) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `id_module` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -94,8 +96,8 @@ CREATE TABLE `photo` (
 --
 
 CREATE TABLE `photo_tache` (
-  `photo_id` int(3) NOT NULL,
-  `tache_id` int(3) NOT NULL
+  `photo_photo_id` int(3) NOT NULL,
+  `tache_tache_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -111,8 +113,8 @@ CREATE TABLE `tache` (
   `valide` int(1) NOT NULL DEFAULT '0',
   `quantiteTotal` int(6) DEFAULT NULL,
   `dateFin` date DEFAULT NULL,
-  `evenement_id` int(3) NOT NULL,
-  `typetache_id` int(3) NOT NULL
+  `evenement_evenement_id` int(3) NOT NULL,
+  `typetache_typetache_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -122,8 +124,8 @@ CREATE TABLE `tache` (
 --
 
 CREATE TABLE `tache_text` (
-  `tache_id` int(3) NOT NULL,
-  `text_id` int(3) NOT NULL
+  `tache_tache_id` int(3) NOT NULL,
+  `text_text_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -133,8 +135,8 @@ CREATE TABLE `tache_text` (
 --
 
 CREATE TABLE `tache_utilisateur` (
-  `tache_id` int(3) NOT NULL,
-  `utilisateur_id` int(3) NOT NULL,
+  `tache_tache_id` int(3) NOT NULL,
+  `utilisateur_utilisateur_id` int(3) NOT NULL,
   `quantite` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -170,8 +172,8 @@ CREATE TABLE `typetache` (
 --
 
 CREATE TABLE `typetache_utilisateur` (
-  `tache_id` int(3) NOT NULL,
-  `utilisateur_id` int(3) NOT NULL
+  `typetache_typetache_id` int(3) NOT NULL,
+  `utilisateur_utilisateur_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

@@ -70,8 +70,8 @@ $contact->delete();
 $evenement = new evenement();
 $evenement->public = ; // 0 pour privé 
 					   // 1 pour public 
-$evenement->notification = ; // 0 pour privé 
-							 // 1 pour public 
+$evenement->notification = ; // 0 pour ne pas activer les notifiaction
+							 // 1 pour activer les notifiaction
 $evenement->intitule = ; // Titre de l'evenement (max 255char)
 $evenement->dateDebut = ; // FORMAT : 'YYYY-MM-DD' , Exemple '2018-5-17'
 $evenement->dateFin = ; // FORMAT : 'YYYY-MM-DD' , Exemple '2018-5-17'
@@ -165,24 +165,6 @@ $evenement->delete();
 $evenement = evenement::where('public','=',1)->first();
 
 //----------------------------------------------------------------------------------------------------------------//
-//----------------------------------Liste des notification de l'utiisateur----------------------------------------//
-
-$utilisateur_id = ID_DE_LUTILISATEUR;
-$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id )->first();
-foreach ($user->notification as $notif) {
-	// Chaque $notif correspond a un objet notification de l'utilisateur $user
-}
-
-//----------------------------------------------------------------------------------------------------------------//
-//----------------------------------Liste des invitation de l'utilisateur-----------------------------------------//
-
-$utilisateur_id = ID_DE_LUTILISATEUR;
-$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id )->first();
-foreach ($user->notification()->where('invitation','=',1)->get() as $invitation) {
-	// Chaque $invitation correspond a un objet notification de l'utilisateur $user qui est une invitation
-}
-
-//----------------------------------------------------------------------------------------------------------------//
 //-------------------------------------Supprimer une notification-------------------------------------------------//
 
 $notification_id = ID_DE_LA_NOTIFICATION;
@@ -248,13 +230,47 @@ $tache = tache::where('tache_id','=',$tache_id)->first();
 $tache->utilisateur()->detach([$utilisateur_id]);
 
 //----------------------------------------------------------------------------------------------------------------//
-//---------------------------------Ajouter une notification-------------------------------------------------------//
+//---------------------------------Acces aux champs des lien (eviter d'utiliser)----------------------------------//
 
-$evenement_id = ID_DE_LEVENEMENT;
-$utilisateur_id = ID_DE_LUTILISATEUR;
-$notification = new notification();
-$notification->invitation = ; // 0 si c'est pas un invitation
-							  // 1 si c'est une invitation
-$notification->message = ; // Le message de la notification
-$notification->utilisateur_id = $utilisateur_id; 
-$notification->evenement_id = $evenement_id; 
+$evenement_id = 1;
+$utilisateur_id = 1;
+$contact_id = 1;
+$notification_id = 1;
+$photo_id = 1;
+$tache_id = 1;
+$text_id = 1;
+$typetache_id = 1;
+
+$evenement = evenement::where('evenement_id','=',$evenement_id)->first();
+$utilisateur = utilisateur::where('utilisateur_id','=',$utilisateur_id)->first();
+$contact = contact::where('id','=',$contact_id)->first();
+$notification = notification::where('notification_id','=',$notification_id)->first();
+$photo = photo::where('photo_id','=',$photo_id)->first();
+$tache = tache::where('tache_id','=',$tache_id)->first();
+$text = text::where('text_id','=',$text_id)->first();
+$typetache = typetache::where('typetache_id','=',$typetache_id)->first();
+
+$evenement->utilisateur();
+$evenement->tache();
+$evenement->notification();
+
+$utilisateur->evenement();
+$utilisateur->tache();
+$utilisateur->typetache();
+$utilisateur->notification();
+$utilisateur->contact();
+
+$contact->utilisateur();
+
+$photo->tache();
+
+$tache->typetache();
+$tache->utilisateur();
+$tache->photo();
+$tache->text();
+$tache->evenement();
+
+$text->tache();
+
+$typetache->utilisateur();
+$typetache->tache();
