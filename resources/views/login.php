@@ -9,17 +9,19 @@
 				<div id="login">
 					<?php 
 						if(Session::has('erreurConnexion')) {
-							echo "<p>".Session::get('erreurConnexion')."</p>";
+							echo "<div class='alert alert-danger' role='alert'>
+								  ".Session::get('erreurConnexion')."
+								</div>";
 						}
 					?>
 					<form action="" method="post">
 						<div class="form-group">
 							<label for="user">Pseudo: </label><br>
-							<input type="text" placeholder="Pseudo" name="user">
+							<input type="text" class="form-control" placeholder="Pseudo" name="user">
 						</div>
 						<div class="form-group">	
 							<label for="mdp">Mot de passe: </label><br>
-							<input type="password" placeholder="Mot de passe" name="mdp">
+							<input type="password" class="form-control" placeholder="Mot de passe" name="mdp">
 							<small class="form-text text-muted"> <a href="lostpw"> Mot de passe oublié ? </a></small><br>
 						</div>
 
