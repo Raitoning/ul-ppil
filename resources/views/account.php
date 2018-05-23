@@ -31,7 +31,7 @@
 			<p style="font-size: 12px">*Laisser vide si vous ne voulez pas changer de mot de passe</p>
 
 			<?php echo csrf_field(); ?>
-			
+
 			Recevoir les invitations <br>
 			<input type="radio" id="radioamis" name="invitations" value="amis" <?php if(Session::get('utilisateur')->recevoirInvitation == "amis")echo "checked"; ?>>
 			<label for="radioamis"> Amis</label>
@@ -41,9 +41,9 @@
 			<label for="radionone"> Personne</label><br>
 
 			Reception d'email pour chaque notification <br>
-			<input type="radio" id="notifyes" name="notif" value="oui" <?php if(Session::get('utilisateur')->recevoirNotif == "oui")echo "checked"; ?>>
+			<input type="radio" id="notifyes" name="notif" value="1" <?php if(Session::get('utilisateur')->recevoirMail == "1")echo "checked"; ?>>
 			<label for="notifyes"> Oui</label>
-			<input type="radio" id="notifno" name="notif" value="non" <?php if(Session::get('utilisateur')->recevoirNotif == "non")echo "checked"; ?>>
+			<input type="radio" id="notifno" name="notif" value="0" <?php if(Session::get('utilisateur')->recevoirMail == "0")echo "checked"; ?>>
 			<label for="notifno"> Non</label><br>
 			<input type="submit" id="register" class="btn btn-primary" value="Appliquer"><br>
 		</form>

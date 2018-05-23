@@ -7,7 +7,7 @@
 		<div id="content" class="row">
 			<form action="inscription" method="post">
 
-				<?php if(Session::has('erreurInscription')){
+        <?php if(Session::has('erreurInscription')){
 						echo "<p>".Session::get('erreurInscription')."</p>";
 						Session::forget('erreurInscription');
 					}
