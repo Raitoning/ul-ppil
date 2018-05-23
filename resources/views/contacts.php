@@ -21,7 +21,7 @@
 				$i =0;
 				$fav = App\Http\Controllers\ControllerContacts::getFavoris();
 				foreach($fav as $contact){
-					echo "<li class='list-group-item'> id='fav_user".$i."' >".$contact."</li>" ;
+					echo "<a href='supprimerContact/".$contact."'><li class='list-group-item' id='fav_user".$i."' >".$contact."</li></a>" ;
 					$i++;
 				}
 				
@@ -38,7 +38,7 @@
 					$j =0;
 					$utils = App\Http\Controllers\ControllerContacts::getUtilisateurs();
 					foreach($utils as $util){
-						echo "<li class='list-group-item'> id='any_user".$j."' >".$util."</li>" ;
+						echo "<a href='ajoutContact/".$util."'><li class='list-group-item' id='any_user".$j."' >".$util."</li></a>" ;
 						$j++;
 					}
 					

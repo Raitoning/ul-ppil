@@ -105,6 +105,9 @@ Route::get('/newTask',function(){
   else return redirect('login');  
 });
 
+Route::get('/supprimerContact/{pseudo}','ControllerContacts@supprimerContact');
+Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
+
 Route::post('/','ControllerConnexion@connexion');
 Route::post('/deconnexion','ControllerConnexion@deconnexion');
 Route::post('/inscription','ControllerInscription@inscription');

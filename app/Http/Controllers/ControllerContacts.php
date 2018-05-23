@@ -46,6 +46,28 @@ class ControllerContacts extends Controller
 		return $res;
 	}
 	
+	public function supprimerContact(Request $request,$pseudo){
+		
+		if(Session::has('utilisateur')){
+			$tmp = utilisateur::where('pseudo',$pseudo)->first();
+
+			$contact = contact::where('contact_id',$tmp->utilisateur_id)->where('utilisateur_id',Session::get('utilisateur')->utilisateur_id)->delete();
+		}
+		return redirect('/contacts');
+	}
+	
+	public function ajoutContact(Request $request,$pseudo){
+		
+		if(Session::has('utilisateur')){
+			$tmp = utilisateur::where('pseudo',$pseudo)->first();
+			$newContact = new contact;
+			$newContact->utilisateur_id = Session::get('utilisateur')->utilisateur_id;
+			$newContact->contact_id = $tmp->utilisateur_id;
+			$newContact->save();
+		}
+		return redirect('/contacts');
+	}
+	
 }
 
 ?>
