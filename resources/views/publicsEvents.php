@@ -5,11 +5,21 @@
 	</div>
 	<div id="evenements_publics" class="row">
 		<h1>Evénements Publics</h1><br>
+	</div>
 	   <?php
 			//affichage evenements publics
 			use App\Http\Controllers\ControllerEvenement;
-			ControllerEvenement::getPublicsEvents();
+			$events = ControllerEvenement::getPublicsEvents();
+			
+			foreach($events as $event){
+				echo "<div style='bloc'>
+				<p style='font-size:20px;'>".$event->intitule."</p><br>
+				<p>Date de début: ".$event->dateDebut."</p>
+				<p>Date de fin: ".$event->dateFin."</p>
+				<p>Description: ".$event->description."</p>
+				</div>";
+			}
 		?>
-	</div>
+
 </div>
 <?php include("footer.php");?>

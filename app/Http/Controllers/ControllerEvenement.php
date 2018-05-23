@@ -71,12 +71,12 @@ class ControllerEvenement extends Controller
 	}
 
 	public static function getPublicsEvents(){
-		//TODO patch (n'affiche que des 1 !)
-		$events = evenement::where('public', '=', 1)->first();
+		$res = array();
+		$events = evenement::where('public', '=', 1)->get();
 		foreach ($events as $event) {
-		    //Chaque evenement public dans la variable $event 
-			echo $event."<br>" ;
+		    array_push($res,$event);;
 		}
+		return $res;
 	}
 
 	public static function getEvent($event_id){
