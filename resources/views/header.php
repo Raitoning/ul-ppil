@@ -10,7 +10,7 @@
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: flex; justify-content: space-between;">
-		<a class="navbar-brand" href="accueil">TODO List</a>
+		<a class="navbar-brand" href="/accueil">TODO List</a>
 		<div id="top_bar">		
 		<?php 
 			if(Session::has('utilisateur')){
