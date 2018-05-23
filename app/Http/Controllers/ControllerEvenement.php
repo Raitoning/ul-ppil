@@ -102,8 +102,6 @@ class ControllerEvenement extends Controller
 		$event = evenement::where('evenement_id', '=', $event_id)->first();
 		return $event ;
 	}
-
-
 }
 
 ?>

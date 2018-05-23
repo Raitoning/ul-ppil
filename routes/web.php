@@ -75,7 +75,6 @@ Route::get('/notices',function(){
   else return redirect('login');
 });
 
-
 // Evenements
 
 Route::get('/newEvent',function(){
