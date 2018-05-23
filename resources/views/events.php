@@ -5,15 +5,19 @@
 				<div id="mes_evenements">
 
 					   <h1>Mes Evenements </h1>
-					   <a href="event/1"> Test Evenement</a><br>
+					   <br>
 					   <?php
 						//TODO: affichage evenements
 						use App\Http\Controllers\ControllerEvenement;
 						$events = ControllerEvenement::getUserEvents();
-						/*foreach ($events as $event) {
-						    //Chaque evenement public dans la variable $event 
-							echo "<a href='event/".$event."'><li class='list-group-item' id='fav_user".$i."' >".$event."</li></a>" ;
-						}*/
+						foreach($events as $event){
+							echo "<div style='bloc'>
+							<p style='font-size:20px;'> <a href='event/".$event->evenement_id."'>".$event->intitule."</a></p><br>
+							<p>Date de début: ".$event->dateDebut."</p>
+							<p>Date de fin: ".$event->dateFin."</p>
+							<p>Description: ".$event->description."</p>
+							</div>";
+						}
 						?>
 				</div>
 			</div>
@@ -23,10 +27,14 @@
 				   <?php
 						//affichage evenements publics
 						$events = ControllerEvenement::getPublicsEvents();
-						/*foreach ($events as $event) {
-						    //Chaque evenement public dans la variable $event 
-							echo "<a href='event/".$event."'><li class='list-group-item' id='fav_user".$i."' >".$event."</li></a>" ;
-						}*/
+						foreach($events as $event){
+							echo "<div style='bloc'>
+							<p style='font-size:20px;'> <a href='event/".$event->evenement_id."'>".$event->intitule."</a></p><br>
+							<p>Date de début: ".$event->dateDebut."</p>
+							<p>Date de fin: ".$event->dateFin."</p>
+							<p>Description: ".$event->description."</p>
+							</div>";
+						}
 					?>
 				</div>
 		</div>

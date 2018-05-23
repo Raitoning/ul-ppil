@@ -55,9 +55,16 @@ class ControllerEvenement extends Controller
 		}
 		
 		$newEvent->save();
+
+
+		$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
+		$evenement = evenement::where('evenement_id','=',$newEvent->evenement_id)->first();
+		$droit = 'proprietaire'; // Au choix : 'proprietaire','editeur','visiteur' 
+		$evenement->utilisateur()->attach($utilisateur_id,['droit'=>$droit]);
 		
-		return redirect('/')->with("Text","Nouvel événement créé !");
+		return redirect('/event/'.$newEvent->evenement_id)->with("Text","Nouvel événement créé !");
 		
+
 	}
 
 	public function updateEvent(Request $request, $id){
@@ -80,20 +87,22 @@ class ControllerEvenement extends Controller
 	}
 
 	public static function getUserEvents(){
-		//TODO patch
-		/*$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
+		
+		$res = array();
+		$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
 		$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
 		foreach ($user->evenement as $event) {
 		    //Chaque evenements de l'utilisateur (variable $user->evenement) dans la variable $event 
-			echo $event->intitule ;
-		}*/
+			array_push($res,$event);
+		}
+		return $res;
 	}
 
 	public static function getPublicsEvents(){
 		$res = array();
 		$events = evenement::where('public', '=', 1)->get();
 		foreach ($events as $event) {
-		    array_push($res,$event);;
+		    array_push($res,$event);
 		}
 		return $res;
 	}
