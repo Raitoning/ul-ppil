@@ -52,6 +52,19 @@
 					</div>
 				</form>
 			</div>
+			<div id="tâches" class="row">
+				<label>Ensemble des tâches</label>
+				
+				<?php
+					//TODO: affichage tâches de l'evenement
+					/*
+					$desc = ControllerEvenement::getTasks();
+					echo $desc ;
+					*/
+				?>
+				<br>
+				
+			</div>
 		</div>
 	</div>
 	
