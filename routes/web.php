@@ -9,7 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
- // page d'accueil 
+ // page d'accueil
 
 Route::get('/',function(){
   if(Session::has('utilisateur'))
@@ -54,7 +54,7 @@ Route::get('/lostpw',function(){
 Route::get('/accueil',function(){
   if(Session::has('utilisateur'))
     return view('accueil');
-  else return redirect('login');  
+  else return redirect('login');
 });
 
 Route::get('/contacts',function(){
@@ -81,25 +81,25 @@ Route::get('/notices',function(){
 Route::get('/newEvent',function(){
   if(Session::has('utilisateur'))
     return view('newEvent');
-  else return redirect('login');  
+  else return redirect('login');
 });
 
 Route::get('/events',function(){
   if(Session::has('utilisateur'))
     return view('events');
-  else return redirect('login');  
+  else return redirect('login');
 });
 
 Route::get('/event/{event}',function($event){
   if(Session::has('utilisateur'))
     return view('event', ["event_id" => $event]);
-  else return redirect('login');  
+  else return redirect('login');
 });
 
 Route::get('/event/modifEvent/{event_id}',function($event_id){
   if(Session::has('utilisateur'))
     return view('modifEvent', ["event_id" => $event_id]);
-  else return redirect('login');  
+  else return redirect('login');
 });
 
 
@@ -108,7 +108,7 @@ Route::get('/event/modifEvent/{event_id}',function($event_id){
 Route::get('/newTask',function(){
   if(Session::has('utilisateur'))
     return view('newTask');
-  else return redirect('login');  
+  else return redirect('login');
 });
 
 
@@ -125,3 +125,4 @@ Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
 
 Route::post('/newEvent','ControllerEvenement@newEvent');
 Route::post('/event/modifEvent/{event}','ControllerEvenement@updateEvent');
+Route::get('/notices','NotifController@renderNotifications');
