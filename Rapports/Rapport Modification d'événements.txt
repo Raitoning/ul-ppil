@@ -1,0 +1,9 @@
+Rapport Modification d'événements (Lucas)
+
+
+	- Erreur 01 : Tous les champs de l'événement qui se compose de plusieurs mots (exemple : "Event 01" pour l'intitulé),
+		      se retrouvent limités à leur premier mot dans le préremplissage du formulaire (exemple: "Event").
+		      
+	- Erreur 02 : On peut modifier la date de fin de façon à ce qu'elle devienne antérieure à la date de début (et inversement).
+
+	- Erreur 03 : On peut modifier les dates de début et de fin de façon à ce qu'elles deviennent antérieures à la date actuelle.
