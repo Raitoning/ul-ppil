@@ -1,0 +1,84 @@
+Rapports sur les requêtes SQL (Lucas)
+
+
+Remarques générales : -J'ai dû remplacer manuellement ID_DE_LUTILISATEUR et autres pour chaque requête.
+		      -J'ai dû remplacer les appels aux classes utilisateur, contact ou événement  par App\models\utilisateur, App\models\contact ou App\models\evenement
+
+Par exemple $user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();  est remplacé par 
+	    $user = App\models\utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
+
+Je ne sais pas si ces problèmes sont dû à mon arborescence ou à un problème quelconque, dans le doute je le mentionne ici.
+
+
+
+Les tests sont concluants pour :
+
+	- Recup info sur l'utilisateur 
+
+	- Supprimer un contact
+
+	- Creer un evenement
+
+	
+
+Les tests n'ont pas pu être effectués pour :
+
+	- Liste des utilisateurs qui ne sont pas amis de l'utilisateur
+		- cause : Le select dû à l'appel de fonctions semble mal interprété ce qui donne un nom de colonne inexistant, ou alors une erreur dans ma base de données
+		- erreur : ligne 4 sinon plus
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'contact.utilisateur_idUtilisateur' inconnu dans where clause (SQL: select * from `contact` where `contact`.`utilisateur_idUtilisateur` is null and `contact`.`utilisateur_idUtilisateur` is not null)
+
+- NOTE : il va y avoir le même problème pour chacune des rêquetes faisant appel aux fonctions qui sont censées récuperer les associations.
+
+	- Requete de recupération des evenement d'un utilisateur pour la page d'accueil
+		- cause : Même type d'erreur
+		- erreur : ligne 3
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'evenement_utilisateur.utilisateur_idUtilisateur' inconnu dans field list (SQL: select `evenement`.*, `evenement_utilisateur`.`utilisateur_idUtilisateur` as `pivot_utilisateur_idUtilisateur`, `evenement_utilisateur`.`evenement_idEvenement` as `pivot_evenement_idEvenement`, `evenement_utilisateur`.`droit` as `pivot_droit` from `evenement` inner join `evenement_utilisateur` on `evenement`.`idEvenement` = `evenement_utilisateur`.`evenement_idEvenement` where `evenement_utilisateur`.`utilisateur_idUtilisateur` is null)
+
+	- TRIE PAR DATE CROISSANTE
+		- cause : Même type d'erreur
+		- erreur : ligne 3
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'evenement_utilisateur.utilisateur_idUtilisateur' inconnu dans field list (SQL: select `evenement`.*, `evenement_utilisateur`.`utilisateur_idUtilisateur` as `pivot_utilisateur_idUtilisateur`, `evenement_utilisateur`.`evenement_idEvenement` as `pivot_evenement_idEvenement`, `evenement_utilisateur`.`droit` as `pivot_droit` from `evenement` inner join `evenement_utilisateur` on `evenement`.`idEvenement` = `evenement_utilisateur`.`evenement_idEvenement` where `evenement_utilisateur`.`utilisateur_idUtilisateur` is null order by `dateDebut` asc)
+
+	
+	- Recuperer les contact d'un utilisateur
+		- cause : Même type d'erreur
+		- erreur : ligne 3
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'contact.utilisateur_idUtilisateur' inconnu dans where clause (SQL: select * from `contact` where `contact`.`utilisateur_idUtilisateur` is null and `contact`.`utilisateur_idUtilisateur` is not null)
+
+	- Ajouter un utilisateur a un evenement
+		- cause : Même type d'erreur
+		- erreur : ligne 5
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'evenement_idEvenement' inconnu dans field list (SQL: insert into `evenement_utilisateur` (`droit`, `evenement_idEvenement`, `utilisateur_idUtilisateur`) values (visiteur, , 1))
+
+
+	- Modifier les droits d'un utilisateur a un evenement
+		- cause : Même type d'erreur
+		- erreur : ligne 5
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'evenement_idEvenement' inconnu dans field list (SQL: insert into `evenement_utilisateur` (`droit`, `evenement_idEvenement`, `utilisateur_idUtilisateur`) values (editeur, , 1))
+	
+	- Afficher participant a un evenement
+		- cause : Même type d'erreur
+		- erreur : ligne 3
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'evenement_utilisateur.evenement_idEvenement' inconnu dans field list (SQL: select `utilisateur`.*, `evenement_utilisateur`.`evenement_idEvenement` as `pivot_evenement_idEvenement`, `evenement_utilisateur`.`utilisateur_idUtilisateur` as `pivot_utilisateur_idUtilisateur`, `evenement_utilisateur`.`droit` as `pivot_droit` from `utilisateur` inner join `evenement_utilisateur` on `utilisateur`.`idUtilisateur` = `evenement_utilisateur`.`utilisateur_idUtilisateur` where `evenement_utilisateur`.`evenement_idEvenement` is null)
+
+
+
+
+Les tests montrent des erreurs pour :
+	
+	- Ajouter un contact
+		- cause : On peut ajouter un utilisateur plusieurs fois a ses contacts
+		- mise en garde : veiller à ce que ce soit empêché par le site
+
+	- Ajouter une tache
+		- cause : Il n'y a pour l'instant pas de champ ni de colonne typetache_id pour les tache
+		- erreur : ligne 10  
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'typetache_id' inconnu dans field list (SQL: insert into `tache` (`nom`, `description`, `quantiteTotal`, `dateFin`, `evenement_id`, `typetache_id`) values (tache1, test tache1, 10, 2018-5-17, 3, 5))
+		
+
+	- Supprimer un tache
+		- cause : la primary key a un mauvais nom dans la classe tache
+		- erreur : ligne 3
+		- message d'erreur : SQLSTATE[42S22]: Column not found: 1054 Champ 'idTache' inconnu dans where clause (SQL: delete from `tache` where `idTache` is null)
+		- correction possible : changer le champ primaryKey de App/models/tache.php en "tache_id"

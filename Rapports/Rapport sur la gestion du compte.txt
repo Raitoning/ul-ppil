@@ -1,0 +1,39 @@
+Rapport sur la gestion du compte (Lucas)
+
+
+- Formulaire correctement rempli :
+
+	- Note 01 : Contrairement à "Recevoir les invitations", "Reception d'email pour chaque notification" n'est pas pré-remplis avec les informations du compte
+
+
+	- Erreur 01 : La colonne recevoirMail recoit des varchar (non ou oui) alors qu'elle doit recevoir des valeurs entières (0 ou 1)
+		- Messages d'erreur : SQLSTATE[HY000]: General error: 1366 Incorrect integer value: 'oui' for column 'recevoirMail' at row 1
+			  	      SQLSTATE[HY000]: General error: 1366 Incorrect integer value: 'non' for column 'recevoirMail' at row 1
+		- Corriger les lignes 26 et 28 de account.php
+
+
+	- Erreur 02 : Si les champs Mot de passe et Confirmation n'ont pas le même contenu, les modifications sont quand même acceptées lorsqu'on les applique.
+		
+
+
+- Formulaire vide ou partiellement vide :
+
+	- Erreur 01 : Si on ne coche pas de case pour"Recevoir les invitations" ou "Reception d'email pour chaque notification", on est redirigé sur une page d'erreur
+		- Messages d'erreur : SQLSTATE[23000]: Integrity constraint violation: 1048 Le champ 'recevoirInvitation' ne peut être vide (null)
+			  	      SQLSTATE[23000]: Integrity constraint violation: 1048 Le champ 'recevoirMail' ne peut être vide (null)
+
+
+	- Note 01 : Pour toute modification il faut remplir les champs mot de passe et confirmation, qui sont aussi utilisés pour changer son mot de passe. Ainsi que le pseudo et l'email.
+		  Est-ce que c'est bien pratique ? 
+
+
+- Suppression du compte
+
+	- Note 01 : On peut supprimer son compte un peu trop facilement peut-être (juste une confirmation).
+
+
+
+
+
+
+

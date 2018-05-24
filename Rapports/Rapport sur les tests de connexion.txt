@@ -1,0 +1,33 @@
+Rapport sur les tests de connexion (Lucas)
+
+Les mots de passe étant codés en dur dans la base de données lors d'une inscription, 
+les tests ne sont pas représentatifs d'une gestion avec cryptage.
+
+La connexion se fait :
+	-Si les infos rentrées sont correctes
+
+La connexion ne se fait pas :
+	-Si l'email est mauvais
+	-Si le mdp est faux
+	-Si l'email est vide
+	-Si le mdp est vide
+	-Si le formulaire est vide
+	-Si le mdp et l'email sont de deux comptes différents
+
+Résultats des tests effectués :
+
+Erreurs : 2
+
+	- C'est le pseudo qui est pris en compte lors de la connexion à la place de l'email
+	- Le cryptage absent 
+
+Note : 1
+
+	- Un champ rentré avec des espaces avant ou après le mdp/email sera quand même accepté 
+
+Corrections proposées :
+
+	- Utiliser l'email des utilisateurs pour la connexion comme prévu 
+	- Gérer le cryptage des mdp
+
+	

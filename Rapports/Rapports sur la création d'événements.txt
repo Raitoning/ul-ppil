@@ -1,0 +1,20 @@
+Rapports sur la création d'événements (Lucas)
+
+
+
+- Formulaires correctement remplis :
+
+	- Erreur 01 : Lorsque la date de début choisie est celle du jour même on ne peut pas créer l'événement.
+	- Message d'erreur : La date de début ne doit pas être dépassée.
+
+	- Note 01 : Lorsque la date de début choisie est la même que la date de fin, on peut quand même créer l'événement, est-ce normal ?
+
+	- Erreur 02 : Si on entre trop de caractères dans un champ puis valide le formulaire, ça plante.
+	- Message d'erreur : SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'intitule' at row 1 (SQL: insert into `evenement` (`intitule`, `description`, `lieu`, `dateDebut`, `dateFin`, `public`, `notification`, `suppressionAutomatique`) values (DES MOTS TROP LONGS)
+
+
+	
+
+- Formulaires vides ou partiellement vides :
+
+	- Note 01 : Les champs obligatoires ne sont pas indiqués à l'utilisateur (même s'il s'agit en fait de tous les champs).
