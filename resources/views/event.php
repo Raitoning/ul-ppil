@@ -67,7 +67,7 @@
 
 	<div class="row">
 		<div class="col-2">
-			<input type="button" class="btn btn-primary" onclick="location.href='newTask';" value="Ajouter une tâche" />
+			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='newTask/".$event_id."';\"" ;?> value="Ajouter une tâche" />
 		</div>
 		<div class="col-2">
 			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='modifEvent/".$event_id."';\"" ;?> value="Modifier l'événement" />

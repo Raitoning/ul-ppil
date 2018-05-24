@@ -104,9 +104,9 @@ Route::get('/event/modifEvent/{event_id}',function($event_id){
 
 // Tâches
 
-Route::get('/newTask',function(){
+Route::get('/event/newTask/{event_id}',function($event_id){
   if(Session::has('utilisateur'))
-    return view('newTask');
+    return view('newTask', ["event_id" => $event_id]);
   else return redirect('login');
 });
 

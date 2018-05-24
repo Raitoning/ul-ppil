@@ -24,7 +24,7 @@
 					  <option value="typetask3">Type 3</option>
 					  <option value="typetask4">Type 4</option>
 
-					  //TODO séléction des différents types de tâches
+					  <!-- TODO séléction des différents types de tâches -->
 					</select><br><br>
 				</div>
 				<div class="row">
