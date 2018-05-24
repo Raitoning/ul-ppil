@@ -11,7 +11,19 @@
             <li>PLACEHOLDER</li>
             <li>PLACEHOLDER</li>
             <li>PLACEHOLDER</li>
+
+            <?php
+                // PLACEHOLDER CODE
+                // Affichage des participants à l'évènement
+                use App\Http\Controllers\ControllerEvenement;
+                $users = ControllerEvenement::getUserEvents();
+                
+                foreach($users as $user){
+                    echo "<li>".$user->nom."</li>";
+                }
+		    ?>
         </ul>
+
     </div>
 
 
