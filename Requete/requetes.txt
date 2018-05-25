@@ -42,7 +42,7 @@ foreach ($user->evenement()->orderBy('dateDebut')->get() as $event) {
 $utilisateur_id = ID_DE_LUTILISATEUR;
 $user = utilisateur::where('utilisateur_id', '=', $utilisateur_id )->first();
 foreach ($user->contact as $contact) {
-    $userContact= utilisateur::where('utilisateur_id', '=', $contact->contact_id)->first();
+    $userContact= utilisateur::where('utilisateur_id', '=', $contact->contact_contact_id)->first();
     //Chaque $userContact represente l'objet representant l'utilisateur etant un Favori de l'utilisateur ayant 
     //  pour ID celui de $utilisateur_id
 }
