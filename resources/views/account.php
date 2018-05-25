@@ -45,12 +45,12 @@
 			<label for="notifyes"> Oui</label>
 			<input type="radio" id="notifno" name="notif" value="0" <?php if(Session::get('utilisateur')->recevoirMail == "0")echo "checked"; ?>>
 			<label for="notifno"> Non</label><br>
-			<input type="submit" id="register" class="btn btn-primary" value="Appliquer"><br>
+			<input type="submit" id="register" class="btn btn-success" value="Appliquer"><br>
 		</form>
 
 		<div id="delete">
 			<form method="post" action="supprimerCompte" onsubmit="if(confirm('Etes vous sur de vouloir supprimer votre compte?')) return true; else return false;">
-				<input type="submit" id="suppracc" class="btn btn-primary" value="Supprimer Compte">
+				<input type="submit" id="suppracc" class="btn btn-danger" value="Supprimer Compte">
 				<?php echo csrf_field(); ?>
 			</form>
 		</div>

@@ -10,7 +10,7 @@
 		<?php
 			$tmp = ControllerParticipants::getDroit($event_id,Session::get('utilisateur')->utilisateur_id);
 			if($tmp == "proprietaire" || $tmp == "edition"){
-				echo "<input type='button' class='btn' onclick='location.href=\"".$event_id."/ajoutUtilisateurs\";' value='Envoyer des invitations' />";
+				echo "<input type='button' class='btn btn-info' onclick='location.href=\"".$event_id."/ajoutUtilisateurs\";' value='Envoyer des invitations' />";
 			}
 			
 			$utilisateurs = ControllerParticipants::getParticipants($event_id);
@@ -42,10 +42,10 @@
 					echo "> Aucun
 					</label>
 					<label class='radio-inline'>
-					<button type='submit' id='register' class='btn' value='Enregistrer les modifications'>Valider</button>
+					<button type='submit' id='register' class='btn btn-success' value='Enregistrer les modifications'>Valider</button>
 					</label>
 					".csrf_field()."
-					<input type='button' class='btn' onclick='location.href=\"".$event_id."/".$util->utilisateur_id."\";' value='Supprimer' />
+					<input type='button' class='btn btn-danger' onclick='location.href=\"".$event_id."/".$util->utilisateur_id."\";' value='Supprimer' />
 					</li>
 					<input type='hidden' name='id_event' value='".$event_id."'>
 					<input type='hidden' name='id_user' value='".$util->utilisateur_id."'>

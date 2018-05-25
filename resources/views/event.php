@@ -71,7 +71,7 @@
 			<input type="button" class="btn btn-primary" onclick="location.href='newTask';" value="Ajouter une tâche" />
 		</div>
 		<div class="col-2">
-			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='modifEvent/".$event_id."';\"" ;?> value="Modifier l'événement" />
+			<input type="button" class="btn btn-info" <?php echo "onclick=\"location.href='modifEvent/".$event_id."';\"" ;?> value="Modifier l'événement" />
 		</div>
 		<div class="col-2">
 			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='participants/".$event_id."';\"" ;?> value="Participants" />
@@ -80,13 +80,13 @@
 			if(!ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
 				echo 
 				"<div class=\"col-2\">
-				<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='desinscription/".$event_id."';\" value=\"Se désinscrire\" />
+				<input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$event_id."';\" value=\"Se désinscrire\" />
 				</div>" ;
 			}
 			 if(controllerEvenement::estPublic($event_id) && !controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
 			 	echo 
 				"<div class=\"col-2\">
-				<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='demandeInscription/".$event_id."';\" value=\"S'inscrire\" />
+				<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='demandeInscription/".$event_id."';\" value=\"S'inscrire\" />
 				</div>" ;
 			 }
 			

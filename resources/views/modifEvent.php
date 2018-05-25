@@ -9,7 +9,7 @@
 			if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id)){
 				echo 
 				"<div class=\"col-2\">
-				<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='suppression/".$event_id."';\" value=\"Supprimer l'événement\" />
+				<input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='suppression/".$event_id."';\" value=\"Supprimer l'événement\" />
 				</div>" ;
 			}
 			
@@ -58,7 +58,7 @@
 							<input type="checkbox" name="suppr" value="suppr" <?php if($event->suppressionAutomatique == 1) echo "checked"; ?> > Supression automatique<br>
 							<?php echo csrf_field(); ?>
 						</div>
-						<button type="submit" id="register" class="btn btn-primary" value="enregistrer les modifications">Enregistrer les modifications</button><br>
+						<button type="submit" id="register" class="btn btn-success" value="enregistrer les modifications">Enregistrer les modifications</button><br>
 
 					</div>
 				</form>

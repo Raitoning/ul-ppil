@@ -44,7 +44,7 @@
 							<label>* champs obligatoires</label><br>
 							<?php echo csrf_field(); ?>
 						</div>
-						<button type="submit" id="register" class="btn btn-primary" value="creer l'evenement">Créer l'evenement</button><br>
+						<button type="submit" id="register" class="btn btn-success" value="creer l'evenement">Créer l'evenement</button><br>
 
 					</div>
 				</form>
