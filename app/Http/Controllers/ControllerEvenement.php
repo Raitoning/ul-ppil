@@ -111,6 +111,14 @@ class ControllerEvenement extends Controller
 		$event = evenement::where('evenement_id', '=', $event_id)->first();
 		return $event ;
 	}
+	
+	public static function consultationPublic($event_id){
+		$event = evenement::where('evenement_id', '=', $event_id)->first();
+		if(!Session::has('utilisateur') && $event->public == 1){
+			return view('consultationEvenement',["event_id" => $event_id]);
+		}
+		else return redirect('/public/accueil');
+	}
 }
 
 ?>

@@ -90,9 +90,7 @@ Route::get('/events',function(){
 });
 
 Route::get('/event/{event}',function($event){
-  if(Session::has('utilisateur'))
     return view('event', ["event_id" => $event]);
-  else return redirect('login');
 });
 
 Route::get('/event/modifEvent/{event_id}',function($event_id){
@@ -100,6 +98,8 @@ Route::get('/event/modifEvent/{event_id}',function($event_id){
     return view('modifEvent', ["event_id" => $event_id]);
   else return redirect('login');
 });
+
+Route::get('/consultationPublic/{event_id}','ControllerEvenement@consultationPublic');
 
 
 // Tâches

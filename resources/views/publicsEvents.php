@@ -13,7 +13,7 @@
 			
 			foreach($events as $event){
 				echo "<div style='bloc'>
-				<p style='font-size:20px;'>".$event->intitule."</p><br>
+				<p style='font-size:20px;'><a href='consultationPublic/".$event->evenement_id."'>".$event->intitule."</a></p><br>
 				<p>Date de début: ".$event->dateDebut."</p>
 				<p>Date de fin: ".$event->dateFin."</p>
 				<p>Description: ".$event->description."</p>
