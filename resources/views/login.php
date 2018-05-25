@@ -32,7 +32,6 @@
 
 						</form>
 							<input type="button" class="btn btn-primary" onclick="location.href='inscription';" value="Inscription" />
-						
 							<input type="submit" class="btn btn-primary" onclick="location.href='publicsEvents';" id="anon" value="Accès Anonyme">
 						
 					</div>					
