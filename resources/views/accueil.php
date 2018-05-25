@@ -30,7 +30,15 @@
 				    <p>Evenements à venir</p>
 					<?php
 						use App\Http\Controllers\ControllerEvenement;
-						ControllerEvenement::getUserEvents();
+						$liste = ControllerEvenement::getUserEvents();
+						
+						foreach($liste as $affichage){
+							echo "
+								<p>".$affichage->intitule."</p>
+								<p>Date de début :".$affichage->dateDebut."</p>
+								<br>
+							";
+						}
 					?>
 				</div>
 		    </div>
