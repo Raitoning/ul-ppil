@@ -77,12 +77,18 @@
 			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='participants/".$event_id."';\"" ;?> value="Participants" />
 		</div>
 		<?php
-			if(!ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id)){
+			if(!ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
 				echo 
 				"<div class=\"col-2\">
 				<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='desinscription/".$event_id."';\" value=\"Se désinscrire\" />
 				</div>" ;
 			}
+			 if(controllerEvenement::estPublic($event_id) && !controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
+			 	echo 
+				"<div class=\"col-2\">
+				<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='demandeInscription/".$event_id."';\" value=\"S'inscrire\" />
+				</div>" ;
+			 }
 			
 		?>
 	</div>

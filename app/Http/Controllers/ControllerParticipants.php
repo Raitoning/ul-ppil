@@ -33,6 +33,14 @@ class ControllerParticipants extends Controller
 		
 	}
 
+ 	public static function inscription($id_event){
+		/*if(Session::has('utilisateur')){
+				$proprietaire = 
+				return redirect('event/'.$id_event);
+			
+		}*/
+	}
+
 	public static function desinscription($id_event){
 		if(Session::has('utilisateur')){
 			if(!ControllerParticipants::estProprio($id_event,Session::get('utilisateur')->utilisateur_id)){
@@ -131,6 +139,18 @@ class ControllerParticipants extends Controller
 	public static function ajouter($event_id, $user_id){
 		$tmp = evenement::find($event_id)->utilisateur()->attach($user_id,['droit' => 'aucun']);
 		return redirect("event/participants/".$event_id."/ajoutUtilisateurs");
+	}
+
+	public static function participe($id_user, $id_event){
+		$participants = controllerParticipants::getParticipants($id_event);
+
+		foreach ($participants as $participant) {
+			if($participant->utilisateur_id == $id_user){
+				return true ;
+			}
+		}
+
+		return false ;
 	}
 
 }

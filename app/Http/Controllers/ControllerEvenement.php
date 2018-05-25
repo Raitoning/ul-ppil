@@ -130,6 +130,11 @@ class ControllerEvenement extends Controller
 		}
 		else return redirect('/public/accueil');
 	}
+
+	public static function estPublic($event_id){
+		$event = controllerEvenement::getEvent($event_id);
+		return $event->public == 1 ;
+	}
 }
 
 ?>
