@@ -53,8 +53,8 @@ foreach ($user->contact as $contact) {
 $utilisateur_id = ID_DE_LUTILISATEUR;
 $contact_id = ID_DU_CONTACT;
 $contact = new contact();
-$contact->utilisateur_id = $utilisateur_id;
-$contact->contact_id = $contact_id;
+$contact->utilisateur_utilisateur_id = $utilisateur_id;
+$contact->contact_contact_id = $contact_id;
 $contact->save();
 
 //----------------------------------------------------------------------------------------------------------------//
@@ -62,7 +62,7 @@ $contact->save();
 
 $utilisateur_id = ID_DE_LUTILISATEUR;
 $contact_id = ID_DU_CONTACT;
-$contact = contact::where('utilisateur_id', '=', $utilisateur_id )->where('contact_id', '=', $contact_id )->first();
+$contact = contact::where('utilisateur_utilisateur_id', '=', $utilisateur_id )->where('contact_contact_id', '=', $contact_id )->first();
 $contact->delete();
 
 //----------------------------------------------------------------------------------------------------------------//
@@ -111,8 +111,8 @@ $tache->nom = ; // Nom de la tache (max 255char)
 $tache->description = ; // Description de la tache (max 255char)
 $tache->quantiteTotal = ; // SI elle est de type quentitative (max 999999)
 $tache->dateFin = ; // SI elle est de type datedefin , FORMAT : 'YYYY-MM-DD' , Exemple '2018-5-17'
-$tache->evenement_id = $evenement_id; 
-$tache->typetache_id = $typetache_id;
+$tache->evenement_evenement_id = $evenement_id; 
+$tache->typetache_typetache_id = $typetache_id;
 
 $tache->save();
 
