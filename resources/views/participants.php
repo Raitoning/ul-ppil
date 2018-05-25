@@ -10,6 +10,15 @@
 		<?php
 
 			$utilisateurs = ControllerParticipants::getParticipants($event_id);
+			if(ControllerParticipants::estProprio($event_id,Session::get('utilisateur')->utilisateur_id))
+			foreach($utilisateurs as $util){
+				echo "
+				<li>".$util->pseudo."
+				<input type='button' class='btn' onclick='location.href=\"".$event_id."/".$util->utilisateur_id."\";' value='Supprimer' />
+				</li>
+				";
+			}
+			else
 			foreach($utilisateurs as $util){
 				echo "
 				<li>".$util->pseudo."</li>
