@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Session;
 use App\models\utilisateur;
 use App\models\evenement;
+use App\models\contact;
 
 class ControllerParticipants extends Controller
 {
