@@ -42,6 +42,25 @@ class ControllerParticipants extends Controller
 		}
 		else return false;
 	}
+	
+	public static function getDroit($id_event, $id_user){
+		
+		$event = evenement::find($id_event);
+		$droit = $event->utilisateur()->find($id_user)->pivot->droit;
+		return $droit;
+	}
+	
+	
+	public static function droitParticipant(Request $request){
+		$event_id = $request->id_event;
+		$user_id = $request->id_user;
+		$droit = $request->rights;
+		$event = evenement::find($event_id);
+		$droit = $event->utilisateur()->updateExistingPivot($user_id,['droit' => $droit]);
+		
+		return redirect('event/participants/'.$event_id);
+	}
+
 }
 
 ?>
