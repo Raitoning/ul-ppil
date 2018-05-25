@@ -28,15 +28,19 @@ class ControllerParticipants extends Controller
 				$tmp = $event->utilisateur()->detach($id_user);
 				return redirect('event/participants/'.$id_event);
 			}
-			return redirecr('/accueil');
+			return redirect('/accueil');
 		}
 		
 	}
 	
 	public static function estProprio($id_event, $id_user){
-		
 		$event = evenement::find($id_event);
-		$droit = $event->utilisateur()->find($id_user)->pivot->droit;
+		try{
+			$droit = $event->utilisateur()->find($id_user)->pivot->droit;
+		}
+		catch(\Exception $e){
+			return false;
+		}
 		if($droit == "proprietaire"){
 			return true;
 		}
@@ -44,9 +48,13 @@ class ControllerParticipants extends Controller
 	}
 	
 	public static function getDroit($id_event, $id_user){
-		
+		try{
 		$event = evenement::find($id_event);
 		$droit = $event->utilisateur()->find($id_user)->pivot->droit;
+		}
+		catch(\Exception $e){
+			return "";
+		}
 		return $droit;
 	}
 	
