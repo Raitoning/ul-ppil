@@ -8,9 +8,14 @@
 
         <ul>
 		<?php
-
+			$tmp = ControllerParticipants::getDroit($event_id,Session::get('utilisateur')->utilisateur_id);
+			if($tmp == "proprietaire" || $tmp == "edition"){
+				echo "<input type='button' class='btn' onclick='location.href=\"".$event_id."/ajoutUtilisateurs\";' value='Envoyer des invitations' />";
+			}
 			
 			$utilisateurs = ControllerParticipants::getParticipants($event_id);
+			
+			
 			if(ControllerParticipants::estProprio($event_id,Session::get('utilisateur')->utilisateur_id)){
 				foreach($utilisateurs as $util){
 					echo "

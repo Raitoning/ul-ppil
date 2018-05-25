@@ -85,7 +85,53 @@ class ControllerParticipants extends Controller
 		return redirect('event/participants/'.$event_id);
 	}
 
+	public static function getFavoris($event_id){
+		$res = array();
+			
+		$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
+		$contacts = contact::where('utilisateur_utilisateur_id', '=', $utilisateur_id )->get();
+		
+		$event = evenement::find($event_id)->utilisateur();
+		foreach ($contacts as $contact) {
+			
+			$t = $event->where('utilisateur_utilisateur_id',$contact->contact_contact_id)->first();
+			if(empty($t)){
+				array_push($res,$userContact = utilisateur::where('utilisateur_id', '=', $contact->contact_contact_id)->first());
+			}
+		}
+			
+		return $res;
+	}
+	
+	public static function getUtilisateurs($event_id){
+			
+		$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
+		
+		$tmp = array($utilisateur_id);
+		
+		$contacts = contact::where('utilisateur_utilisateur_id', '=', $utilisateur_id )->get();
+		foreach ($contacts as $contact) {
+			array_push($tmp,$contact->contact_contact_id);
+		}
 
+		$pascontact = utilisateur::whereNotIn('utilisateur_id', $tmp)->get();
+		$res = array();
+		
+		$event = evenement::find($event_id)->utilisateur();
+		foreach ($pascontact as $utilisateurNonContact){
+			$k = $event->where('utilisateur_utilisateur_id',$utilisateurNonContact->utilisateur_id)->first();
+			
+			if(empty($k))
+				array_push($res,$utilisateurNonContact);
+		}
+		
+		return $res;
+	}
+	
+	public static function ajouter($event_id, $user_id){
+		$tmp = evenement::find($event_id)->utilisateur()->attach($user_id,['droit' => 'aucun']);
+		return redirect("event/participants/".$event_id."/ajoutUtilisateurs");
+	}
 
 }
 
