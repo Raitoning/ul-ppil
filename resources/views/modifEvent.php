@@ -4,6 +4,17 @@
 			<h1>Modifier l'événement :</h1>
 		</div>
 
+		<?php
+			use App\Http\Controllers\ControllerParticipants;
+			if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id)){
+				echo 
+				"<div class=\"col-2\">
+				<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='suppression/".$event_id."';\" value=\"Supprimer l'événement\" />
+				</div>" ;
+			}
+			
+			?>
+
 		<?php if(Session::has('erreurInscription')){
 				echo "<div class='alert alert-danger' role='alert'>"
 						.Session::get('erreurInscription').

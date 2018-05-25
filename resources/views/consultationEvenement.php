@@ -51,6 +51,7 @@
 	</div>
 
 		<?php
+		use App\Http\Controllers\ControllerParticipants;
 			if(!ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id)){
 				echo 
 				"<div class=\"col-2\">

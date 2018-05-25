@@ -86,6 +86,17 @@ class ControllerEvenement extends Controller
 			return redirect('/event/'.$id);
 	}
 
+	public function supprimerEvenement($event_id){
+
+		$event = evenement::find($event_id);
+		$tmp = $event->utilisateur()->detach();
+		$evenement = evenement::where('evenement_id','=',$event_id)->first();
+		$evenement->delete();
+
+		return redirect('/events/');
+	}
+
+
 	public static function getUserEvents(){
 		
 		$res = array();
