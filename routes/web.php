@@ -107,6 +107,8 @@ Route::get('/event/participants/{event_id}',function($event_id){
   else return redirect('login');
 });
 
+Route::get('/event/desinscription/{id_event}','ControllerParticipants@desinscription');
+
 Route::post('/event/participants/droits','ControllerParticipants@droitParticipant');
 
 Route::get('/event/participants/{id_event}/{id_user}','ControllerParticipants@suppParticipants');

@@ -32,6 +32,17 @@ class ControllerParticipants extends Controller
 		}
 		
 	}
+
+	public static function desinscription($id_event){
+		if(Session::has('utilisateur')){
+			if(!ControllerParticipants::estProprio($id_event,Session::get('utilisateur')->utilisateur_id)){
+				$event = evenement::find($id_event);
+				$tmp = $event->utilisateur()->detach(Session::get('utilisateur')->utilisateur_id);
+				return redirect('events');
+			}
+		}
+		
+	}
 	
 	public static function estProprio($id_event, $id_user){
 		$event = evenement::find($id_event);
@@ -68,6 +79,8 @@ class ControllerParticipants extends Controller
 		
 		return redirect('event/participants/'.$event_id);
 	}
+
+
 
 }
 

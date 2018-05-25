@@ -6,6 +6,7 @@
 		<?php
 			//affichage du nom de l'evenement
 			use App\Http\Controllers\ControllerEvenement;
+			use App\Http\Controllers\ControllerParticipants;
 			$event = ControllerEvenement::getEvent($event_id);  //TODO cas général
 			echo $event->intitule ;
 		?>
@@ -75,6 +76,15 @@
 		<div class="col-2">
 			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='participants/".$event_id."';\"" ;?> value="Participants" />
 		</div>
+		<?php
+			if(!ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id)){
+				echo 
+				"<div class=\"col-2\">
+				<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='desinscription/".$event_id."';\" value=\"Se désinscrire\" />
+				</div>" ;
+			}
+			
+		?>
 	</div>
 </div>
 
