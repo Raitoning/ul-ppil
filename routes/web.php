@@ -101,6 +101,11 @@ Route::get('/event/modifEvent/{event_id}',function($event_id){
 
 Route::get('/consultationPublic/{event_id}','ControllerEvenement@consultationPublic');
 
+Route::get('/event/participants/{event_id}',function($event_id){
+  if(Session::has('utilisateur'))
+    return view('participants', ["event_id" => $event_id]);
+  else return redirect('login');
+});
 
 // Tâches
 

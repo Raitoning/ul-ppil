@@ -72,6 +72,9 @@
 		<div class="col-2">
 			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='modifEvent/".$event_id."';\"" ;?> value="Modifier l'événement" />
 		</div>
+		<div class="col-2">
+			<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='participants/".$event_id."';\"" ;?> value="Participants" />
+		</div>
 	</div>
 </div>
 
