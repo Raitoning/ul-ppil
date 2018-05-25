@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: flex; justify-content: space-between;">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: flex; justify-content: space-between;margin-bottom: 15px;">
 		<a class="navbar-brand" href="/accueil">TODO List</a>
 		<div id="top_bar">		
 		<?php 
