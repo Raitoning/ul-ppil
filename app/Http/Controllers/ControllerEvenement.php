@@ -69,6 +69,27 @@ class ControllerEvenement extends Controller
 
 	public function updateEvent(Request $request, $id){
 
+		$event = evenement::where('evenement_id',$id)->first();
+
+		if((strtotime($event->dateDebut) != strtotime($request->dateDeb)) && strtotime($event->dateDebut) < time()-(1 * 23 * 58 * 60) ){
+			Session::put('erreurInscription','La date de début ne peut être modifiée, l\'événement à déjà commencé.');
+			return redirect("event/modifEvent/".$id);
+		}
+
+		if(strtotime($event->dateDebut) != strtotime($request->dateDeb) ){
+			if( strtotime($request->dateDeb) < time()-(1 * 23 * 58 * 60)){
+				Session::put('erreurInscription','La date de début ne doit pas être dépassée.');
+				return redirect("event/modifEvent/".$id);
+			}
+		}
+
+		if(! is_null($request->dateFin)){
+			if( strtotime($request->dateDeb) > strtotime($request->dateFin)){
+				Session::put('erreurInscription','La date de fin est anterieur à la date de début.');
+				return redirect("event/modifEvent/".$id);
+			}
+		}
+
 		if($request->suppr == null){
 			$suppr = false ;
 		}else{
