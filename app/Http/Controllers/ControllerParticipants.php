@@ -66,6 +66,20 @@ class ControllerParticipants extends Controller
 		}
 		else return false;
 	}
+
+	public static function estEditeur($id_event, $id_user){
+		$event = evenement::find($id_event);
+		try{
+			$droit = $event->utilisateur()->find($id_user)->pivot->droit;
+		}
+		catch(\Exception $e){
+			return false;
+		}
+		if($droit == "edition"){
+			return true;
+		}
+		else return false;
+	}
 	
 	public static function getDroit($id_event, $id_user){
 		try{
