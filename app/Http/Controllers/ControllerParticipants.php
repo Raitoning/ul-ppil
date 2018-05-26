@@ -34,12 +34,46 @@ class ControllerParticipants extends Controller
 		
 	}
 
- 	public static function inscription($id_event){
-		/*if(Session::has('utilisateur')){
-				$proprietaire = 
-				return redirect('event/'.$id_event);
+ 	public static function demandeInscriptionPublic($id_event){
+		if(Session::has('utilisateur')){
+			$evenement = evenement::where('evenement_id','=',$id_event)->first();
+			$proprietaire = $evenement->utilisateur()->wherePivot('droit', 'proprietaire')->first();
+
+			//TODO : envoie de la notif au proprietaire
 			
-		}*/
+			return redirect('event/'.$id_event);
+			
+		}
+	}
+
+	public static function accepteInscriptionPublic($id_notif){
+		if(Session::has('utilisateur')){
+			$notification = notification::where('notification_id','=',$id_notif)->first();
+
+			//ajout de l'utilisateur à l'événement
+			$event = evenement::where('evenement_id','=',$notification->id_module)->first(); //pas sûr
+			//$emmeteur = utilisateur::where('utilisateur_id','=',$notification->id_emmeteur)->first();
+			$droit = 'aucun'; 
+			$evenement->utilisateur()->attach($notification->id_emmeteur,['droit'=>$droit]);
+
+			//TODO : envoie de la notif à l'utilisateur
+			
+			return redirect('event/'.$id_event);
+			
+		}
+	}
+
+	public static function refusInscriptionPublic($id_notif){
+		if(Session::has('utilisateur')){
+			$notification = notification::where('notification_id','=',$id_notif)->first();
+
+			$emmeteur = utilisateur::where('utilisateur_id','=',$notification->id_emmeteur)->first();
+
+			//TODO : envoie de la notif à l'utilisateur
+			
+			return redirect('event/'.$id_event);
+			
+		}
 	}
 
 	public static function desinscription($id_event){

@@ -110,7 +110,7 @@ Route::get('/event/participants/{event_id}',function($event_id){
 Route::get('/event/modifEvent/suppression/{id_event}','ControllerEvenement@supprimerEvenement');
 
 
-Route::get('/event/demandeInscription/{id_event}','ControllerParticipants@inscription');
+Route::get('/event/demandeInscription/{id_event}','ControllerParticipants@demandeInscriptionPublic');
 Route::get('/event/desinscription/{id_event}','ControllerParticipants@desinscription');
 
 Route::post('/event/participants/droits','ControllerParticipants@droitParticipant');
