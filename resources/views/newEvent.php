@@ -1,6 +1,7 @@
 <?php include("header.php"); ?>
-	<div class="container">
-		<div class="card md-3">
+<div class="d-flex justify-content-center align-items-center container">
+	<div class="col-10">
+		<div class="card mb-3">
 			<div class="card-header">
 				<h1>Creer un nouvel événement :</h1>
 			</div>
@@ -13,7 +14,7 @@
 				}
 			?>
 
-			<div class="card-body" style="display : flex; justify-content: space-between;">
+			<div class="card-body" style="display : flex; justify-content: space-around;">
 				<div class="col-4">
 					<form action="" method="post">
 						<div class="newEvent"><br>
@@ -66,5 +67,5 @@
 			</div>
 		</div>
 	</div>
-	
+</div>
 <?php include("footer.php");?>
