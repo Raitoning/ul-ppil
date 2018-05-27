@@ -1,7 +1,7 @@
 <?php include("header.php"); ?>
 <div class="d-flex justify-content-center align-items-center container">
 	<div class="col-10">
-		<div class="card md-3">
+		<div class="card md-10">
 			<div class="card-header">
 				<h1>Bienvenue <?php echo Session::get('utilisateur')->pseudo; ?></h1>
 				<label>Liste des notifications</label>
