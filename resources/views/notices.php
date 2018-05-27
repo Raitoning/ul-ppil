@@ -6,19 +6,39 @@
 				<h1>Bienvenue <?php echo Session::get('utilisateur')->pseudo; ?></h1>
 				<label>Liste des notifications</label>
 			</div>
-			<?php foreach ($notices as $notice) {
-			echo '	<div class="card md-3">
+			<?php 
+			use App\Http\Controllers\NotifController;
+			foreach ($notices as $notice) {
+				if($notice->action == "ajout"){
+					echo '	<div class="card md-3">
 						<div class="card-header">
 						</div>
 						<div class="card-body">
-							<div id="notifications" class="w-75 p-3 d-block row" style="overflow:auto;">
-								<div id="notif_1" class="alert alert-info alert-dismissible row">
-									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
-									.$notice.'<br>'.
-								'</div>	
-							</div>
+							<div id="notif_1" class="alert alert-info alert-dismissible row">
+								<a href="notices/supprimerNotif/'.$notice->notification_id.'" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
+								.NotifController::genererMessage($notice).'<br>'
+								.'<input type="button" class="btn btn-success" onclick="location.href=\'notices/accepterNotif/'.$notice->notification_id.'\'" value="Accepter" />'
+								.'<input type="button" class="btn btn-danger" onclick="location.href=\'notices/refuserNotif/'.$notice->notification_id.'\'" value="Refuser" />
+								</div>'.
+								
+							'</div>	
 						</div>
 					</div>';
+				}else {
+					echo '	<div class="card md-3">
+						<div class="card-header">
+						</div>
+						<div class="card-body">
+							<div id="notif_1" class="alert alert-info alert-dismissible row">
+								<a href="notices/supprimerNotif/'.$notice->notification_id.'" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
+								.NotifController::genererMessage($notice).'<br>'.
+								'</div>'.
+								
+							'</div>	
+						</div>
+					</div>';
+				}
+			
 		}
 		?>
 		</div>
