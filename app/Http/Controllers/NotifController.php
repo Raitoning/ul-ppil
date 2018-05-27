@@ -24,7 +24,7 @@ class NotifController extends Controller
 
       $notices = [];
       foreach($notifications as $notification){
-        $notices[] = $this->genererMessage($notification);
+        $notices[] = $notification;
       }
       return view('notices', ['notices' => $notices]);
     }
@@ -59,10 +59,19 @@ class NotifController extends Controller
     }
 
     public function supprimerNotif($id_notif){
-      DB::delete('delete from notification where notification_id = (?)', $id_notif);
+     // DB::delete('delete from notification where notification_id = (?)', $id_notif);
     }
 
-    private function genererMessage($notification){
+
+    public function accepterNotif($id_notif){
+
+    }
+
+    public function refuserNotif($id_notif){
+
+    }
+
+    public static function genererMessage($notification){
       $message = '';
       $emetteur = DB::table('utilisateur')->where('utilisateur_id', $notification->id_emetteur)->first();
 

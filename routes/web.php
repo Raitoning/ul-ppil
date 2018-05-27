@@ -149,4 +149,9 @@ Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
 Route::post('/event/public/newTask/','ControllerTache@newTask');
 Route::post('/newEvent','ControllerEvenement@newEvent');
 Route::post('/event/modifEvent/{event}','ControllerEvenement@updateEvent');
+
+
 Route::get('/notices','NotifController@renderNotifications');
+Route::get('/notices/supprimerNotif/{notif_id}','NotifController@supprimerNotif');
+Route::get('/notices/accepterNotif/{notif_id}','NotifController@accepterNotif');
+Route::get('/notices/refuserNotif/{notif_id}','NotifController@refuserNotif');
