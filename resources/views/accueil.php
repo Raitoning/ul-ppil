@@ -45,9 +45,14 @@
 								
 								foreach($liste as $affichage){
 									echo "
-										<p>".$affichage->intitule."</p>
-										<p>Date de début :".$affichage->dateDebut."</p>
-										<br>
+										<div class='card md-3'>
+											<div class='card-header'>
+												".$affichage->intitule."
+											</div>
+											<div class='card-body'>
+												<p>Date de début :".$affichage->dateDebut."</p>
+											</div>
+										</div>
 									";
 								}
 							?>
