@@ -88,6 +88,10 @@ class ControllerEvenement extends Controller
 				Session::put('erreurInscription','La date de fin est anterieur à la date de début.');
 				return redirect("event/modifEvent/".$id);
 			}
+			if( strtotime($event->dateFin) != strtotime($request->dateFin) && strtotime($request->dateFin) < time()-(1 * 23 * 58 * 60)){
+				Session::put('erreurInscription','La date de fin ne doit pas être dépassée.');
+				return redirect("event/modifEvent/".$id);
+			}
 		}
 
 		if($request->suppr == null){

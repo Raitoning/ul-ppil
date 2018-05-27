@@ -24,7 +24,7 @@
 								<div class="col-6">
 									<div class="form-group">
 										<label>Nom de l'événement :</label><br>
-										<input type="text" class="form-control" value=<?php echo $event->intitule; ?> name="name" maxlength="255" required><br>
+										<input type="text" class="form-control" value="<?php echo $event->intitule ;?>" name="name" maxlength="255" required><br>
 									</div>
 									<div class="form-group">
 										<label>date de début : </label><br>
@@ -39,7 +39,7 @@
 									</div>
 									<div class="form-group">
 										<label>Description :</label><br>
-										<input type="text" class="form-control" placeholder="Description" name="desc" maxlength="250" value=<?php echo $event->description; ?> required><br>
+										<input type="text" class="form-control" name="desc" maxlength="250" value="<?php echo $event->description; ?>" required><br>
 									</div>
 									<div class="form-group">
 										<label>Lieu : </label><br>
