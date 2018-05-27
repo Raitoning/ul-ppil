@@ -171,7 +171,7 @@ class ControllerParticipants extends Controller
 	}
 	
 	public static function ajouter($event_id, $user_id){
-		$tmp = evenement::find($event_id)->utilisateur()->attach($user_id,['droit' => 'aucun']);
+		NotifController::notifAjoutEvenement(Session::get('utilisateur')->utilisateur_id, $user_id, $event_id) ;
 		return redirect("event/participants/".$event_id."/ajoutUtilisateurs");
 	}
 
