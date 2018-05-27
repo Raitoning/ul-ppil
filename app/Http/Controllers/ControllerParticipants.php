@@ -65,7 +65,9 @@ class ControllerParticipants extends Controller
 		if(Session::has('utilisateur')){
 			if(!ControllerParticipants::estProprio($id_event,Session::get('utilisateur')->utilisateur_id)){
 				$event = evenement::find($id_event);
-				$tmp = $event->utilisateur()->detach(Session::get('utilisateur')->utilisateur_id);
+				$proprietaire = $event->utilisateur()->wherePivot('droit', 'proprietaire')->first();
+				$event->utilisateur()->detach(Session::get('utilisateur')->utilisateur_id);
+				NotifController::notifDesinscEvenement(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $id_event) ;
 				return redirect('events');
 			}
 		}

@@ -74,6 +74,11 @@ class NotifController extends Controller
       [$id_emetteur, $id_recepteur, 'evenement', 'refusRejoindre', '', $id_evenement]);
     }
 
+    public static function notifDesinscEvenement($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'evenement', 'desinscription', '', $id_evenement]);
+    }
+
     public static function notifSuppressionEvenement($id_emetteur, $id_recepteur, $id_evenement){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'evenement', 'suppression', 'invitation', $id_evenement]);
