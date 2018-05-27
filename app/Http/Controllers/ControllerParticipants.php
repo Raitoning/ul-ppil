@@ -48,30 +48,13 @@ class ControllerParticipants extends Controller
 		}
 	}
 
-	public static function accepteInscriptionPublic($id_notif){
+	public static function accordInscription($id_user, $id_event){
 		if(Session::has('utilisateur')){
-			$notification = notification::where('notification_id','=',$id_notif)->first();
 
 			//ajout de l'utilisateur à l'événement
-			$event = evenement::where('evenement_id','=',$notification->id_module)->first(); //pas sûr
-			//$emmeteur = utilisateur::where('utilisateur_id','=',$notification->id_emmeteur)->first();
+			$event = evenement::where('evenement_id','=',$id_event)->first();
 			$droit = 'aucun'; 
-			$evenement->utilisateur()->attach($notification->id_emmeteur,['droit'=>$droit]);
-
-			//TODO : envoie de la notif à l'utilisateur
-			
-			return redirect('event/'.$id_event);
-			
-		}
-	}
-
-	public static function refusInscriptionPublic($id_notif){
-		if(Session::has('utilisateur')){
-			$notification = notification::where('notification_id','=',$id_notif)->first();
-
-			$emmeteur = utilisateur::where('utilisateur_id','=',$notification->id_emmeteur)->first();
-
-			//TODO : envoie de la notif à l'utilisateur
+			$event->utilisateur()->attach($id_user,['droit'=>$droit]);
 			
 			return redirect('event/'.$id_event);
 			
