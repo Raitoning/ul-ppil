@@ -41,7 +41,7 @@ class ControllerParticipants extends Controller
 			$proprietaire = $evenement->utilisateur()->wherePivot('droit', 'proprietaire')->first();
 
 			//TODO : envoie de la notif au proprietaire
-			NotifController::notifAjoutEvenement(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $id_event);
+			NotifController::notifRejoindreEvenement(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $id_event);
 
 			return redirect('event/'.$id_event);
 			

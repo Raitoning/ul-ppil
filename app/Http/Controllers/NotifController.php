@@ -102,6 +102,9 @@ class NotifController extends Controller
                   $message .= 'a supprimé l\'evenement '.$evenement->intitule;
                 }
             break;
+            case 'rejoindre':
+              $message .= 'souhaite rejoindre l\'evenement '.$evenement->intitule;
+            break;
           }
         break;
         case 'tache':
