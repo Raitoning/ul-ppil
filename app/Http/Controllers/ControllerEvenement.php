@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NotifController;
 use Illuminate\Database\Eloquent\Model;
 use Session;
 use App\models\evenement;
@@ -111,9 +112,14 @@ class ControllerEvenement extends Controller
 			return redirect('/event/'.$id);
 	}
 
-	public function supprimerEvenement($event_id){
+	public static function supprimerEvenement($event_id){
 
 		$event = evenement::find($event_id);
+
+		$participants = ControllerParticipants::getParticipants($event_id);
+		foreach ($participants as $participant) {
+			NotifController::notifSupprEvenement(Session::get('utilisateur')->utilisateur_id, $participant->utilisateur_id, $event_id) ;
+		}
 		$tmp = $event->utilisateur()->detach();
 		$evenement = evenement::where('evenement_id','=',$event_id)->first();
 		$evenement->delete();

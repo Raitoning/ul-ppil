@@ -28,6 +28,7 @@ class ControllerParticipants extends Controller
 				
 				$event = evenement::find($id_event);
 				$tmp = $event->utilisateur()->detach($id_user);
+				NotifController::notifSuppressionEvenement(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $id_event) ;
 				return redirect('event/participants/'.$id_event);
 			}
 			return redirect('/accueil');

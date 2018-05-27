@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NotifController;
 use Illuminate\Database\Eloquent\Model;
 use Session;
 use App\models\utilisateur;
@@ -49,6 +50,20 @@ class ControllerConnexion extends Controller
 	public function supprimerCompte(Request $request){
 
 		if(Session::has('utilisateur')){
+
+			$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
+			$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
+			foreach ($user->evenement as $event) {
+			    //Chaque evenements de l'utilisateur (variable $user->evenement) dans la variable $event 
+			    
+				if(ControllerParticipants::estProprio($event->evenement_id, $utilisateur_id)){
+					$tmp = $event->utilisateur()->detach();
+					$event->delete();
+				}else{
+					$event->utilisateur()->detach(Session::get('utilisateur')->utilisateur_id);
+				}
+			}
+
 			utilisateur::where('utilisateur_id',Session::get('utilisateur')->utilisateur_id)->delete();
 			Session::flush();
 			return redirect('/');

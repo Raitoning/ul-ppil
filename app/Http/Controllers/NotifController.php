@@ -84,6 +84,11 @@ class NotifController extends Controller
       [$id_emetteur, $id_recepteur, 'evenement', 'suppression', 'invitation', $id_evenement]);
     }
 
+    public static function notifSupprEvenement($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'evenement', 'suppression', '', $id_evenement]);
+    }
+
     public static function notifAjoutTache($id_emetteur, $id_recepteur, $id_tache){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'tache', 'ajout', '', $id_tache]);
@@ -209,7 +214,7 @@ class NotifController extends Controller
                 if($notification->type == 'invitation'){
                   $message .= 'vous a retiré à un l\'evenement '.$evenement->intitule;
                 }else {
-                  $message .= 'a supprimé l\'evenement '.$evenement->intitule;
+                  $message .= 'a supprimé son evenement ';
                 }
             break;
             case 'rejoindre':
