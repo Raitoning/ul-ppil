@@ -78,9 +78,7 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 
 							$participants = App\Http\Controllers\ControllerParticipants::getParticipants($event);
 							foreach($participants as $participant){
-								echo "<li class='list-group-item'  >".$participant->pseudo."</li></a>" ;
-
-							}
+								echo "<li class='list-group-item'><input type='checkbox' value=''>".$participant->pseudo."</li></a>" ;							}
 
 							?>
 						</div>
