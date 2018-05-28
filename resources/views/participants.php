@@ -21,43 +21,45 @@
 					
 					if(ControllerParticipants::estProprio($event_id,Session::get('utilisateur')->utilisateur_id)){
 						foreach($utilisateurs as $util){
+							if($util->utilisateur_id != Session::get('utilisateur')->utilisateur_id){
 							echo "
-							<form action='droits' method='post'>
-							<li>".$util->pseudo."
-							
-							<div style='display : flex; justify-content : space-between;'>
-								<div id='choix'>
-									<label class='radio-inline'>
-										<input type='radio' name='rights' value='proprietaire' ";
-									if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "proprietaire") 
-										echo "checked";
-									echo "> Propriétaire<br>
-									</label>
-									<label class='radio-inline'>
-										<input type='radio' name='rights' value='edition'";
-									if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "edition") 
-										echo "checked";
-									echo "> Edition<br>
-									</label>
-									<label class='radio-inline'>
-										<input type='radio' name='rights' value='aucun'"; 
-									if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "aucun") 
-										echo "checked";
-									echo "> Aucun
-									</label>
-								</div>
-								<div id='validation'>
-									<label class='radio-inline'>
-									<button type='submit' id='register' class='btn btn-success' value='Enregistrer les modifications'>Valider</button>
-									</label>
-									".csrf_field()."
-									<input type='button' class='btn btn-danger' onclick='location.href=\"".$event_id."/".$util->utilisateur_id."\";' value='Supprimer' />
-									</li>
+								<form action='droits' method='post'>
+								<li>".$util->pseudo."
+								
+								<div style='display : flex; justify-content : space-between;'>
+									<div id='choix'>
+										<label class='radio-inline'>
+											<input type='radio' name='rights' value='proprietaire' ";
+										if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "proprietaire") 
+											echo "checked";
+										echo "> Propriétaire<br>
+										</label>
+										<label class='radio-inline'>
+											<input type='radio' name='rights' value='edition'";
+										if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "edition") 
+											echo "checked";
+										echo "> Edition<br>
+										</label>
+										<label class='radio-inline'>
+											<input type='radio' name='rights' value='aucun'"; 
+										if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "aucun") 
+											echo "checked";
+										echo "> Aucun
+										</label>
+									</div>
+									<div id='validation'>
+										<label class='radio-inline'>
+										<button type='submit' id='register' class='btn btn-success' value='Enregistrer les modifications'>Valider</button>
+										</label>
+										".csrf_field()."
+										<input type='button' class='btn btn-danger' onclick='location.href=\"".$event_id."/".$util->utilisateur_id."\";' value='Supprimer' />
+										</li>
 
-							<input type='hidden' name='id_event' value='".$event_id."'>
-							<input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
-							</form>
-							";
+								<input type='hidden' name='id_event' value='".$event_id."'>
+								<input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
+								</form>
+								";
+							}
 						}
 					}
 					else{
