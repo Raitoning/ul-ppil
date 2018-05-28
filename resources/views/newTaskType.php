@@ -13,32 +13,32 @@ $event = substr($link, strrpos($link, '/') + 1);
 				<br>
 				<div class="form-group ">
 					<label>Nom du type tâche :</label>
-					<input type="text" class="form-control" placeholder="Type de tache" name="task"><br>
+					<input type="text" class="form-control" placeholder="Type de tache" name="nom"><br>
 				</div>
 				<div class="form-group">
 					<label for="text-input">Nombre de Champs Textuels</label>
 						<div class="col-10">
-							 <input class="form-control" type="number" min="0" value="0" id="text-input">
+							 <input class="form-control" type="number" min="0" value="0" id="text-input" name="text">
 						</div>
 				</div>
 
 				<div class="form-group">
 					<label for="img-input">Nombre d'Images</label>
 						<div class="col-10">
-							 <input class="form-control" type="number" min="0" value="0" id="img-input">
+							 <input class="form-control" type="number" min="0" value="0" id="img-input"name="img">
 						</div>
 				</div>
 
 				<div class="form-check">
 					<label class="form-check-label">
-						<input type="checkbox" class="form-check-input" id="checkEnddate" value="Enddate">
+						<input type="checkbox" class="form-check-input" name="checkEnddate" value="Enddate">
 					Date de fin
 					</label>
 				</div>
 
 				<div class="form-check">
 					<label class="form-check-label">
-					<input type="checkbox" class="form-check-input" id="checkReparti" value="Reparti">
+					<input type="checkbox" class="form-check-input" name="checkReparti" value="Reparti">
 					Quantite
 					</label>
 				</div>
