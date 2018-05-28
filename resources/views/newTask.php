@@ -14,11 +14,11 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 				<h1>Creer une tâche:</h1>
 			</div>
 
-			<?php if(Session::has('erreurInscription')){
+			<?php if(Session::has('erreurFormulaire')){
 				echo "<div class='alert alert-danger' role='alert'>"
-					.Session::get('erreurInscription').
+					.Session::get('erreurFormulaire').
 					"</div>";
-					Session::forget('erreurInscription');
+					Session::forget('erreurFormulaire');
 				}
 				?>
 
