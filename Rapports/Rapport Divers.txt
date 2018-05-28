@@ -1,0 +1,15 @@
+Rapport Divers (Lucas)
+
+- Inscription :
+
+	- Erreur 01 : Lorsqu'un utilisateur s'inscrit, son champs recevoirInvitation est automatiqument remplis par "ami".
+			  Hors lorsqu'on modifie ce paramètre dans la gestion du compte il lui est alors attribué la valeur "amis".
+		- Correction : changer l'un ou l'autre de manière à ce que ça reste cohérent.
+
+
+- Création d'événement :
+
+	- Note 01 : L'asterisque signifiant un champ obligatoire se trouve parfois dans l'intitulé du champ, parfois dans le champ lui même.
+	
+	- Note 02 : Si les dates de début et de fin d'un événement sont les mêmes, celui-ci est tout de même créé, est-ce voulu ?
+
