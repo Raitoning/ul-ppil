@@ -159,6 +159,7 @@ CREATE TABLE `text` (
 
 CREATE TABLE `typetache` (
   `typetache_id` int(3) NOT NULL,
+  `nomtypetache` varchar(40) NOT NULL,
   `photo` int(3) NOT NULL,
   `texte` int(3) NOT NULL,
   `datefin` int(1) NOT NULL,
