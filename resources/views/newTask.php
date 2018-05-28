@@ -1,4 +1,7 @@
-<?php include("header.php"); ?>
+<?php include("header.php");
+$link = $_SERVER['PHP_SELF'];
+$event = substr($link, strrpos($link, '/') + 1);
+?>
 <div class="container">
 	<div class="row">
 		<h1>Création de tâche</h1>
@@ -29,7 +32,7 @@
 				</div>
 				<div class="row">
 					<div class="col_2">
-						<input type="button" class="btn btn-primary" onclick="location.href='event';" value="Retour" />
+						<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo "$event"; ?>';" value="Retour" />
 					</div>
 					<div class="col_2">
 						<input type="submit" id="creer" class="btn btn-primary" value="Creer"><br>
