@@ -42,7 +42,7 @@
 					<?php echo csrf_field(); ?>
 
 					Recevoir les invitations <br>
-					<input type="radio" id="radioamis" name="invitations" value="amis" <?php if(Session::get('utilisateur')->recevoirInvitation == "amis")echo "checked"; ?>>
+					<input type="radio" id="radioamis" name="invitations" value="amis" <?php if(Session::get('utilisateur')->recevoirInvitation == "ami")echo "checked"; ?>>
 					<label for="radioamis"> Amis</label>
 					<input type="radio" id="radiotous" name="invitations" value="tous" <?php if(Session::get('utilisateur')->recevoirInvitation == "tous")echo "checked"; ?>>
 					<label for="radiotous"> Tout le monde</label>
