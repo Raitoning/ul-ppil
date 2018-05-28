@@ -129,7 +129,7 @@ Route::get('/event/participants/{id_event}/{id_user}','ControllerParticipants@su
 
 // Tâches
 
-Route::get('event/public/newTask',function(){
+Route::get('event/newTask/{event_id}',function(){
   if(Session::has('utilisateur'))
     return view('newTask');
   else return redirect('login');
@@ -146,7 +146,7 @@ Route::post('/supprimerCompte','ControllerConnexion@supprimerCompte');
 
 Route::get('/supprimerContact/{pseudo}','ControllerContacts@supprimerContact');
 Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
-Route::post('/event/public/newTask/','ControllerTache@newTask');
+Route::post('/event/newTask/{event_id}','ControllerTache@newTask');
 Route::post('/newEvent','ControllerEvenement@newEvent');
 Route::post('/event/modifEvent/{event}','ControllerEvenement@updateEvent');
 
