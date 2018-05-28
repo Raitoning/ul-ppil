@@ -45,7 +45,7 @@
 								
 								foreach($liste as $affichage){
 									echo "
-										<div class='card md-3'>
+										<div class='card md-3' style='margin-bottom : 5px;'>
 											<div class='card-header'>
 												".$affichage->intitule."
 											</div>
