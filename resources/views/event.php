@@ -13,17 +13,6 @@ use App\Http\Controllers\ControllerTache;?>
 		<div class="card mb-3">
 			<div class="card-header">
 				<h1>Détails de l'événement</h1>
-
-				<?php
-
-					if(! ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && ! ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
-						echo "<div class=\"col-2\">
-						<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander à changer mes droits\" />
-						</div>" ;
-					}
-
-				?>
-
 			</div>
 			<div class="card-body">
 				<label>Nom événement : </label>
@@ -97,6 +86,12 @@ use App\Http\Controllers\ControllerTache;?>
 
 			<div style="display : flex; justify-content: space-around; margin-bottom: 15px;">
 				<?php
+				
+					if(! ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && ! ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
+						echo "<div class=\"col-2\">
+						<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander à changer mes droits\" />
+						</div>" ;
+					}
 
 					if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) || ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
 						echo "<div class=\"col-2\">

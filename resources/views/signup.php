@@ -43,15 +43,9 @@
 							</tr>
 						</div>
 					</table>
-					<div class="row">
-					<label class="form-check-label">
-					    <input type="checkbox" id="checkconditions" name="conditions" value="vconditions">
-					    <label for="conditions">J'accepte les <a href="#">Termes et conditions générales d'utilisation</a>.</label></br>
-				    </label>
-					</div>
 					
 					<?php echo csrf_field(); ?>
-					<input type="submit" id="register" class="btn btn-primary" value="Inscription"><a href="#"> En savoir plus ?</a>
+					<input type="submit" id="register" class="btn btn-primary" value="Inscription">
 				</form>
 			</div>
 		</div>
