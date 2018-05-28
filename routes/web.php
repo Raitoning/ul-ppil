@@ -114,6 +114,7 @@ Route::get('/event/demandeInscription/{id_event}','ControllerParticipants@demand
 Route::get('/event/desinscription/{id_event}','ControllerParticipants@desinscription');
 
 Route::post('/event/participants/droits','ControllerParticipants@droitParticipant');
+Route::get('/event/changerDroits/{event_id}','ControllerParticipants@demandeDroits');
 
 Route::get('/event/participants/{event_id}/ajoutUtilisateurs',function($event_id){
   if(Session::has('utilisateur'))

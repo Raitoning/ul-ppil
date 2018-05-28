@@ -1,4 +1,8 @@
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+
+use App\Http\Controllers\ControllerEvenement;
+use App\Http\Controllers\ControllerParticipants;
+use App\Http\Controllers\ControllerTache;?>
 
 <div class="col-2">
 	<input type="button" class="btn btn-primary" onclick="location.href='/events'" value="Retour" />
@@ -9,15 +13,23 @@
 		<div class="card mb-3">
 			<div class="card-header">
 				<h1>Détails de l'événement</h1>
+
+				<?php
+
+					if(! ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && ! ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
+						echo "<div class=\"col-2\">
+						<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander à changer mes droits\" />
+						</div>" ;
+					}
+
+				?>
+
 			</div>
 			<div class="card-body">
 				<label>Nom événement : </label>
 
 				<?php
 					//affichage du nom de l'evenement
-					use App\Http\Controllers\ControllerEvenement;
-					use App\Http\Controllers\ControllerParticipants;
-					use App\Http\Controllers\ControllerTache;
 					$event = ControllerEvenement::getEvent($event_id);  //TODO cas général
 					$tasks = ControllerTache::getTask($event_id);
 					echo $event->intitule ;

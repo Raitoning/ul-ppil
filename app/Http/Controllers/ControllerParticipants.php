@@ -114,6 +114,19 @@ class ControllerParticipants extends Controller
 		return $droit;
 	}
 	
+	public static function demandeDroits($event_id){
+		$event = evenement::find($event_id);
+		$proprietaire = $event->utilisateur()->wherePivot('droit', 'proprietaire')->first();
+		NotifController::notifDemandeDroit(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $event_id) ;
+		return redirect('event/'.$event_id);
+	}
+
+	public static function accordDroits($user_id, $event_id){
+		$droit = "edition";
+		$event = evenement::find($event_id);
+		$tmp = $event->utilisateur()->updateExistingPivot($user_id,['droit' => $droit]);
+		return redirect('notices');
+	}
 	
 	public static function droitParticipant(Request $request){
 		$event_id = $request->id_event;

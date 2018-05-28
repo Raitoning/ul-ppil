@@ -31,7 +31,7 @@ class NotifController extends Controller
     }
     public static function notifAjoutContact($id_emetteur, $id_recepteur){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
-      [$id_emetteur, $id_recepteur, 'contact', 'ajout', 'invitation', '']);
+      [$id_emetteur, $id_recepteur, 'contact', '', '', '']);
     }
 
     public static function notifAccordContact($id_emetteur, $id_recepteur){
@@ -89,6 +89,21 @@ class NotifController extends Controller
       [$id_emetteur, $id_recepteur, 'evenement', 'suppression', '', $id_evenement]);
     }
 
+
+    public static function notifDemandeDroit($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'droit', 'ajout', '', $id_evenement]);
+    }
+        public static function notifAccordDroit($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'droit', 'accord', '', $id_evenement]);
+    }
+
+    public static function notifRefusDroit($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'droit', 'refus', '', $id_evenement]);
+    }
+
     public static function notifAjoutTache($id_emetteur, $id_recepteur, $id_tache){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'tache', 'ajout', '', $id_tache]);
@@ -140,6 +155,12 @@ class NotifController extends Controller
           }
         break;
 
+        case 'droit':
+          $evenement = DB::table('evenement')->where('evenement_id', $notif->id_module)->first();
+          controllerParticipants::accordDroits($notif->id_emetteur, $evenement->evenement_id);
+          $this->notifAccordDroit($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id);
+        break ;
+
         case 'tache':
           $tache = DB::table('tache')->where('tache_id', $notification->id_module)->first();
           $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_id)->first();
@@ -171,6 +192,10 @@ class NotifController extends Controller
             break;
           }
         break;
+
+        case 'droit':
+          $this->notifRefusDroit($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id);
+        break ;
 
         case 'tache':
           $tache = DB::table('tache')->where('tache_id', $notification->id_module)->first();
@@ -231,6 +256,20 @@ class NotifController extends Controller
             break;
             case 'refusRejoindre':
               $message .= 'vous a refusé dans l\'evenement public '.$evenement->intitule;
+            break;
+          }
+        break;
+        case 'droit' :
+          $evenement = DB::table('evenement')->where('evenement_id', $notification->id_module)->first();
+          switch($notification->action){
+            case 'ajout':
+                $message .= 'souhaite être editeur dans l\'evenement '.$evenement->intitule;
+            break;
+            case 'accord':
+                $message .= 'accepte votre demande d\'édition dans l\'evenement '.$evenement->intitule;
+            break;
+            case 'refus':
+              $message .= 'refuse votre demande d\'édition dans l\'evenement '.$evenement->intitule;
             break;
           }
         break;
