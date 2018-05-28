@@ -175,6 +175,7 @@ $notification->delete();
 //----------------------------------------Creer un type de tache--------------------------------------------------//
 
 $typetache = new typetache();
+$typetache->nomtypetache = ; //le niom de la tache (40char max)
 $typetache->photo = ; // Le nombre de photo que doit contenir la tache (0 si aucun)
 $typetache->text = ; // Le nombre de text que doit contenir la tache (0 si aucun)
 $typetache->datefin = ; // 0 pour ne pas avoir une date de fin 
