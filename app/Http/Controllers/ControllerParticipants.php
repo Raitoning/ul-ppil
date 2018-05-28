@@ -25,10 +25,9 @@ class ControllerParticipants extends Controller
 	public static function suppParticipants($id_event, $id_user){
 		if(Session::has('utilisateur')){
 			if(ControllerParticipants::estProprio($id_event,Session::get('utilisateur')->utilisateur_id)){
-				
 				$event = evenement::find($id_event);
 				$tmp = $event->utilisateur()->detach($id_user);
-				NotifController::notifSuppressionEvenement(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $id_event) ;
+				NotifController::notifSuppressionEvenement(Session::get('utilisateur')->utilisateur_id, $id_user, $id_event) ;
 				return redirect('event/participants/'.$id_event);
 			}
 			return redirect('/accueil');

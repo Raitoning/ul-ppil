@@ -27,7 +27,7 @@ class NotifController extends Controller
       foreach($notifications as $notification){
         $notices[] = $notification;
       }
-      return view('notices'-, ['notices' => $notices]);
+      return view('notices', ['notices' => $notices]);
     }
     public static function notifAjoutContact($id_emetteur, $id_recepteur){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
@@ -257,6 +257,9 @@ class NotifController extends Controller
             case 'refusRejoindre':
               $message .= 'vous a refusé dans l\'evenement public '.$evenement->intitule;
             break;
+			case 'desinscription':
+				$message .= 's\'est desinscrit de l\'événement : '.$evenement->intitule;
+			break;
           }
         break;
         case 'droit' :
