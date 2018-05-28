@@ -49,11 +49,11 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 						</div>
 						<div class="form-group">
 							<label>Type de la tâche : </label>
-							<select name="Type de tâche">
+							<select name="typetache">
 								<?php
 								foreach ($tasks as $task) {
 									//echo '<br>'.$task->nom.' : '.$task->description;
-								echo '<option value="typetask1">'.$task->nomtypetache.'</option>';
+								echo '<option value='.$task->typetache_id.'>'.$task->nomtypetache.'</option>';
 								}
 
 								?>
@@ -78,7 +78,10 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 
 							$participants = App\Http\Controllers\ControllerParticipants::getParticipants($event);
 							foreach($participants as $participant){
-								echo "<li class='list-group-item'><input type='checkbox' value=''>".$participant->pseudo."</li></a>" ;							}
+								echo "<li class='list-group-item'><input type='checkbox' name='participants[]' value=.$participant->utilisateur_id.>".$participant->pseudo."</li></a>";
+
+
+							}
 
 							?>
 						</div>
