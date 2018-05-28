@@ -32,6 +32,7 @@ class ControllerTache extends Controller
 
 		$evenement_id = $event;
 		$typetache_id = 1;
+
 		$tache = new tache();
 		$tache->nom = $request->task; // Nom de la tache (max 255char)
 		$tache->description = $request->desc ; // Description de la tache (max 255char)
@@ -42,24 +43,17 @@ class ControllerTache extends Controller
 
 		$tache->save();
 
+	//	$this->getTaskId($tache);
 
 		return redirect('/event/'.$event)->with("Text","Nouvel tache créé !");
 
 		}
-		public static function getTaskNom($tache_id){
-			$task = DB::table('tache')->select('nom')->where('tache_id',$tache_id)->get();
-			return $task;
-		}
-		public static function getTaskDesc($tache_id){
 
-			$task = DB::table('tache')->select('description')->where('tache_id',$tache_id)->get();
+		public static function getTaskInfo($tache_id){
+			$task = tache::where('tache_id',$tache_id)->first();
 			return $task;
 		}
-		public static function getTaskQuantite($tache_id){
-
-			$task = DB::table('tache')->select('quantiteTotal')->where('tache_id',$tache_id)->get();
-			return $task;
-		}
+	
 
 		public static function getTask($event){
 			$tasks = DB::table('tache')->where('evenement_evenement_id', '=', $event)->get();
@@ -120,6 +114,49 @@ class ControllerTache extends Controller
 			return $liste;
 		}
 
+		public function modifierTache(Request $request, $id){
+
+			$event = tache::where('tache_id',$id)->first();
+
+			if((strtotime($event->dateDebut) != strtotime($request->dateDeb)) && strtotime($event->dateDebut) < time()-(1 * 23 * 58 * 60) ){
+				Session::put('erreurInscription','La date de début ne peut être modifiée, l\'événement à déjà commencé.');
+				return redirect("event/modifEvent/".$id);
+			}
+
+			if(strtotime($event->dateDebut) != strtotime($request->dateDeb) ){
+				if( strtotime($request->dateDeb) < time()-(1 * 23 * 58 * 60)){
+					Session::put('erreurInscription','La date de début ne doit pas être dépassée.');
+					return redirect("event/modifEvent/".$id);
+				}
+			}
+
+			if(! is_null($request->dateFin)){
+				if( strtotime($request->dateDeb) > strtotime($request->dateFin)){
+					Session::put('erreurInscription','La date de fin est anterieur à la date de début.');
+					return redirect("event/modifEvent/".$id);
+				}
+				if( strtotime($event->dateFin) != strtotime($request->dateFin) && strtotime($request->dateFin) < time()-(1 * 23 * 58 * 60)){
+					Session::put('erreurInscription','La date de fin ne doit pas être dépassée.');
+					return redirect("event/modifEvent/".$id);
+				}
+			}
+
+			if($request->suppr == null){
+				$suppr = false ;
+			}else{
+				$suppr = true ;
+			}
+
+			if($request->genre == "Privé"){
+				$genre = false;
+			}else{
+				$genre = true;
+			}
+
+			evenement::where('evenement_id',$id)->update(['intitule'=> $request->name,'dateDebut'=> $request->dateDeb,'dateFin'=> $request->dateFin, 'suppressionAutomatique'=>$suppr,'public'=>$genre, 'description'=> $request->desc, "lieu"=> $request->lieu]);
+
+				return redirect('/event/'.$id);
+		}
 
 
 
