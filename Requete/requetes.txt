@@ -183,6 +183,10 @@ $typetache->quentite = ; // 0 pour ne pas avoir de quentite
 						 // 1 pour avoir une quentite
 $typetache->save();
 
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$utilisateur = utilisateur::where('utilisateur_id','=',$utilisateur_id)->first();
+$utilisateur->typetache()->atach($typetache->typetache_id);
+
 //----------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------Creer une photo-----------------------------------------------------//
 
