@@ -14,7 +14,7 @@
 			<?php 
 			use App\Http\Controllers\NotifController;
 			foreach ($notices as $notice) {
-				if($notice->action == "ajout" || $notice->action == "rejoindre"){
+				if($notice->action == "rejoindre"){
 					echo '	<div class="card md-3">
 						<div class="card-header">
 						</div>

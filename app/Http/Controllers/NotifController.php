@@ -27,11 +27,11 @@ class NotifController extends Controller
       foreach($notifications as $notification){
         $notices[] = $notification;
       }
-      return view('notices', ['notices' => $notices]);
+      return view('notices'-, ['notices' => $notices]);
     }
     public static function notifAjoutContact($id_emetteur, $id_recepteur){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
-      [$id_emetteur, $id_recepteur, 'contact', '', '', '']);
+      [$id_emetteur, $id_recepteur, 'contact', 'ajout', 'invitation', null]);
     }
 
     public static function notifAccordContact($id_emetteur, $id_recepteur){
@@ -125,7 +125,7 @@ class NotifController extends Controller
     }
 
     public function supprimerNotif($id_notif){
-     //DB::delete('delete from notification where notification_id = (?)', $id_notif);
+     DB::delete('delete from notification where notification_id = (?)', [$id_notif]);
      return redirect('notices/');
     }
 

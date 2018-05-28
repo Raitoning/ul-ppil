@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Session;
 use App\models\utilisateur;
 use App\models\contact;
+use App\Http\Controllers\NotifController;
 
 class ControllerContacts extends Controller
 {
@@ -67,6 +68,7 @@ class ControllerContacts extends Controller
 			$newContact->utilisateur_utilisateur_id = Session::get('utilisateur')->utilisateur_id;
 			$newContact->contact_contact_id = $tmp->utilisateur_id;
 			$newContact->save();
+			NotifController::notifAjoutContact(Session::get('utilisateur')->utilisateur_id,$tmp->utilisateur_id);
 		}
 		return redirect('/contacts');
 	}
