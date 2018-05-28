@@ -52,13 +52,24 @@ class ControllerTypeTache extends Controller
 
 		}
 
-		public static function getTypeTask($event){
-			$tasks = DB::table('tache')->where('evenement_evenement_id', '=', $event)->get();
-			$taches = [];
-      foreach($tasks as $task){
-        $taches[] = $task;
+		public static function getTypeTask($utilisateur){
+
+		$nameTypeTaches =	DB::table('typetache')
+
+			     ->select("typetache.nomtypetache")
+
+			     ->join("typetache_utilisateur", "typetache_utilisateur.typetache_typetache_id",
+					  "=", "typetache.typetache_id")
+
+			      ->where("typetache_utilisateur.utilisateur_utilisateur_id", "=",$utilisateur)
+
+			       ->get();
+
+			$typetaches = [];
+      foreach($nameTypeTaches as $nameTypeTache){
+        $typetaches[] = $nameTypeTache;
       }
-			return $taches ;
+			return $typetaches ;
 		}
 
 
