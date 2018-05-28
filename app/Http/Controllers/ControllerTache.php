@@ -11,11 +11,13 @@ use Session;
 use App\models\evenement;
 use App\models\utilisateur;
 use App\models\tache;
+use App\models\photo;
 
 use Illuminate\Support\Facades\DB;
 
 class ControllerTache extends Controller
 {
+
 
 
 
@@ -38,16 +40,19 @@ class ControllerTache extends Controller
 		$tache->typetache_typetache_id = 1;
 
 		$tache->save();
-	/*	DB::table('tache')->insert(
-		    ['nom' => $request->task, 'description' => $request->desc , 'valide' => '0',
-				 'quantiteTotal' => '3', 'dateFin' => '2018-05-24', 'evenement_evenement_id' => $event,
-				 'typetache_typetache_id' => $type]
-		);
-		$id_tache= DB::table('tache')->select('tache_id')->get();
+		//$nvPhoto=$this->creerPhoto();
 
-		DB::table('photo_tache')->insert(
-				[ 'photo_photo_id' => $id_photo, 'tache_tache_id' => $id_tache]
-		);*/
+		$photo = new photo();
+		$photo->url ='salusaluttest' ; // L'URL de la photo ajoutée ( /!\ max 255char)
+		$photo->save();
+
+		$tache_id = $tache->tache_id;
+		$photo_id = $photo->photo_id;
+		$tache = tache::where('tache_id','=',$tache_id)->first();
+		$tache->photo()->attach($photo_id);
+
+		$this->affecterUserTache($tache);
+
 
 		return redirect('/event/'.$event)->with("Text","Nouvel tache créé !");
 
@@ -61,18 +66,18 @@ class ControllerTache extends Controller
       }
 			return $taches ;
 		}
-		public static function supprimerTache(){
+		public static function supprimerTache($tache){
 			$tache_id = $tache->tache_id;
       $tache = tache::where('tache_id','=',$tache_id)->first();
       $tache->delete();
 
 		}
-		public static function affecterUserTache(){
+		public static function affecterUserTache($tache){
 			$tache_id = $tache->tache_id;
 			$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
 			$tache = tache::where('tache_id','=',$tache_id)->first();
-			$quentite =1 ; // Quentite de contribution si on est en type avec quentite
-			$tache->utilisateur()->attach($utilisateur_id,['quentite'=>$quentite]);
+			$quantite = 0; // Quentite de contribution si on est en type avec quentite
+			$tache->utilisateur()->attach($utilisateur_id,['quantite'=>$quantite]);
 		}
 		public static function creerText(){
 			$text = new text();
@@ -81,10 +86,10 @@ class ControllerTache extends Controller
 		}
 		public static function creerPhoto(){
 		$photo = new photo();
-		$photo->url =$request ; // L'URL de la photo ajoutée ( /!\ max 255char)
+		$photo->url ='salusaluttest' ; // L'URL de la photo ajoutée ( /!\ max 255char)
 		$photo->save();
 		}
-		public static function ajouterTextTache(){
+		public static function ajouterTextTache( $tache,$text){
 			$tache_id = $tache->tache_id;
 			$text_id = $text->text_id;
 			$tache = tache::where('tache_id','=',$tache_id)->first();
@@ -92,13 +97,13 @@ class ControllerTache extends Controller
 		}
 
 
-		public static function ajouterImageTache(){
+		public static function ajouterImageTache($tache,$nvPhoto){
 			$tache_id = $tache->tache_id;
-      $photo_id = $photo->photo_id;
+      $photo_id = $nvPhoto->photo_id;
 			$tache = tache::where('tache_id','=',$tache_id)->first();
 			$tache->photo()->attach($photo_id);
 		}
-		public static function listeParticTache(){
+		public static function listeParticTache($tache){
 			$tache_id = $tache->tache_id;
 			$tache = tache::where('tache_id','=',$tache_id)->first();
 			foreach ($tache->utilisateur as $participant) {
