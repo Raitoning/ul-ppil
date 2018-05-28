@@ -2,6 +2,7 @@
 $link = $_SERVER['PHP_SELF'];
 $event = substr($link, strrpos($link, '/') + 1);
 use App\Http\Controllers\ControllerTypeTache;
+use App\Http\Controllers\ControllerParticipants;
 $utilisateur = Session::get('utilisateur')->utilisateur_id;
 $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 ?>
@@ -72,6 +73,16 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 							<h2>Participants</h2>
 						</div>
 						<div class="card-body">
+							<?php
+
+
+							$participants = App\Http\Controllers\ControllerParticipants::getParticipants($event);
+							foreach($participants as $participant){
+								echo "<li class='list-group-item'  >".$participant->pseudo."</li></a>" ;
+
+							}
+
+							?>
 						</div>
 					</div>
 				</div>
