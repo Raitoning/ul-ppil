@@ -1,4 +1,10 @@
 ﻿<?php include("header.php"); ?>
+
+ 
+ <div class="col-2">
+	<input type="button" class="btn btn-primary" onclick="location.href='/publicsEvents'" value="Retour" />
+</div>
+
 <div class="container">
 	<div class="row">
 		<label>Nom événement : </label>
@@ -49,17 +55,6 @@
 		<br>
 
 	</div>
-
-		<?php
-		use App\Http\Controllers\ControllerParticipants;
-			if(!ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id)){
-				echo 
-				"<div class=\"col-2\">
-				<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='desinscription/".$event_id."';\" value=\"Se désinscrire\" />
-				</div>" ;
-			}
-			
-		?>
 
 	<div id="tâches" class="row">
 		<label>Ensemble des tâches</label>

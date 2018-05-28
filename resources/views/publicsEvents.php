@@ -1,4 +1,9 @@
 <?php include("header.php"); ?>
+
+ <div class="col-2">
+	<input type="button" class="btn btn-primary" onclick="location.href='/'" value="Retour" />
+</div>
+
 <div class="container">
 	<div class="alert alert-dark" role="alert">
 		<label>Vous êtes en accès anonyme</label>
