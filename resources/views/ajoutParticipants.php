@@ -1,6 +1,11 @@
 ﻿<?php include("header.php");
 	use App\Http\Controllers\ControllerParticipants;
  ?>
+
+  <div class="col-2">
+	<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='/event/participants/".$event_id."'\"" ; ?> value="Retour" />
+</div>
+
 	<div id="content" class="container">
 		<div class="row">
 			<h1>Gérer les contacts</h1>

@@ -77,6 +77,9 @@
 										" ;
 									}	
 								?>
+
+								
+									<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='/event/".$event_id."'\"" ; ?> value="Retour" />
 							</div>
 						</form>
 					</div>

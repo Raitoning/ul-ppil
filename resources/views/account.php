@@ -1,6 +1,11 @@
 <?php
 	include 'header.php';
 ?>
+
+<div class="col-2">
+	<input type="button" class="btn btn-primary" onclick="location.href='accueil'" value="Retour" />
+</div>
+
 <div class="d-flex justify-content-center align-items-center container">
 	<div class="col-10">
 		<div class="card md-3">

@@ -1,4 +1,9 @@
 <?php include("header.php"); ?>
+
+<div class="col-2">
+	<input type="button" class="btn btn-primary" onclick="location.href='accueil'" value="Retour" />
+</div>
+
 	<div class="container">
 		<div class="card md-3">
 			<div class="card-header">

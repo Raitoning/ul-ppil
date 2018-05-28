@@ -3,6 +3,10 @@
 	use App\Http\Controllers\ControllerParticipants;
 ?>
 
+<div class="col-2">
+	<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='/event/".$event_id."'\"" ; ?> value="Retour" />
+</div>
+
 <div class="d-flex justify-content-center align-items-center container">
 	<div class="col-10">
 		<div class="card md-3">
