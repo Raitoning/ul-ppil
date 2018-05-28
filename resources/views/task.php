@@ -21,39 +21,37 @@
 
                             <div class="card-body">
 
-                                <label>Nom de la tâche: </label>
+                                <label>Nom de la tâche : </label>
 
                                 <?php
                                     //affichage du nom de la tâche
                                      use App\Http\Controllers\ControllerEvenement;
                                     use App\Http\Controllers\ControllerParticipants;
                                     use App\Http\Controllers\ControllerTache;
-                                    $tacheNom = ControllerTache::getTaskNom($tache_id);
-                                    $tacheDesc = ControllerTache::getTaskDesc($tache_id);
-                                    $tacheQuantite= ControllerTache::getTaskQuantite($tache_id);
-
+                                
+                                    $taskInfo= ControllerTache::getTaskInfo($tache_id);
 
                                   //  foreach($tasks as $task){
-                                      echo $tacheNom;
+                                      echo $taskInfo->nom;
                                     //}
                                 ?>
 
                                 <div id="Desc">
 
-                                    <label>Descriptif de la tâche:
+                                    <label>Descriptif de la tâche :
                                         <br>
                                     </label>
 
                                     <?php
                                         //affichage descriptif de la tâche
-                                      echo $tacheDesc;
+                                      echo $taskInfo->description;
                                     ?>
                                 </div>
 
                                 <div id="quantity">
 
-                                    <label>Quantité:
-                                        <?php  echo $tacheQuantite ;?>
+                                    <label>Quantité :
+                                        <?php  echo $taskInfo->quantiteTotal ;?>
                                     </label>
 
                                 </div>
