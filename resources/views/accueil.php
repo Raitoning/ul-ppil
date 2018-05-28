@@ -8,7 +8,7 @@
 			<div class="col-6">
 				<div class="card md-3">
 					<div class="card-header">
-						Menu
+						<h1>Menu</h1>
 					</div>
 					<div class="card-body">
 				    	<div id="user_actions">
@@ -35,7 +35,7 @@
 		    <div class="col-6">
 		    	<div class="card md-3">
 		    		<div class="card-header">
-						Evenements à venir
+						<h1>Evenements à venir</h1>
 					</div>
 					<div class="card-body">
 					    <div id="user_lists">
