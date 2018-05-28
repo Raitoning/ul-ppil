@@ -25,7 +25,7 @@ class ControllerInscription extends Controller
 				return view("signup");
 			}
 			
-			if($request->mdp == "" || $request->cmdp == "" || $request->mail == "" || $request->pseudo == "" || $request->conditions == false){
+			if($request->mdp == "" || $request->cmdp == "" || $request->mail == "" || $request->pseudo == ""){
 				Session::put('erreurInscription','Veuillez remplir tout les champs obligatoires et accepter les conditions d\'utilisations.');
 				return view("signup");
 			}
