@@ -136,6 +136,11 @@ Route::get('event/newTask/{event_id}',function(){
   else return redirect('login');
 });
 
+Route::get('ajoutTypeTache',function(){
+  if(Session::has('utilisateur'))
+    return view('newTaskType');
+  else return redirect('login');
+});
 
 Route::post('/','ControllerConnexion@connexion');
 Route::post('/deconnexion','ControllerConnexion@deconnexion');
@@ -151,7 +156,7 @@ Route::post('/event/newTask/{event_id}','ControllerTache@newTask');
 Route::post('/newEvent','ControllerEvenement@newEvent');
 Route::post('/event/modifEvent/{event}','ControllerEvenement@updateEvent');
 
-
+Route::post('/ajoutTypeTache','ControllerTypeTache@newType');
 Route::get('/notices','NotifController@renderNotifications');
 Route::get('/notices/supprimerNotif/{notif_id}','NotifController@supprimerNotif');
 Route::get('/notices/accepterNotif/{notif_id}','NotifController@accepterNotif');
