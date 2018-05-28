@@ -12,7 +12,9 @@
 					//affichage du nom de l'evenement
 					use App\Http\Controllers\ControllerEvenement;
 					use App\Http\Controllers\ControllerParticipants;
+					use App\Http\Controllers\ControllerTache;
 					$event = ControllerEvenement::getEvent($event_id);  //TODO cas général
+					$tasks = ControllerTache::getTask($event_id);
 					echo $event->intitule ;
 				?>
 
@@ -22,7 +24,7 @@
 					<?php
 						//affichage descriptif de l'evenement
 						echo $event->description ;
-						
+
 					?>
 				</div>
 
@@ -32,7 +34,7 @@
 					<?php
 						//affichage lieu de l'evenement
 						echo $event->lieu ;
-						
+
 					?>
 
 				</div>
@@ -58,8 +60,13 @@
 
 				<div id="tâches">
 					<label>Ensemble des tâches :</label>
-					
+
 					<?php
+
+
+					foreach ($tasks as $task) {
+						echo '<br>'.$task->nom.' : '.$task->description;
+					}
 						//TODO: affichage tâches de l'evenement
 						/*
 						$desc = ControllerEvenement::getTasks();
@@ -67,7 +74,7 @@
 						*/
 					?>
 					<br>
-					
+
 				</div>
 			</div>
 
@@ -76,7 +83,7 @@
 
 					if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) || ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
 						echo "<div class=\"col-2\">
-						<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='newTask';\" value=\"Ajouter une tâche\" />
+						<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='newTask/".$event_id."';\" value=\"Ajouter une tâche\" />
 						</div>" ;
 
 						echo "<div class=_\"col-2\">
@@ -89,20 +96,20 @@
 						<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='participants/".$event_id."';\" value=\"Participants\" />
 						</div>" ;
 					}
-			
+
 					if(!ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
-						echo 
+						echo
 						"<div class=\"col-2\">
 						<input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$event_id."';\" value=\"Se désinscrire\" />
 						</div>" ;
 					}
 					 if(controllerEvenement::estPublic($event_id) && !controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
-					 	echo 
+					 	echo
 						"<div class=\"col-2\">
 						<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='demandeInscription/".$event_id."';\" value=\"S'inscrire\" />
 						</div>" ;
 					 }
-					
+
 				?>
 			</div>
 		</div>
