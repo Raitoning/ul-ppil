@@ -38,15 +38,8 @@ $event = substr($link, strrpos($link, '/') + 1);
 
 				<div class="form-check">
 					<label class="form-check-label">
-					<input type="checkbox" class="form-check-input" id="checkAssign" value="Assign">
-					Assigne
-					</label>
-				</div>
-
-				<div class="form-check">
-					<label class="form-check-label">
 					<input type="checkbox" class="form-check-input" id="checkReparti" value="Reparti">
-					Repartition
+					Quantite
 					</label>
 				</div>
 
