@@ -1,6 +1,9 @@
 <?php include("header.php");
 $link = $_SERVER['PHP_SELF'];
 $event = substr($link, strrpos($link, '/') + 1);
+use App\Http\Controllers\ControllerTypeTache;
+$utilisateur = Session::get('utilisateur')->utilisateur_id;
+$tasks = ControllerTypeTache::getTypeTask($utilisateur);
 ?>
 
 <div class="d-flex justify-content-center align-items-center container">
@@ -46,10 +49,13 @@ $event = substr($link, strrpos($link, '/') + 1);
 						<div class="form-group">
 							<label>Type de la tâche : </label>
 							<select name="Type de tâche">
-								<option value="typetask1">Type 1</option>
-								<option value="typetask2">Type 2</option>
-								<option value="typetask3">Type 3</option>
-								<option value="typetask4">Type 4</option>
+								<?php
+								foreach ($tasks as $task) {
+									//echo '<br>'.$task->nom.' : '.$task->description;
+								echo '<option value="typetask1">'.$task->nomtypetache.'</option>';
+								}
+
+								?>
 
 								//TODO séléction des différents types de tâches
 							</select>
