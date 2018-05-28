@@ -1,0 +1,54 @@
+Rapport Evenement General (Lucas)
+
+
+	- Général :
+
+		- Note 01 : Les événements dont la date de début est dépassée apparaissent toujours dans la liste des événements à venir.
+
+
+
+	- Création d'un événement :
+
+		- Note 01 : Plusieurs événements peuvent avoir le même intitulé, ça rend difficile de les distinguer, surtout si la liste est longue.
+
+
+
+	- Liste d'événements :
+	
+		- Note 01 : Les événements auxquels on est inscrit apparaissent toujours dans la liste des événements publics.
+	
+		- Note 02 : Les événements dont la date de fin est dépassée apparaissent toujours dans la liste des événements publics (et on peut s'y inscrire).
+
+
+
+	- Droits des participants :
+
+		- Note 01 : Ca pourrait être pertinent d'indiquer les droits des participant à côté de leur pseudo dans la liste des participants à un événement.
+	
+		- Note 02 : Il faudrait peut être demander une confirmation supplémentaire au propriétaire lorsque celui-çi veut donner ses droits de propriétaire (un peu comme pour la désincription).
+
+		- Erreur 01 : Si le propriétaire change ses droits, en passant par exemple à des droits d'édition, l'événement n'a alors plus de propriétaire.
+
+			- Correction : Soit empêcher le propriétaire de changer ses droits, soit automatiquement donner les droits de propriétaire au premier participant dans la liste (hors propriétaire précedent).
+
+		- Erreur 02 : D'ailleurs, si le propriétaire choisis pour lui-même le droit de propriétaire et appuye sur le bouton valider il perd ses droits de propriétaire.
+
+			- Correction : Définitivement, empécher le propriétaire de changer ses droits.
+
+
+
+	- Renvoi d'un utilisateur :
+
+		- Erreur 01 : Lorsque on essaye de supprimer un participant d'un événement, redirection vers une page d'erreur.
+
+			- Message d'erreur : ErrorException : Undefined variable: proprietaire in ControllerParticipants.php line 31
+
+		- Erreur 02 : Un propriétaire peut se renvoyer lui même d'un de ses événements.
+
+
+
+	- Modification d'un événement :
+
+		- Erreur 01 : Dans les formulaire pré-remplis de la modification de l'évenement seul le premier mot de la colonne lieu de la base de donnée est affiché dans le champs lieu du formulaire.
+
+		- Note 01 : Il faudrait peut-être une demande de confirmation avant de pouvoir supprimer un événement.	
