@@ -1,4 +1,4 @@
-<?php include("header.php"); 
+<?php include("header.php");
 
 use App\Http\Controllers\ControllerEvenement;
 use App\Http\Controllers\ControllerParticipants;
@@ -71,7 +71,7 @@ use App\Http\Controllers\ControllerTache;?>
 
 
 					foreach ($tasks as $task) {
-						echo '<br>'.$task->nom.' : '.$task->description;
+						echo '<br><a href="task/'.$task->tache_id.'">'.$task->nom.' : '.$task->description.'</a>';
 					}
 						//TODO: affichage tâches de l'evenement
 						/*
@@ -86,7 +86,7 @@ use App\Http\Controllers\ControllerTache;?>
 
 			<div style="display : flex; justify-content: space-around; margin-bottom: 15px;">
 				<?php
-				
+
 					if(! ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && ! ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
 						echo "<div class=\"col-2\">
 						<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander à changer mes droits\" />
