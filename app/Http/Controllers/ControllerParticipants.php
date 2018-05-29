@@ -132,11 +132,13 @@ class ControllerParticipants extends Controller
 		$user_id = $request->id_user;
 		$droit = $request->rights;
 		$event = evenement::find($event_id);
-		$tmp = $event->utilisateur()->updateExistingPivot($user_id,['droit' => $droit]);
-		NotifController::notifChangementDroit(Session::get('utilisateur')->utilisateur_id,$user_id,$event_id);
-		if($droit == "proprietaire"){
-			$event = evenement::find($event_id);
-			$event->utilisateur()->updateExistingPivot(Session::get('utilisateur')->utilisateur_id,['droit' => 'edition']);
+		if($event->utilisateur->find($user_id)->pivot->droit != $droit){
+			$tmp = $event->utilisateur()->updateExistingPivot($user_id,['droit' => $droit]);
+			NotifController::notifChangementDroit(Session::get('utilisateur')->utilisateur_id,$user_id,$event_id);
+			if($droit == "proprietaire"){
+				$event = evenement::find($event_id);
+				$event->utilisateur()->updateExistingPivot(Session::get('utilisateur')->utilisateur_id,['droit' => 'edition']);
+			}
 		}
 		
 		return redirect('event/participants/'.$event_id);
