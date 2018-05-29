@@ -180,8 +180,8 @@ $typetache->photo = ; // Le nombre de photo que doit contenir la tache (0 si auc
 $typetache->text = ; // Le nombre de text que doit contenir la tache (0 si aucun)
 $typetache->datefin = ; // 0 pour ne pas avoir une date de fin 
 						// 1 pour avoir une date de fin 
-$typetache->quentite = ; // 0 pour ne pas avoir de quentite 
-						 // 1 pour avoir une quentite
+$typetache->quantite = ; // 0 pour ne pas avoir de quantite 
+						 // 1 pour avoir une quantite
 $typetache->save();
 
 $utilisateur_id = ID_DE_LUTILISATEUR;
@@ -208,8 +208,8 @@ $text->save();
 $tache_id = ID_DE_LA_TACHE;
 $utilisateur_id = ID_DE_LUTILISATEUR;
 $tache = tache::where('tache_id','=',$tache_id)->first();
-$quentite = ; // Quentite de contribution si on est en type avec quentite 
-$tache->utilisateur()->attach($utilisateur_id,['quentite'=>$quentite]);
+$quantite = ; // Quantite de contribution si on est en type avec quantite 
+$tache->utilisateur()->attach($utilisateur_id,['quantite'=>$quantite]);
 
 //----------------------------------------------------------------------------------------------------------------//
 //---------------------------------------Ajouter un texte a une tache---------------------------------------------//
@@ -241,8 +241,8 @@ $tache->save();
 $tache_id = ID_DE_LA_TACHE;
 $utilisateur_id = ID_DE_LUTILISATEUR;
 $tache = tache::where('tache_id','=',$tache_id)->first();
-$nouvelleQuentite = ; // Quentite de contribution si on est en type avec quentite 
-$tache->utilisateur()->updateExistingPivot($utilisateur_id, ['quentite'=>$nouvelleQuentite], false);
+$nouvelleQuantite = ; // Quantite de contribution si on est en type avec quantite 
+$tache->utilisateur()->updateExistingPivot($utilisateur_id, ['quantite'=>$nouvelleQuantite], false);
 
 
 //----------------------------------------------------------------------------------------------------------------//
@@ -253,8 +253,8 @@ $tache = tache::where('tache_id','=',$tache_id)->first();
 foreach ($tache->utilisateur as $participant) {
 	// Chaque $participant correspond a un objet utilisateur etant dans la tache $tache
 
-	// Si besoin la quentite de ce participant
-	$quentiteDuParticipant = $participant->pivot->quentite;
+	// Si besoin la quantite de ce participant
+	$quantiteDuParticipant = $participant->pivot->quantite;
 }
 
 //----------------------------------------------------------------------------------------------------------------//
