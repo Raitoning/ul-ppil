@@ -272,29 +272,29 @@ class NotifController extends Controller
           $evenement = DB::table('evenement')->where('evenement_id', $notification->id_module)->first();
           switch($notification->action){
             case 'ajout':
-                $message .= 'veux vous ajouter à un l\'evenement '.$evenement->intitule;
+                $message .= 'veux vous ajouter à l\'événement '.$evenement->intitule;
             break;
             case 'suppression':
                 if($notification->type == 'invitation'){
-                  $message .= 'vous a retiré à un l\'evenement '.$evenement->intitule;
+                  $message .= 'vous a retiré de l\'événement '.$evenement->intitule;
                 }else {
-                  $message .= 'a supprimé son evenement ';
+                  $message .= 'a supprimé son événement ';
                 }
             break;
             case 'rejoindre':
-              $message .= 'souhaite rejoindre l\'evenement '.$evenement->intitule;
+              $message .= 'souhaite rejoindre l\'événement '.$evenement->intitule;
             break;
             case 'accordAjout':
-                $message .= 'participera à l\'evenement '.$evenement->intitule;
+                $message .= 'participera à l\'événement '.$evenement->intitule;
             break;
             case 'accordRejoindre':
-              $message .= 'vous a accepté dans l\'evenement public '.$evenement->intitule;
+              $message .= 'vous a accepté dans l\'événement public '.$evenement->intitule;
             break;
             case 'refusAjout':
-                $message .= 'ne participera pas à l\'evenement '.$evenement->intitule;
+                $message .= 'ne participera pas à l\'événement '.$evenement->intitule;
             break;
             case 'refusRejoindre':
-              $message .= 'vous a refusé dans l\'evenement public '.$evenement->intitule;
+              $message .= 'vous a refusé dans l\'événement public '.$evenement->intitule;
             break;
       case 'desinscription':
         $message .= 's\'est desinscrit de l\'événement : '.$evenement->intitule;
@@ -305,25 +305,25 @@ class NotifController extends Controller
           $evenement = DB::table('evenement')->where('evenement_id', $notification->id_module)->first();
           switch($notification->action){
             case 'ajout':
-                $message .= 'souhaite être editeur dans l\'evenement '.$evenement->intitule;
+                $message .= 'souhaite être éditeur dans l\'événement '.$evenement->intitule;
             break;
             case 'accord':
-                $message .= 'accepte votre demande d\'édition dans l\'evenement '.$evenement->intitule;
+                $message .= 'accepte votre demande d\'édition dans l\'événement '.$evenement->intitule;
             break;
             case 'refus':
-              $message .= 'refuse votre demande d\'édition dans l\'evenement '.$evenement->intitule;
+              $message .= 'refuse votre demande d\'édition dans l\'événement '.$evenement->intitule;
             break;
             case 'changement':
-              $message .= 'à changé vos droits sur l\'evenement : '.$evenement->intitule;
+              $message .= 'à changé vos droits sur l\'événement : '.$evenement->intitule;
             break;
             case 'proprio':
-              $message .= 'souhaite vous ceder ses droits sur l\'evenement : '.$evenement->intitule;
+              $message .= 'souhaite vous ceder ses droits sur l\'événement : '.$evenement->intitule;
             break;
             case 'accordProprio':
-              $message .= 'accepte de devenir proprio de l\'evenement : '.$evenement->intitule;
+              $message .= 'accepte de devenir proprio de l\'événement : '.$evenement->intitule;
             break;
             case 'refusProprio':
-              $message .= 'refuse de devenir proprio de l\'evenement : '.$evenement->intitule;
+              $message .= 'refuse de devenir proprio de l\'événement : '.$evenement->intitule;
             break;
           }
         break;
@@ -333,20 +333,20 @@ class NotifController extends Controller
           $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_id)->first();
           switch($notification->action){
             case 'ajout':
-              $message .= 'vous a assigné la tâche '.$tache->nom.' de l\'evenement '.$evenement->intitule ;
+              $message .= 'vous a assigné la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule ;
             break;
             case 'suppression':
             if($notification->type == 'invitation'){
-              $message .= 'vous a retiré la tâche '.$tache->nom.' de l\'evenement '.$evenement->intitule;
+              $message .= 'vous a retiré la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule;
             }else{
-              $message .= 'a supprimé la tâche '.$tache->nom.' de l\'evenement '.$evenement->intitule;
+              $message .= 'a supprimé la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule;
             }
             break;
             case 'accord':
-              $message .= 'a accepté de participer à la tâche ' .$tache->nom.' de l\'evenement '.$evenement->intitule;
+              $message .= 'a accepté de participer à la tâche ' .$tache->nom.' de l\'événement '.$evenement->intitule;
             break;
             case 'refus':
-              $message .= 'a refusé de participer à la tâche ' .$tache->nom.' de l\'evenement '.$evenement->intitule;
+              $message .= 'a refusé de participer à la tâche ' .$tache->nom.' de l\'événement '.$evenement->intitule;
             break;
           }
         break;
