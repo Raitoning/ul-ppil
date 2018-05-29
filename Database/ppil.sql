@@ -163,7 +163,7 @@ CREATE TABLE `typetache` (
   `photo` int(3) NOT NULL,
   `texte` int(3) NOT NULL,
   `datefin` int(1) NOT NULL,
-  `quentite` int(1) NOT NULL
+  `quantite` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
