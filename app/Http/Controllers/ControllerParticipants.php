@@ -126,6 +126,13 @@ class ControllerParticipants extends Controller
 		$tmp = $event->utilisateur()->updateExistingPivot($user_id,['droit' => $droit]);
 		return redirect('notices');
 	}
+
+	public static function accordProprio($new_proprio, $ex_proprio, $event_id){
+		$event = evenement::find($event_id);
+		$event->utilisateur()->updateExistingPivot($new_proprio,['droit' => 'proprietaire']);
+		$event->utilisateur()->updateExistingPivot($ex_proprio,['droit' => 'edition']);
+		return redirect('notices');
+	}
 	
 	public static function droitParticipant(Request $request){
 		$event_id = $request->id_event;
@@ -133,11 +140,11 @@ class ControllerParticipants extends Controller
 		$droit = $request->rights;
 		$event = evenement::find($event_id);
 		if($event->utilisateur->find($user_id)->pivot->droit != $droit){
-			$tmp = $event->utilisateur()->updateExistingPivot($user_id,['droit' => $droit]);
-			NotifController::notifChangementDroit(Session::get('utilisateur')->utilisateur_id,$user_id,$event_id);
 			if($droit == "proprietaire"){
-				$event = evenement::find($event_id);
-				$event->utilisateur()->updateExistingPivot(Session::get('utilisateur')->utilisateur_id,['droit' => 'edition']);
+				NotifController::notifDevenirProprio(Session::get('utilisateur')->utilisateur_id,$user_id,$event_id);
+			}else{
+				$tmp = $event->utilisateur()->updateExistingPivot($user_id,['droit' => $droit]);
+				NotifController::notifChangementDroit(Session::get('utilisateur')->utilisateur_id,$user_id,$event_id);
 			}
 		}
 		

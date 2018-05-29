@@ -85,7 +85,7 @@ class NotifController extends Controller
     }
 
     public static function notifSupprEvenement($id_emetteur, $id_recepteur, $id_evenement){
-		Notification::where('id_module','=',$id_evenement)->delete();
+    Notification::where('id_module','=',$id_evenement)->delete();
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'evenement', 'suppression', '', $id_evenement]);
     }
@@ -95,21 +95,35 @@ class NotifController extends Controller
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'droit', 'ajout', '', $id_evenement]);
     }
-	
+  
     public static function notifAccordDroit($id_emetteur, $id_recepteur, $id_evenement){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'droit', 'accord', '', $id_evenement]);
     }
 
+    public static function notifRefusDroit($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'droit', 'refus', '', $id_evenement]);
+    }
 
     public static function notifChangementDroit($id_emetteur, $id_recepteur, $id_evenement){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'droit', 'changement', '', $id_evenement]);
     }
 
-    public static function notifRefusDroit($id_emetteur, $id_recepteur, $id_evenement){
+    public static function notifDevenirProprio($id_emetteur, $id_recepteur, $id_evenement){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
-      [$id_emetteur, $id_recepteur, 'droit', 'refus', '', $id_evenement]);
+      [$id_emetteur, $id_recepteur, 'droit', 'proprio', '', $id_evenement]);
+    }
+
+    public static function notifAccordProprio($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'droit', 'accordProprio', '', $id_evenement]);
+    }
+
+    public static function notifRefusProprio($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'droit', 'refusProprio', '', $id_evenement]);
     }
 
     public static function notifAjoutTache($id_emetteur, $id_recepteur, $id_tache){
@@ -164,9 +178,17 @@ class NotifController extends Controller
         break;
 
         case 'droit':
-          $evenement = DB::table('evenement')->where('evenement_id', $notif->id_module)->first();
-          controllerParticipants::accordDroits($notif->id_emetteur, $evenement->evenement_id);
-          $this->notifAccordDroit($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id);
+              $evenement = DB::table('evenement')->where('evenement_id', $notif->id_module)->first();
+            switch($notif->action){
+            case 'ajout':
+              controllerParticipants::accordDroits($notif->id_emetteur, $evenement->evenement_id);
+              $this->notifAccordDroit($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id);
+            break;
+            case 'proprio':
+              controllerParticipants::accordProprio($notif->id_recepteur,$notif->id_emetteur, $evenement->evenement_id);
+              $this->notifAccordProprio($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id);
+            break;
+          }
         break ;
 
         case 'tache':
@@ -194,17 +216,24 @@ class NotifController extends Controller
           switch($notif->action){
             case 'ajout':
                 $this->notifRefusEvenement($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id) ;
-				$this->supprimerNotif($notif->notification_id);
+        $this->supprimerNotif($notif->notification_id);
             break;
             case 'rejoindre':
                 $this->notifRefusEvenementPublic($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id) ;
-				$this->supprimerNotif($notif->notification_id);
+        $this->supprimerNotif($notif->notification_id);
             break;
           }
         break;
 
         case 'droit':
-          $this->notifRefusDroit($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id);
+         switch($notif->action){
+            case 'ajout':
+              $this->notifRefusDroit($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id);
+            break;
+            case 'proprio':
+              $this->notifRefusProprio($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id);
+            break;
+          }
         break ;
 
         case 'tache':
@@ -267,9 +296,9 @@ class NotifController extends Controller
             case 'refusRejoindre':
               $message .= 'vous a refusé dans l\'evenement public '.$evenement->intitule;
             break;
-			case 'desinscription':
-				$message .= 's\'est desinscrit de l\'événement : '.$evenement->intitule;
-			break;
+      case 'desinscription':
+        $message .= 's\'est desinscrit de l\'événement : '.$evenement->intitule;
+      break;
           }
         break;
         case 'droit' :
@@ -284,8 +313,17 @@ class NotifController extends Controller
             case 'refus':
               $message .= 'refuse votre demande d\'édition dans l\'evenement '.$evenement->intitule;
             break;
-			case 'changement':
-              $message .= 'à changé vos droit dans l\'evenement : '.$evenement->intitule;
+            case 'changement':
+              $message .= 'à changé vos droits sur l\'evenement : '.$evenement->intitule;
+            break;
+            case 'proprio':
+              $message .= 'souhaite vous ceder ses droits sur l\'evenement : '.$evenement->intitule;
+            break;
+            case 'accordProprio':
+              $message .= 'accepte de devenir proprio de l\'evenement : '.$evenement->intitule;
+            break;
+            case 'refusProprio':
+              $message .= 'refuse de devenir proprio de l\'evenement : '.$evenement->intitule;
             break;
           }
         break;

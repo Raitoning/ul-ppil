@@ -46,7 +46,7 @@ class ControllerEvenement extends Controller
 
 		if(! is_null($request->dateDeb)){
 			$newEvent->dateDebut = $request->dateDeb;
-			if(is_null($request->dateFin)){
+			if( !is_null($request->dateFin)){
 				$newEvent->dateFin = $request->dateFin ;
 			}
 		}

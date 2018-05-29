@@ -14,7 +14,7 @@
 			<?php 
 			use App\Http\Controllers\NotifController;
 			foreach ($notices as $notice) {
-				if($notice->action == "rejoindre" || ($notice->action == "ajout" && $notice->module == "evenement")){
+				if($notice->action == "rejoindre" || $notice->action == "proprio" || ($notice->action == "ajout" && $notice->module == "evenement")){
 					echo '
 						<div class="card-body">
 							<div id="notif_1" class="alert alert-info alert-dismissible row">
