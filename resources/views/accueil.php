@@ -1,70 +1,76 @@
-<?php
-    include 'header.php';
-?>
+<?php include 'header.php'; ?>
 
-<div class="container">
-	<div class="row">
-		<!--<div id="content">-->
-			<div class="col-6">
-				<div class="card md-3">
-					<div class="card-header">
-						<h1>Menu</h1>
-					</div>
-					<div class="card-body">
-				    	<div id="user_actions">
-					        <div class="row">
-					        	<a href="newEvent">Créer un nouvel événement</a><br>
-					        </div>
-					        <div class="row">
-					        	<a href="events">Événements</a><br>
-					        </div>
-					        <div class="row">
-					        	<a href="contacts">Contacts</a><br>
-					        </div>
-					        <div class="row">
-					        	<a href="account">Options du compte</a><br>
-					        </div>
-					        <div class="row">
-					        	<a href="notices">Notifications</a><br>
-					    	</div>
-							<div class="row">
-					        	<a href="taskType">Mes types de tâche</a><br>
-					    	</div>
-					    </div>
-					</div>
+<div class="content justify-content-center d-flex">
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-6">
+
+			<div class="card md-6">
+
+				<div class="card-header bg-info text-white">
+
+					<h5>Bienvenue
+						<?php echo Session::get('utilisateur')->pseudo; ?>
+					</h5>
+				</div>
+
+				<div class="card-body">
+
+					<h5 class="card-title">Menu principal</h5>
+
+					<a class="card-link" href="newEvent">Créer un nouvel évènement</a>
+					<br>
+					<a class="card-link" href="events">Évènements</a>
+					<br>
+					<a class="card-link" href="contacts">Contacts</a>
+					<br>
+					<a class="card-link" href="account">Options du compte</a>
+					<br>
+					<a class="card-link" href="notices">Notifications</a>
+					<br>
+					<a class="card-link" href="ajoutTypeTache">Creer type tache</a>
+					<br>
 				</div>
 			</div>
+		</div>
 
-		    <div class="col-6">
-		    	<div class="card md-3">
-		    		<div class="card-header">
-						<h1>Événements à venir</h1>
-					</div>
-					<div class="card-body">
-					    <div id="user_lists">
-							<?php
-								use App\Http\Controllers\ControllerEvenement;
-								$liste = ControllerEvenement::getUserEvents();
+		<div class="col-md-6">
+
+			<div class="card md-6">
+
+				<div class="card-header bg-info text-white">
+
+					<h5>Évènements à venir</h5>
+				</div>
+
+				<div class="card-body">
+
+					<?php
+							use App\Http\Controllers\ControllerEvenement;
+							$liste = ControllerEvenement::getUserEvents();
+							
+							foreach($liste as $affichage){
+								echo "
+								<div class='card md-3'>
+		
+									<div class='card-header bg-secondary text-white'>
+										
+										".$affichage->intitule."
+									</div>
 								
-								foreach($liste as $affichage){
-									echo "
-										<div class='card md-3' style='margin-bottom : 5px;'>
-											<div class='card-header'>
-												".$affichage->intitule."
-											</div>
-											<div class='card-body'>
-												<p>Date de début: ".$affichage->dateDebut."</p>
-											</div>
-										</div>
-									";
-								}
-							?>
-						</div>
-				    </div>
-			    </div>
+									<div class='card-body'>
+										
+										<p>Date de début: ".$affichage->dateDebut."</p>
+									</div>
+							</div>
+							";
+						}
+						?>
+				</div>
 			</div>
+		</div>
 	</div>
 </div>
-<?php
-    include 'footer.php';
-?>
+
+<?php include 'footer.php'; ?>

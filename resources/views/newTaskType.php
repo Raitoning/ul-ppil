@@ -1,64 +1,79 @@
 <?php include("header.php");
+$link = $_SERVER['PHP_SELF'];
+$event = substr($link, strrpos($link, '/') + 1);
 ?>
 
 <div class="col-2">
-	<input type="button" class="btn btn-primary" onclick="location.href='taskType'" value="Retour" />
+
+	<input type="button" class="btn btn-primary" onclick="location.href='accueil'" value="Retour" />
 </div>
 
-<div class="d-flex justify-content-center align-items-center container">
-		<div class="col-10">
-			<div class="card mb-3">
-				<div class="card-header">
-					<h1>Nouveau Type de Tache:</h1>
-				</div>
+<br>
 
-	<div class="card-body">
-		<form action="" method="post">
-			<div class="newTask">
-				<br>
-				<div class="form-group ">
-					<label>Nom du type de tâche :</label>
-					<input type="text" class="form-control" placeholder="Type de tache" name="nom" required><br>
-				</div>
-				<div class="form-group">
-					<label for="text-input">Nombre de Champs Textuels</label>
-						<div class="col-10">
-							 <input class="form-control" type="number" min="0" value="0" id="text-input" name="text">
-						</div>
-				</div>
+<div class="content justify-content-center d-flex">
 
-				<div class="form-group">
-					<label for="img-input">Nombre d'Images</label>
-						<div class="col-10">
-							 <input class="form-control" type="number" min="0" value="0" id="img-input" name="img">
-						</div>
-				</div>
+	<div class="col-10">
 
-				<div class="form-check">
-					<label class="form-check-label">
-						<input type="checkbox" class="form-check-input" name="checkEnddate" value="Enddate">
-					Date de fin
-					</label>
-				</div>
+		<div class="card md-6">
 
-				<div class="form-check">
-					<label class="form-check-label">
-					<input type="checkbox" class="form-check-input" name="checkReparti" value="Reparti">
-					Quantite
-					</label>
-				</div>
+			<div class="card-header bg-info text-white">
 
-				<div style="display: flex;">
-					<div class="col_2" style="margin-right: 10px;">
-						<input type="button" class="btn btn-primary" onclick="location.href='/taskType';" value="Retour" />
-					</div>
-					<div class="col_2">
-						<input type="submit" id="creer" class="btn btn-success" value="Créer"><br>
-						<?php echo csrf_field(); ?>
-					</div>
-				</div>
+				<h5>Nouveau type de tâche:</h5>
 			</div>
-		</form>
+
+			<div class="card-body">
+
+				<form action="" method="post">
+
+					<div class="form-group ">
+
+						<label>Nom du type tâche :</label>
+						<input type="text" class="form-control" placeholder="Type de tache" name="nom">
+					</div>
+
+					<div class="form-group">
+
+						<label for="text-input">Nombre de champs textuel</label>
+						<input class="form-control" type="number" min="0" value="0" id="text-input" name="text">
+					</div>
+
+					<div class="form-group">
+
+						<label for="img-input">Nombre d'image</label>
+						<input class="form-control" type="number" min="0" value="0" id="img-input" name="img">
+					</div>
+
+					<div class="form-check">
+
+						<input type="checkbox" class="form-check-input" name="checkEnddate" value="Enddate" id="enddate">
+						<label class="form-check-label" for="enddate">Date de fin</label>
+					</div>
+
+					<div class="form-check">
+
+						<input type="checkbox" class="form-check-input" name="checkReparti" value="Reparti" id="repartit">
+						<label class="form-check-label" for="repartit">Quantité</label>
+					</div>
+
+					<br>
+
+					<div class="row">
+
+						<div class="col-md-auto">
+
+							<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo " $event "; ?>';" value="Retour" />
+						</div>
+
+						<div class="col-md-auto">
+
+							<input type="submit" id="creer" class="btn btn-success" value="Creer">
+
+							<?php echo csrf_field(); ?>
+						</div>
+					</div>
+			</div>
+			</form>
+		</div>
 	</div>
 </div>
 
