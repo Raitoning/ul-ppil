@@ -120,14 +120,13 @@ use App\Http\Controllers\ControllerTache;?>
 					 }
 
 				?>
-			</div>
 				<?php if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) || ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
 						$tasks = App\Http\Controllers\ControllerTypeTache::getTypeTask(Session::get('utilisateur')->utilisateur_id);
-						echo "<div class=\"col-12\">
-						<form method='post' action='newTask/".$event_id."';\">
-						<input name='ev' type='hidden' value='".$event_id."'>
-						<select name='typetache'>";
-						
+						echo "<div class=\"col-2\" style=\"display : flex;\">
+							<form method='post' action='newTask/".$event_id."';\">
+							<input name='ev' type='hidden' value='".$event_id."'>
+							<select name='typetache'>";
+							
 						foreach ($tasks as $task) {
 							echo '<option value='.$task->typetache_id.'>'.$task->nomtypetache.'</option>';
 						}
@@ -138,6 +137,8 @@ use App\Http\Controllers\ControllerTache;?>
 					</div>" ;
 					}
 					?>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

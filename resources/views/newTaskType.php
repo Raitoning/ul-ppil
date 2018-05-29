@@ -2,12 +2,14 @@
 $link = $_SERVER['PHP_SELF'];
 $event = substr($link, strrpos($link, '/') + 1);
 ?>
-<div class="container card md-3">
-	<div class="row card-header">
-		<h1>Nouveau Type de Tache:</h1>
-	</div>
+<div class="d-flex justify-content-center align-items-center container">
+		<div class="col-10">
+			<div class="card mb-3">
+				<div class="card-header">
+					<h1>Nouveau Type de Tache:</h1>
+				</div>
 
-	<div class="row card-body">
+	<div class="card-body">
 		<form action="" method="post">
 			<div class="newTask">
 				<br>
@@ -43,8 +45,8 @@ $event = substr($link, strrpos($link, '/') + 1);
 					</label>
 				</div>
 
-				<div class="row">
-					<div class="col_2">
+				<div style="display: flex;">
+					<div class="col_2" style="margin-right: 10px;">
 						<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo "$event"; ?>';" value="Retour" />
 					</div>
 					<div class="col_2">

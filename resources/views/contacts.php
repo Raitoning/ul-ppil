@@ -10,11 +10,12 @@
 			<div class="col-8">
 				<h1>Gérer les contacts</h1>
 				</div>
-				<div class="input-group float-right ">
-					<input class="form-control" id="myInput" type="text" placeholder="Rechercher un utilisateur">
-				</div>
+				
 			</div>
 			<div class="card-body row">
+				<div class="input-group float-right" style="margin-bottom: 10px;">
+					<input class="form-control" id="myInput" type="text" placeholder="Rechercher un utilisateur">
+				</div>
 				<div class="col-6">
 					<div class="card md-3">
 						<div class="card-header">
