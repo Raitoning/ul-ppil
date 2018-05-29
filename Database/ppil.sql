@@ -44,7 +44,7 @@ CREATE TABLE `evenement` (
   `notification` int(1) NOT NULL,
   `intitule` varchar(255) NOT NULL,
   `dateDebut` date NOT NULL,
-  `dateFin` date NOT NULL,
+  `dateFin` date,
   `description` varchar(255) NOT NULL,
   `lieu` varchar(255) NOT NULL,
   `suppressionAutomatique` int(1) NOT NULL DEFAULT '0'
