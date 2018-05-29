@@ -56,7 +56,7 @@ class ControllerTypeTache extends Controller
 
 		$nameTypeTaches =	DB::table('typetache')
 
-			     ->select("typetache.nomtypetache")
+			     ->select("typetache.nomtypetache","typetache.typetache_id")
 
 			     ->join("typetache_utilisateur", "typetache_utilisateur.typetache_typetache_id",
 					  "=", "typetache.typetache_id")
