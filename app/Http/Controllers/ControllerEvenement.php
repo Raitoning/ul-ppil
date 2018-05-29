@@ -17,18 +17,23 @@ class ControllerEvenement extends Controller
 
 	public function newEvent(Request $request){
 		
-		if($request->name == "" || $request->desc == "" || $request->lieu == "" || is_null($request->dateDeb)){
+		if($request->name == "" || $request->desc == "" || $request->lieu == "" ){
 			Session::put('erreurInscription','Veuillez remplir tout les champs obligatoires.');
 			return view("newEvent");
 		}
 
-		if( strtotime($request->dateDeb) < time()-(1 * 23 * 58 * 60)){
-			Session::put('erreurInscription','La date de début ne doit pas être dépassée.');
-			return view("newEvent");
+		if(! is_null($request->dateDeb)){
+			if( strtotime($request->dateDeb) < time()-(1 * 23 * 58 * 60)){
+				Session::put('erreurInscription','La date de début ne doit pas être dépassée.');
+				return view("newEvent");
+			}
 		}
 
 		if(! is_null($request->dateFin)){
-			if( strtotime($request->dateDeb) > strtotime($request->dateFin)){
+			if(is_null($request->dateDeb)){
+				Session::put('erreurInscription','Il n\'y a pas de date de début.');
+				return view("newEvent");
+			}elseif( strtotime($request->dateDeb) > strtotime($request->dateFin)){
 				Session::put('erreurInscription','La date de fin est anterieur à la date de début.');
 				return view("newEvent");
 			}
@@ -38,8 +43,13 @@ class ControllerEvenement extends Controller
 		$newEvent->intitule = $request->name;
 		$newEvent->description = $request->desc;
 		$newEvent->lieu = $request->lieu;
-		$newEvent->dateDebut = $request->dateDeb;
-		$newEvent->dateFin = $request->dateFin ;
+
+		if(! is_null($request->dateDeb)){
+			$newEvent->dateDebut = $request->dateDeb;
+			if(is_null($request->dateFin)){
+				$newEvent->dateFin = $request->dateFin ;
+			}
+		}
 		
 		if($request->genre == "Privé"){
 			$newEvent->public = false;
