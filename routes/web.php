@@ -114,7 +114,6 @@ Route::get('/event/demandeInscription/{id_event}','ControllerParticipants@demand
 Route::get('/event/desinscription/{id_event}','ControllerParticipants@desinscription');
 
 Route::post('/event/participants/droits','ControllerParticipants@droitParticipant');
-Route::get('/event/changerDroits/{event_id}','ControllerParticipants@demandeDroits');
 
 Route::get('/event/participants/{event_id}/ajoutUtilisateurs',function($event_id){
   if(Session::has('utilisateur'))
@@ -136,14 +135,21 @@ Route::get('event/newTask/{event_id}',function(){
   else return redirect('login');
 });
 
-Route::get('ajoutTypeTache',function(){
-  if(Session::has('utilisateur'))
-    return view('newTaskType');
-  else return redirect('login');
+Route::get('/event/task/{tache_id}',function($tache_id){
+    return view('task', ["tache_id" => $tache_id]);
 });
 
+Route::get('/modifTask/{tache_id}',function($tache_id){
+    return view('modifTask', ["tache_id" => $tache_id]);
+});
+
+Route::post('/modifTask/{tache_id}','ControllerTache@modifierTache');
+
+
+
+
 Route::post('/','ControllerConnexion@connexion');
-Route::post('/deconnexion','ControllerConnexion@deconnexion');
+Route::post('public/deconnexion','ControllerConnexion@deconnexion');
 Route::post('/inscription','ControllerInscription@inscription');
 
 
@@ -155,8 +161,13 @@ Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
 Route::post('/event/newTask/{event_id}','ControllerTache@newTask');
 Route::post('/newEvent','ControllerEvenement@newEvent');
 Route::post('/event/modifEvent/{event}','ControllerEvenement@updateEvent');
-
+Route::get('ajoutTypeTache',function(){
+  if(Session::has('utilisateur'))
+    return view('newTaskType');
+  else return redirect('login');
+});
 Route::post('/ajoutTypeTache','ControllerTypeTache@newType');
+
 Route::get('/notices','NotifController@renderNotifications');
 Route::get('/notices/supprimerNotif/{notif_id}','NotifController@supprimerNotif');
 Route::get('/notices/accepterNotif/{notif_id}','NotifController@accepterNotif');
