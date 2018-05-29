@@ -75,6 +75,31 @@ Route::get('/notices',function(){
   else return redirect('login');
 });
 
+Route::get('/taskType',function(){
+  if(Session::has('utilisateur'))
+    return view('taskType');
+  else return redirect('login');
+});
+
+//types de tâche 
+
+Route::get('/taskType/ajoutTypeTache',function(){
+  if(Session::has('utilisateur'))
+    return view('newTaskType');
+  else return redirect('login');
+});
+
+Route::post('/taskType/ajoutTypeTache','ControllerTypeTache@newType');
+
+Route::get('/taskType/modifTypeTask/{type_id}',function($type_id){
+  if(Session::has('utilisateur'))
+    return view('modifTypeTask', ["type_id" => $type_id]);
+  else return redirect('login');
+});
+
+Route::post('/taskType/modifTypeTask/{type_id}','ControllerTypeTache@modifType');
+Route::get('/taskType/supprTypeTask/{task_id}','ControllerTypeTache@supprType');
+
 // Evenements
 
 Route::get('/newEvent',function(){
@@ -161,12 +186,7 @@ Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
 Route::post('/event/newTask/{event_id}','ControllerTache@formulaire');
 Route::post('/newEvent','ControllerEvenement@newEvent');
 Route::post('/event/modifEvent/{event}','ControllerEvenement@updateEvent');
-Route::get('/ajoutTypeTache',function(){
-  if(Session::has('utilisateur'))
-    return view('newTaskType');
-  else return redirect('login');
-});
-Route::post('/ajoutTypeTache','ControllerTypeTache@newType');
+
 
 Route::get('/notices','NotifController@renderNotifications');
 Route::get('/notices/supprimerNotif/{notif_id}','NotifController@supprimerNotif');

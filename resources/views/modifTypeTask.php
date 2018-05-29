@@ -1,15 +1,13 @@
 <?php include("header.php");
+use App\Http\Controllers\ControllerTypeTache;
+$type = ControllerTypeTache::getType($type_id) ;
 ?>
-
-<div class="col-2">
-	<input type="button" class="btn btn-primary" onclick="location.href='taskType'" value="Retour" />
-</div>
 
 <div class="d-flex justify-content-center align-items-center container">
 		<div class="col-10">
 			<div class="card mb-3">
 				<div class="card-header">
-					<h1>Nouveau Type de Tache:</h1>
+					<h1>Modifier le Type de Tache:</h1>
 				</div>
 
 	<div class="card-body">
@@ -18,32 +16,32 @@
 				<br>
 				<div class="form-group ">
 					<label>Nom du type de tâche :</label>
-					<input type="text" class="form-control" placeholder="Type de tache" name="nom" required><br>
+					<input type="text" class="form-control" value="<?php echo $type->nomtypetache ;?>" name="nom" required ><br>
 				</div>
 				<div class="form-group">
 					<label for="text-input">Nombre de Champs Textuels</label>
 						<div class="col-10">
-							 <input class="form-control" type="number" min="0" value="0" id="text-input" name="text">
+							 <input class="form-control" type="number" min="0" value=<?php echo $type->texte ;?> id="text-input" name="text">
 						</div>
 				</div>
 
 				<div class="form-group">
 					<label for="img-input">Nombre d'Images</label>
 						<div class="col-10">
-							 <input class="form-control" type="number" min="0" value="0" id="img-input" name="img">
+							 <input class="form-control" type="number" min="0" value=<?php echo $type->photo ;?> id="img-input" name="img">
 						</div>
 				</div>
 
 				<div class="form-check">
 					<label class="form-check-label">
-						<input type="checkbox" class="form-check-input" name="checkEnddate" value="Enddate">
+						<input type="checkbox" class="form-check-input" name="checkEnddate" value="Enddate" <?php if($type->datefin == 1) echo "checked" ;?> >
 					Date de fin
 					</label>
 				</div>
 
 				<div class="form-check">
 					<label class="form-check-label">
-					<input type="checkbox" class="form-check-input" name="checkReparti" value="Reparti">
+					<input type="checkbox" class="form-check-input" name="checkReparti" value="Reparti" <?php if($type->quantite == 1 ) echo "checked" ;?>>
 					Quantite
 					</label>
 				</div>
@@ -53,7 +51,7 @@
 						<input type="button" class="btn btn-primary" onclick="location.href='/taskType';" value="Retour" />
 					</div>
 					<div class="col_2">
-						<input type="submit" id="creer" class="btn btn-success" value="Créer"><br>
+						<input type="submit" id="modifier" class="btn btn-success" value="modifier"><br>
 						<?php echo csrf_field(); ?>
 					</div>
 				</div>

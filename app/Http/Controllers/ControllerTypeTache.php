@@ -48,9 +48,43 @@ class ControllerTypeTache extends Controller
 	$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
 	$utilisateur = utilisateur::where('utilisateur_id','=',$utilisateur_id)->first();
 	$utilisateur->typetache()->attach($typetache->typetache_id);
-		return redirect('/accueil')->with("Text","Nouveau type de tache créé !");
+		return redirect('/taskType');
 
 		}
+
+	public function modifType(Request $request, $id){
+		if($request->nom == ""){
+			Session::put('erreurFormulaire','Veuillez remplir tout les champs obligatoires.');
+			return view("newTaskType");
+		}
+
+		if ($request->checkEnddate == null) {
+			$datefin = 0;// 0 pour ne pas avoir une date de fin
+		}
+		else {
+			$datefin = 1;
+		}
+		if ($request->checkReparti == null) {
+			$quantite = 0; // 0 pour ne pas avoir de quantite
+		}
+		else {
+			$quantite = 1;
+		}
+
+		typetache::where('typetache_id',$id)->update(['nomtypetache'=> $request->nom,'photo'=> $request->img,'datefin'=> $datefin, 'quantite'=>$quantite,'texte'=>$request->text,]);
+		
+		return redirect('/taskType');
+
+	}
+
+
+	public static function supprType($type_id){
+		$type = typetache::find($type_id);
+		$tmp = $type->utilisateur()->detach(Session::get('utilisateur')->utilisateur_id);
+		$type->delete();
+
+		return redirect('/taskType');
+	}
 
 		public static function getTypeTask($utilisateur){
 
@@ -75,7 +109,21 @@ class ControllerTypeTache extends Controller
 
 
 
+	public static function getUserTypeTask(){
+		
+		$res = array();
+		$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
+		$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
+		foreach ($user->typetache as $typetache) {
+		    array_push($res,$typetache);
+		}
+		return $res;
+	}
 
+	public static function getType($type_id){
+		
+		return typetache::where('typetache_id','=',$type_id)->first();
+	}
 
 	}
 

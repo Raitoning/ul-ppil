@@ -28,7 +28,7 @@
 					        	<a href="notices">Notifications</a><br>
 					    	</div>
 							<div class="row">
-					        	<a href="ajoutTypeTache">Créer un type de tâche</a><br>
+					        	<a href="taskType">Mes types de tâche</a><br>
 					    	</div>
 					    </div>
 					</div>
