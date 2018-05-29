@@ -75,7 +75,7 @@ CREATE TABLE `notification` (
   `module` varchar(30) NOT NULL,
   `action` varchar(30) NOT NULL,
   `type` varchar(30) NOT NULL,
-  `id_module` int(11) NOT NULL
+  `id_module` int(11)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
