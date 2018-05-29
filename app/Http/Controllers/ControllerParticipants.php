@@ -17,7 +17,7 @@ class ControllerParticipants extends Controller
 {
     public static function getParticipants($event_id){
 		$event = evenement::where('evenement_id',$event_id)->first();
-		
+
 	    $utilisateurs = $event->utilisateur;
 		return $utilisateurs;
     }

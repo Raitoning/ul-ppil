@@ -87,16 +87,13 @@ use App\Http\Controllers\ControllerTache;?>
 			<div style="display : flex; justify-content: space-around; margin-bottom: 15px;">
 				<?php
 
-					if(! ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && ! ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
+					if(! ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && ! ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id) && controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
 						echo "<div class=\"col-2\">
 						<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander à changer mes droits\" />
 						</div>" ;
 					}
 
 					if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) || ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
-						echo "<div class=\"col-2\">
-						<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='newTask/".$event_id."';\" value=\"Ajouter une tâche\" />
-						</div>" ;
 
 						echo "<div class=_\"col-2\">
 						<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='modifEvent/".$event_id."';\" value=\"Modifier l'événement\" />
@@ -124,6 +121,23 @@ use App\Http\Controllers\ControllerTache;?>
 
 				?>
 			</div>
+				<?php if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) || ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
+						$tasks = App\Http\Controllers\ControllerTypeTache::getTypeTask(Session::get('utilisateur')->utilisateur_id);
+						echo "<div class=\"col-12\">
+						<form method='post' action='newTask/".$event_id."';\">
+						<input name='ev' type='hidden' value='".$event_id."'>
+						<select name='typetache'>";
+						
+						foreach ($tasks as $task) {
+							echo '<option value='.$task->typetache_id.'>'.$task->nomtypetache.'</option>';
+						}
+						echo csrf_field();
+						echo "</select>";
+						echo "<input type=\"submit\" class=\"btn btn-primary\" value='Ajouter une tache'/>
+						</form>
+					</div>" ;
+					}
+					?>
 		</div>
 	</div>
 </div>

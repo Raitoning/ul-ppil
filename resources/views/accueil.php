@@ -27,6 +27,9 @@
 					        <div class="row">
 					        	<a href="notices">Notifications</a><br>
 					    	</div>
+							<div class="row">
+					        	<a href="ajoutTypeTache">Creer type tache</a><br>
+					    	</div>
 					    </div>
 					</div>
 				</div>

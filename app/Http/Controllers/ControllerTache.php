@@ -12,6 +12,7 @@ use App\models\evenement;
 use App\models\utilisateur;
 use App\models\tache;
 use App\models\photo;
+use App\models\typetache;
 
 use Illuminate\Support\Facades\DB;
 
@@ -160,11 +161,10 @@ class ControllerTache extends Controller
 		}
 
 
-
-
-
-
-
+		public static function formulaire(Request $request){
+			$tmp = typetache::where('typetache_id','=',$request->typetache)->first();
+			return view('newTask',['type' => $tmp,'event' => $request->ev]);
+		}
 
 	}
 

@@ -118,7 +118,8 @@ class ControllerEvenement extends Controller
 
 		$participants = ControllerParticipants::getParticipants($event_id);
 		foreach ($participants as $participant) {
-			NotifController::notifSupprEvenement(Session::get('utilisateur')->utilisateur_id, $participant->utilisateur_id, $event_id) ;
+			if(Session::get('utilisateur')->utilisateur_id != $participant->utilisateur_id)
+				NotifController::notifSupprEvenement(Session::get('utilisateur')->utilisateur_id, $participant->utilisateur_id, $event_id) ;
 		}
 		$tmp = $event->utilisateur()->detach();
 		$evenement = evenement::where('evenement_id','=',$event_id)->first();

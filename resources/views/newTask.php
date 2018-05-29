@@ -1,6 +1,5 @@
 <?php include("header.php");
 $link = $_SERVER['PHP_SELF'];
-$event = substr($link, strrpos($link, '/') + 1);
 use App\Http\Controllers\ControllerTypeTache;
 use App\Http\Controllers\ControllerParticipants;
 $utilisateur = Session::get('utilisateur')->utilisateur_id;
@@ -40,29 +39,44 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 							<br>
 							<br>
 						</div>
+						<?php
+						$i = 0;
+						while($i < $type->quantite){
+							?>
 						<div class="form-group">
-							<label>Quantité :</label>
+							<label>Quantité <?php echo $i+1 ?> :</label>
 							<br>
-							<input type="text" placeholder="Quantité" name="quantity">
+							<input type="text" placeholder="Quantité" name="quantity<?php echo $i+1?>">
 							<br>
 							<br>
 						</div>
+						<?php $i++; }?>
+						
+						<?php
+						if($type->datefin == 1){
+							?>
 						<div class="form-group">
-							<label>Type de la tâche : </label>
-							<select name="typetache">
-								<?php
-								foreach ($tasks as $task) {
-									//echo '<br>'.$task->nom.' : '.$task->description;
-								echo '<option value='.$task->typetache_id.'>'.$task->nomtypetache.'</option>';
-								}
-
-								?>
-
-								//TODO séléction des différents types de tâches
-							</select>
+							<label>Date de fin :</label>
+							<br>
+							<input type="date" name="datefin">
 							<br>
 							<br>
 						</div>
+						<?php } ?>
+						
+						<?php
+						$i = 0;
+						while($i < $type->texte){
+							?>
+						<div class="form-group">
+							<label>Texte <?php echo $i+1 ?> :</label>
+							<br>
+							<input type="text" placeholder="Text" name="text<?php echo $i+1?>">
+							<br>
+							<br>
+						</div>
+						<?php $i++; }?>
+
 						<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo " $event "; ?>';" value="Retour" />
 						<input type="submit" id="creer" class="btn btn-primary" value="Creer">
 						<?php echo csrf_field(); ?>
@@ -75,13 +89,12 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 						<div class="card-body">
 							<?php
 
-
 							$participants = App\Http\Controllers\ControllerParticipants::getParticipants($event);
-							foreach($participants as $participant){
-								echo "<li class='list-group-item'><input type='checkbox' name='participants[]' value=.$participant->utilisateur_id.>".$participant->pseudo."</li></a>";
+								foreach($participants as $participant){
+									echo "<li class='list-group-item'><input type='checkbox' name='participants[]' value=.$participant->utilisateur_id.>".$participant->pseudo."</li></a>";
 
 
-							}
+								}
 
 							?>
 						</div>
