@@ -39,7 +39,8 @@ class ControllerTache extends Controller
 		$tache->quantiteTotal = $request->quantity; // SI elle est de type quentitative (max 999999)
 		$tache->dateFin = '2018-5-30'; // SI elle est de type datedefin , FORMAT : 'YYYY-MM-DD' , Exemple '2018-5-17'
 		$tache->evenement_evenement_id = $evenement_id;
-		$tache->typetache_typetache_id = 1;
+		$tache_id=$_POST['typetache'];
+		$tache->typetache_typetache_id =$tache_id ;
 
 		$tache->save();
 
@@ -53,7 +54,7 @@ class ControllerTache extends Controller
 			$task = tache::where('tache_id',$tache_id)->first();
 			return $task;
 		}
-	
+
 
 		public static function getTask($event){
 			$tasks = DB::table('tache')->where('evenement_evenement_id', '=', $event)->get();
