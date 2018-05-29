@@ -47,7 +47,7 @@ $event = substr($link, strrpos($link, '/') + 1);
 
 				<div style="display: flex;">
 					<div class="col_2" style="margin-right: 10px;">
-						<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo "$event"; ?>';" value="Retour" />
+						<input type="button" class="btn btn-primary" onclick="location.href='/accueil';" value="Retour" />
 					</div>
 					<div class="col_2">
 						<input type="submit" id="creer" class="btn btn-success" value="Créer"><br>
