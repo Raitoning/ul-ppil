@@ -15,7 +15,7 @@ use App\Http\Controllers\ControllerTache;?>
 				<h1>Détails de l'événement</h1>
 			</div>
 			<div class="card-body">
-				<label>Nom événement : </label>
+				<label>Nom de l'événement : </label>
 
 				<?php
 					//affichage du nom de l'evenement

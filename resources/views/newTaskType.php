@@ -14,7 +14,7 @@ $event = substr($link, strrpos($link, '/') + 1);
 			<div class="newTask">
 				<br>
 				<div class="form-group ">
-					<label>Nom du type tâche :</label>
+					<label>Nom du type de tâche :</label>
 					<input type="text" class="form-control" placeholder="Type de tache" name="nom"><br>
 				</div>
 				<div class="form-group">
@@ -27,7 +27,7 @@ $event = substr($link, strrpos($link, '/') + 1);
 				<div class="form-group">
 					<label for="img-input">Nombre d'Images</label>
 						<div class="col-10">
-							 <input class="form-control" type="number" min="0" value="0" id="img-input"name="img">
+							 <input class="form-control" type="number" min="0" value="0" id="img-input" name="img">
 						</div>
 				</div>
 
@@ -50,7 +50,7 @@ $event = substr($link, strrpos($link, '/') + 1);
 						<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo "$event"; ?>';" value="Retour" />
 					</div>
 					<div class="col_2">
-						<input type="submit" id="creer" class="btn btn-success" value="Creer"><br>
+						<input type="submit" id="creer" class="btn btn-success" value="Créer"><br>
 						<?php echo csrf_field(); ?>
 					</div>
 				</div>

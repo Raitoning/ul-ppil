@@ -8,7 +8,7 @@
 		<div style="display : flex; justify-content: space-between;">
 			<div class="card md-3 col-5" style="padding : 0 0 0 0;">
 					<div class="card-header">
-					   <h1>Mes Evenements </h1>
+					   <h1>Mes Événements </h1>
 					</div>
 				   <?php
 					//TODO: affichage evenements
@@ -30,7 +30,7 @@
 			</div>
 			<div class="card md-3 col-5" style="padding : 0 0 0 0;">
 				<div class="card-header">
-				   <h1>Evenements Publics</h1>
+				   <h1>Événements Publics</h1>
 				</div>
 			   <?php
 					//affichage evenements publics

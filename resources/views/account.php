@@ -49,7 +49,7 @@
 					<input type="radio" id="radionone" name="invitations" value="aucun" <?php if(Session::get('utilisateur')->recevoirInvitation == "aucun")echo "checked"; ?>>
 					<label for="radionone"> Personne</label><br>
 
-					Reception d'email pour chaque notification <br>
+					Réception d'email pour chaque notification <br>
 					<input type="radio" id="notifyes" name="notif" value="1" <?php if(Session::get('utilisateur')->recevoirMail == "1")echo "checked"; ?>>
 					<label for="notifyes"> Oui</label>
 					<input type="radio" id="notifno" name="notif" value="0" <?php if(Session::get('utilisateur')->recevoirMail == "0")echo "checked"; ?>>

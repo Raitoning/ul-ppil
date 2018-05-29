@@ -8,7 +8,7 @@
 	<div class="col-10">
 		<div class="card mb-3">
 			<div class="card-header">
-				<h1>Creer un nouvel événement :</h1>
+				<h1>Créer un nouvel événement :</h1>
 			</div>
 
 			<?php if(Session::has('erreurInscription')){
@@ -24,13 +24,13 @@
 					<form action="" method="post">
 						<div class="newEvent"><br>
 							<div class="form-group">
-								<label>Nom de l'événement :</label><br>
-								<input type="text" class="form-control" placeholder="Nom de l'événement*" name="name" maxlength="255"><br>
+								<label>Nom de l'événement *:</label><br>
+								<input type="text" class="form-control" placeholder="Nom de l'événement" name="name" maxlength="255" required><br>
 							</div>
 							<div class="form-group">
-								<label>date de début* : </label><br>
+								<label>date de début: </label><br>
 								<input type="date" class="form-control" name="dateDeb"><br>
-								<label>date de fin* : </label><br>
+								<label>date de fin: </label><br>
 								<input type="date" class="form-control" name="dateFin"><br>
 							</div>
 							<div class="form-group">
@@ -39,19 +39,19 @@
 				  				<input type="radio" name="genre" value="Privé"> Privé<br>
 							</div>
 							<div class="form-group">
-								<label>Description :</label><br>
-								<input type="text" class="form-control" placeholder="Description*" name="desc" maxlength="250"><br>
+								<label>Déscription *:</label><br>
+								<input type="text" class="form-control" placeholder="Déscription" name="desc" maxlength="250" required><br>
 							</div>
 							<div class="form-group">
-								<label>Lieu : </label><br>
-								<input type="text" class="form-control" placeholder="Lieu*" name="lieu" maxlength="250"><br><br>
+								<label>Lieu *: </label><br>
+								<input type="text" class="form-control" placeholder="Lieu" name="lieu" maxlength="250"  required><br><br>
 							</div>
 							<div class="form-group">
 								<input type="checkbox" name="suppr" value="suppr"> Supression automatique<br>
 								<label>* champs obligatoires</label><br>
 								<?php echo csrf_field(); ?>
 							</div>
-							<button type="submit" id="register" class="btn btn-success" value="creer l'evenement">Créer l'evenement</button><br>
+							<button type="submit" id="register" class="btn btn-success" value="creer l'evenement">Créer l'événement</button><br>
 
 						</div>
 					</form>

@@ -16,7 +16,7 @@
 					        	<a href="newEvent">Créer un nouvel événement</a><br>
 					        </div>
 					        <div class="row">
-					        	<a href="events">Evènements</a><br>
+					        	<a href="events">Événements</a><br>
 					        </div>
 					        <div class="row">
 					        	<a href="contacts">Contacts</a><br>
@@ -28,7 +28,7 @@
 					        	<a href="notices">Notifications</a><br>
 					    	</div>
 							<div class="row">
-					        	<a href="ajoutTypeTache">Creer type tache</a><br>
+					        	<a href="ajoutTypeTache">Créer un type de tâche</a><br>
 					    	</div>
 					    </div>
 					</div>
@@ -38,7 +38,7 @@
 		    <div class="col-6">
 		    	<div class="card md-3">
 		    		<div class="card-header">
-						<h1>Evenements à venir</h1>
+						<h1>Événements à venir</h1>
 					</div>
 					<div class="card-body">
 					    <div id="user_lists">
@@ -53,7 +53,7 @@
 												".$affichage->intitule."
 											</div>
 											<div class='card-body'>
-												<p>Date de début :".$affichage->dateDebut."</p>
+												<p>Date de début: ".$affichage->dateDebut."</p>
 											</div>
 										</div>
 									";

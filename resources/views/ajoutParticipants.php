@@ -12,13 +12,13 @@
 		</div>
 		<div class="row">
 			<div class="col-4">
-				<label>Participant</label> 
+				<label>Participants</label> 
 			</div>
 			<div class="col-4">
 				<label>Favoris</label> 
 			</div>
 			<div class="col-4">
-				<label>Utilisateur</label> 
+				<label>Utilisateurs</label> 
 			</div>
 		</div>
 		<div class="row">
