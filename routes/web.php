@@ -149,7 +149,7 @@ Route::post('/modifTask/{tache_id}','ControllerTache@modifierTache');
 
 
 Route::post('/','ControllerConnexion@connexion');
-Route::post('public/deconnexion','ControllerConnexion@deconnexion');
+Route::post('/deconnexion','ControllerConnexion@deconnexion');
 Route::post('/inscription','ControllerInscription@inscription');
 
 
