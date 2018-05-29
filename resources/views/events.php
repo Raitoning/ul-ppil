@@ -15,14 +15,14 @@
 					use App\Http\Controllers\ControllerEvenement;
 					$events = ControllerEvenement::getUserEvents();
 					foreach($events as $event){
-						echo "<div class='card md-3'>
-						<div class='card-header'>
-						<a href='event/".$event->evenement_id."' style='font-size:20px;'>".$event->intitule."</a>
+						echo "<div class='card border-primary md-2'>
+						<div class='card-header bg-info'>
+						<a href='event/".$event->evenement_id."' class='text-light' style='font-size:20px;'>".$event->intitule."</a>
 						</div>
 						<div class='card-body'>
-						<p>Date de début: ".$event->dateDebut."</p>
-						<p>Date de fin: ".$event->dateFin."</p>
-						<p>Description: ".$event->description."</p>
+						<p>Date de début: ".$event->dateDebut."
+						<br>Date de fin: ".$event->dateFin."
+						<br>Description: ".$event->description."</p>
 						</div>
 						</div>";
 					}
@@ -37,8 +37,8 @@
 					$events = ControllerEvenement::getPublicsEvents();
 					foreach($events as $event){
 						echo "<div class='card'>
-						<div class='card-header'>
-						<a href='event/".$event->evenement_id."'style='font-size:20px;'>".$event->intitule."</a>
+						<div class='card-header bg-secondary'>
+						<a href='event/".$event->evenement_id."' class='text-light'  style='font-size:20px;'>".$event->intitule."</a>
 						</div>
 						<div class='card-body'>
 						<p>Date de début: ".$event->dateDebut."</p>
