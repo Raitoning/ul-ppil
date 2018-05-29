@@ -1,0 +1,54 @@
+Rapport Notifications (Lucas)
+
+
+
+	- Général : 
+
+		- Note 01 : A partir de 3 notifications l'affichage devient un peu chaotique (Deux alignés en dessous du "Bienvenue", puis une sur la gauche et enfin toutes les autres en dessous prenant la totalité de la largeur). 
+
+		- Note 02 : On peut litéralement spammer quelqu'un en lui faisant la même demande en boucle (ça semble compliqué à éviter ceci dit).
+
+
+
+	- Inscription à un événement :
+
+		- Erreur 01 : La notification de souhait d'inscription reçue par le propriétaire de l'événement n'est pas supprimée lors du refus.
+	
+		- Erreur 02 : Un utilisateur peut demander plusieurs fois à être inscrit à un événement, ce qui va générer autant de notifications.
+    			      Le propriétaire pourra alors accepter plusieurs de ces notifications ce qui va inscrire plusieurs fois l'utilisateur au même événement.
+			
+			- Correction : Rendre unique la demande d'inscription d'un utilisateur à un événement.
+
+
+
+	- Désinscription d'un événement :
+
+		- Erreur 01 : La notification de désinscription d'un participant reçue par le propriétaire se résume au pseudo du participant.
+		
+
+
+	- Changement de droits :
+
+		- Note 01 : Lors d'une demande de chamgement de droit le propriétaire ne peut pas accepter/refuser la notif, c'est voulu ? (ça reste juste une notification d'information).
+
+		- Note 02 : Un utilisateur non inscrit à un événement peut quand même faire la demande pour y changer ses droits (ce qui entraîne une notification).
+
+		- Note 03 : Un participant dont les droits sont changé n'en est pas notifié.
+
+
+
+	- Invitation à un événement :
+		
+		- Erreur 01 : L'utilisateur invité à un événement reçoit une notification qu'il ne peut pas accepter/refuser et n'y est pas inscrit d'office non plus, 
+			      malgré le message de la notification ( "bob vous a ajouté à un l'evenement Test02").
+
+			- Correction : Soit changer le message qui prête à tort, soit laisser la possibilité à l'utilisateur invité d'accepter/refuser la notification.
+
+
+
+	- Suppression d'un événement :
+
+		- Note 01 : Le propriétaire de l'événement reçoit tout de même une notification lorsqu'il supprime un de ses événements.
+
+		- Note 02 : Le message de la notification est peut-être pas assez explicite : "pseudo a supprimé son evenement".
+			    Il serait peut-être mieux de préciser l'intitulé de l'événement supprimé.
