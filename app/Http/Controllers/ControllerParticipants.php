@@ -133,7 +133,7 @@ class ControllerParticipants extends Controller
 		$droit = $request->rights;
 		$event = evenement::find($event_id);
 		$tmp = $event->utilisateur()->updateExistingPivot($user_id,['droit' => $droit]);
-		
+		NotifController::notifChangementDroit(Session::get('utilisateur')->utilisateur_id,$user_id,$event_id);
 		if($droit == "proprietaire"){
 			$event = evenement::find($event_id);
 			$event->utilisateur()->updateExistingPivot(Session::get('utilisateur')->utilisateur_id,['droit' => 'edition']);

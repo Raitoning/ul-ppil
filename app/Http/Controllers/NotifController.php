@@ -85,6 +85,7 @@ class NotifController extends Controller
     }
 
     public static function notifSupprEvenement($id_emetteur, $id_recepteur, $id_evenement){
+		Notification::where('id_module','=',$id_evenement)->delete();
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'evenement', 'suppression', '', $id_evenement]);
     }
@@ -94,9 +95,16 @@ class NotifController extends Controller
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'droit', 'ajout', '', $id_evenement]);
     }
-        public static function notifAccordDroit($id_emetteur, $id_recepteur, $id_evenement){
+	
+    public static function notifAccordDroit($id_emetteur, $id_recepteur, $id_evenement){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'droit', 'accord', '', $id_evenement]);
+    }
+
+
+    public static function notifChangementDroit($id_emetteur, $id_recepteur, $id_evenement){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'droit', 'changement', '', $id_evenement]);
     }
 
     public static function notifRefusDroit($id_emetteur, $id_recepteur, $id_evenement){
@@ -186,9 +194,11 @@ class NotifController extends Controller
           switch($notif->action){
             case 'ajout':
                 $this->notifRefusEvenement($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id) ;
+				$this->supprimerNotif($notif->notification_id);
             break;
             case 'rejoindre':
                 $this->notifRefusEvenementPublic($notif->id_recepteur, $notif->id_emetteur,$evenement->evenement_id) ;
+				$this->supprimerNotif($notif->notification_id);
             break;
           }
         break;
@@ -233,7 +243,7 @@ class NotifController extends Controller
           $evenement = DB::table('evenement')->where('evenement_id', $notification->id_module)->first();
           switch($notification->action){
             case 'ajout':
-                $message .= 'vous a ajouté à un l\'evenement '.$evenement->intitule;
+                $message .= 'veux vous ajouter à un l\'evenement '.$evenement->intitule;
             break;
             case 'suppression':
                 if($notification->type == 'invitation'){
@@ -273,6 +283,9 @@ class NotifController extends Controller
             break;
             case 'refus':
               $message .= 'refuse votre demande d\'édition dans l\'evenement '.$evenement->intitule;
+            break;
+			case 'changement':
+              $message .= 'à changé vos droit dans l\'evenement : '.$evenement->intitule;
             break;
           }
         break;
