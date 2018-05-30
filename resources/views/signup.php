@@ -31,7 +31,7 @@
 					<div class="form-group">
 
 						<label for="pseudo">Nom d'utilisateur:</label>
-						<input type="text" placeholder="Pseudo" class="form-control" name="pseudo" required>
+						<input type="text" placeholder="Pseudo" class="form-control" name="pseudo" minlength="3" required>
 						<small class="form-text text-muted">Sera utilisé pour vous connecter</small>
 					</div>
 
@@ -44,7 +44,7 @@
 					<div class="form-group">
 
 						<label for="mdp">Mot de passe:</label>
-						<input type="password" id="mdp" class="form-control" placeholder="Mot de passe" name="mdp" required>
+						<input type="password" id="mdp" class="form-control" placeholder="Mot de passe" name="mdp" minlength="3" required>
 					</div>
 
 					<div class="form-group">

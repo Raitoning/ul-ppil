@@ -43,7 +43,7 @@
 									</div>
 									<div class="form-group">
 										<label>Lieu : </label><br>
-										<input type="text" class="form-control" placeholder="Lieu" name="lieu" maxlength="250" value=<?php echo $event->lieu; ?> required><br><br>
+										<input type="text" class="form-control" placeholder="Lieu" name="lieu" maxlength="250" value="<?php echo $event->lieu; ?>" required><br><br>
 									</div>
 								</div>
 								<div id="tâches" class="card md-3">

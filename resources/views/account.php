@@ -30,7 +30,7 @@
 					<div class="form-group">
 
 						<label for="pseudo">Nom d'utilisateur:</label>
-						<input type="text" placeholder="Pseudo" name="pseudo" class="form-control" value=<?php echo Session::get( 'utilisateur')->pseudo; ?> required>
+						<input type="text" placeholder="Pseudo" name="pseudo" class="form-control" value="<?php echo Session::get( 'utilisateur')->pseudo; ?>" required>
 					</div>
 
 					<div class="form-group">
@@ -96,6 +96,7 @@
 					<!-- HACK: Déplacer le bouton en dessous-->
 					<br>
 					<input type="submit" id="register" class="btn btn-primary" value="Appliquer">
+					<input type="button" class="btn btn-danger" onclick="location.href='supprimerCompte'" value="Supprimer ce compte" />
 
 					<?php echo csrf_field(); ?>
 				</form>

@@ -27,7 +27,7 @@ include("header.php");
 			<?php
 			use App\Http\Controllers\NotifController;
 			foreach ($notices as $notice) {
-				if($notice->action == "rejoindre" || ($notice->action == "ajout" && ($notice->module == "evenement" ||$notice->module == "tache"))){
+				if($notice->action == "rejoindre" || ($notice->action == "ajout" && ($notice->module == "evenement" ||$notice->module == "tache"  || $notice->module == "droit") || $notice->action == "proprio")){
 					echo '
 					<div class="card-body">
 

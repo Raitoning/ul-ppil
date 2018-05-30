@@ -30,19 +30,19 @@
 
 					<div class="form-group">
 
-						<label>Nom de l'événement:</label>
-						<input type="text" class="form-control" placeholder="Nom de l'évènement*" name="name" maxlength="255">
+						<label>Nom de l'événement* :</label>
+						<input type="text" class="form-control" placeholder="Nom de l'évènement" name="name" maxlength="255">
 					</div>
 
 					<div class="form-group">
 
-						<label>date de début*: </label>
+						<label>date de début* : </label>
 						<input type="date" class="form-control" name="dateDeb">
 					</div>
 
 					<div class="form-group">
 
-						<label>date de fin*: </label>
+						<label>date de fin* : </label>
 						<input type="date" class="form-control" name="dateFin">
 					</div>
 
@@ -66,14 +66,14 @@
 
 					<div class="form-group">
 
-						<label>Description:</label>
-						<input type="text" class="form-control" placeholder="Description*" name="desc" maxlength="250">
+						<label>Description* :</label>
+						<input type="text" class="form-control" placeholder="Description" name="desc" maxlength="250">
 					</div>
 
 					<div class="form-group">
 
-						<label>Lieu: </label>
-						<input type="text" class="form-control" placeholder="Lieu*" name="lieu" maxlength="250">
+						<label>Lieu* : </label>
+						<input type="text" class="form-control" placeholder="Lieu" name="lieu" maxlength="250">
 					</div>
 
 					<div class="form-check">

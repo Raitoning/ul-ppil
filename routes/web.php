@@ -132,6 +132,7 @@ Route::get('/event/participants/{event_id}',function($event_id){
   else return redirect('login');
 });
 
+Route::get('/event/changerDroits/{id_event}','ControllerParticipants@demandeDroits');
 Route::get('/event/modifEvent/suppression/{id_event}','ControllerEvenement@supprimerEvenement');
 
 
@@ -182,7 +183,7 @@ Route::post('/inscription','ControllerInscription@inscription');
 
 
 Route::post('/account','ControllerUpdate@updateInfo');
-Route::post('/supprimerCompte','ControllerConnexion@supprimerCompte');
+Route::get('/supprimerCompte','ControllerConnexion@supprimerCompte');
 
 Route::get('/supprimerContact/{pseudo}','ControllerContacts@supprimerContact');
 Route::get('/ajoutContact/{pseudo}','ControllerContacts@ajoutContact');
