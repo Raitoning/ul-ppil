@@ -15,7 +15,7 @@ Session::put('typeTache',$type);
 
 			<div class="card-body" style="display : flex; justify-content: space-around;">
 				<div class="col-6">
-					<form action="/event/newTask/<?php echo $event; ?>/photo" method="post">
+					<form enctype="multipart/form-data" action="/event/newTask/<?php echo $event; ?>/photo" method="post">
 						<br>
 						<div class="form-group">
 							<label>Nom de la tâche :</label>
@@ -90,12 +90,10 @@ Session::put('typeTache',$type);
 			$i = 0;
 			while($i < $type->photo){
 				echo'
-				<fieldset>
 				  <p>
 					<label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Envoyer l\'image :</label>
-					<input name="fichier" type="file" id="fichier_a_uploader" name="photo'.$i.'" />
+					<input type="file" name="photo'.$i.'" multiple/>
 				  </p>
-				</fieldset>
 				';
 				$i++;
 			}

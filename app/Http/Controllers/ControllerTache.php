@@ -154,10 +154,6 @@ class ControllerTache extends Controller
 					$tmp->quantiteTotal = $request->quantity;
 				}
 				
-				/*$i = 0;
-				while($i < Session::get('typeTache')->photo){
-					//ajouter text;
-				}*/
 				
 				$tmp->evenement_evenement_id = $event;
 				$tmp->typetache_typetache_id = Session::get('typeTache')->typetache_id;
@@ -176,23 +172,28 @@ class ControllerTache extends Controller
 					$i++;
 				}
 				
+				if(!empty($request->participants))
+					foreach($request->participants as $user){
+						$p = utilisateur::where('utilisateur_id','=',$user)->first();
+						$p->tache()->attach($tmp->tache_id,['quantite' => 0]);
+					}
+				
+				
+				$i = 0;
 
-				foreach($request->participants as $user){
-					NotifController::notifAjoutTache(Session::get('utilisateur')->utilisateur_id, $user,$tmp->tache_id) ;
-					/*$p = utilisateur::where('utilisateur_id','=',$user)->first();
-					$p->tache()->attach($tmp->tache_id,['quantite' => 0]);*/
+				while($i < Session::get('typeTache')->photo){
+					$photo = $request->file('photo'.$i);
+					$photo->move('images',$event.$i.$tmp->tache_id.$request->file('photo'.$i)->getClientOriginalName());
+					
+					$photoinsert = new photo();
+					$photoinsert->url = 'images/'.$event.$i.$tmp->tache_id.$request->file('photo'.$i)->getClientOriginalName();
+					$photoinsert->save();
+					
+					$tache = tache::where('tache_id','=',$tmp->tache_id)->first();
+					$tmp->photo()->attach($photoinsert->photo_id);
+					
+					$i++;
 				}
-				
-				
-				
-
-				/*if( !empty($_FILES['fichier']['name']) ){
-					move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage);
-				}
-				else
-				{
-					move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage);
-				}*/
 
 				return redirect('/event/'.$event);
 			}	
