@@ -3,13 +3,6 @@ $link = $_SERVER['PHP_SELF'];
 $event = substr($link, strrpos($link, '/') + 1);
 ?>
 
-<div class="col-2">
-
-	<input type="button" class="btn btn-primary" onclick="location.href='taskType'" value="Retour" />
-</div>
-
-<br>
-
 <div class="content justify-content-center d-flex">
 
 	<div class="col-10">
