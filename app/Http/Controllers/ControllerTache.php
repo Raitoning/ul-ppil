@@ -13,44 +13,12 @@ use App\models\utilisateur;
 use App\models\tache;
 use App\models\photo;
 use App\models\typetache;
+use App\models\text;
 
 use Illuminate\Support\Facades\DB;
 
 class ControllerTache extends Controller
 {
-
-
-
-
-	public function newTask(Request $request){
-		$link = $_SERVER['PHP_SELF'];
-		$event = substr($link, strrpos($link, '/') + 1);
-	//	$task = substr($link, strrpos($link, '/') + 2);
-		if($request->task == "" || $request->desc == "" ){
-			Session::put('erreurFormulaire','Veuillez remplir tout les champs obligatoires.');
-			return view("newTask");
-		}
-
-		$evenement_id = $event;
-		$typetache_id = 1;
-
-		$tache = new tache();
-		$tache->nom = $request->task; // Nom de la tache (max 255char)
-		$tache->description = $request->desc ; // Description de la tache (max 255char)
-		$tache->quantiteTotal = $request->quantity; // SI elle est de type quentitative (max 999999)
-		$tache->dateFin = '2018-5-30'; // SI elle est de type datedefin , FORMAT : 'YYYY-MM-DD' , Exemple '2018-5-17'
-		$tache->evenement_evenement_id = $evenement_id;
-		$tache_id=$_POST['typetache'];
-		$tache->typetache_typetache_id =$tache_id ;
-
-		$tache->save();
-
-	//	$this->getTaskId($tache);
-
-		return redirect('/event/'.$event)->with("Text","Nouvel tache créé !");
-
-		}
-
 		public static function getTaskInfo($tache_id){
 			$task = tache::where('tache_id',$tache_id)->first();
 			return $task;
@@ -165,12 +133,64 @@ class ControllerTache extends Controller
 			$tmp = typetache::where('typetache_id','=',$request->typetache)->first();
 			return view('newTask',['type' => $tmp,'event' => $request->ev]);
 		}
+		
+		public static function ajouterTache(Request $request,$event){
+			
+			$tmp = new tache();
+			$tmp->nom = $request->task;
+			$tmp->description = $request->desc;
+			if(Session::has('typeTache')){
+				if(Session::get('typeTache')->datefin >= 1)
+					$tmp->dateFin = $request->datefin;
+				
+				if(Session::get('typeTache')->quantite >= 1){
+					$tmp->quantiteTotal = $request->quantity;
+				}
+				
+				/*$i = 0;
+				while($i < Session::get('typeTache')->photo){
+					//ajouter text;
+				}*/
+				
+				$tmp->evenement_evenement_id = $event;
+				$tmp->typetache_typetache_id = Session::get('typeTache')->typetache_id;
+				
+				$tmp->save();
+				
+				//text
+				$i = 0;
+				while($i < Session::get('typeTache')->texte){
+					$t = new text();
+					$t->texte = $request->{'text'.$i};
+					$t->save();
+					$tache = tache::where('tache_id','=',$tmp->tache_id)->first();
+					$tache->text()->attach($t->text_id);
+					
+					$i++;
+				}
+				
 
-	}
+				foreach($request->participants as $user){
+					$p = utilisateur::where('utilisateur_id','=',$user)->first();
+					$p->tache()->attach($tmp->tache_id,['quantite' => 0]);
+				}
+				
+				
+				
 
+				/*if( !empty($_FILES['fichier']['name']) ){
+					move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage);
+				}
+				else
+				{
+					move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage);
+				}*/
 
+				return redirect('/event/'.$event);
+			}
+			
+			
 
-
-
-
+		}
+}
 ?>

@@ -3,7 +3,7 @@ $link = $_SERVER['PHP_SELF'];
 use App\Http\Controllers\ControllerTypeTache;
 use App\Http\Controllers\ControllerParticipants;
 $utilisateur = Session::get('utilisateur')->utilisateur_id;
-$tasks = ControllerTypeTache::getTypeTask($utilisateur);
+Session::put('typeTache',$type);
 ?>
 
 <div class="d-flex justify-content-center align-items-center container">
@@ -13,17 +13,9 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 				<h1>Creer une tâche:</h1>
 			</div>
 
-			<?php if(Session::has('erreurFormulaire')){
-				echo "<div class='alert alert-danger' role='alert'>"
-					.Session::get('erreurFormulaire').
-					"</div>";
-					Session::forget('erreurFormulaire');
-				}
-				?>
-
 			<div class="card-body" style="display : flex; justify-content: space-around;">
 				<div class="col-6">
-					<form action="" method="post">
+					<form action="/event/newTask/<?php echo $event; ?>/photo" method="post">
 						<br>
 						<div class="form-group">
 							<label>Nom de la tâche :</label>
@@ -39,18 +31,13 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 							<br>
 							<br>
 						</div>
-						<?php
-						$i = 0;
-						while($i < $type->quantite){
-							?>
 						<div class="form-group">
-							<label>Quantité <?php echo $i+1 ?> :</label>
+							<label>Quantité :</label>
 							<br>
-							<input type="text" placeholder="Quantité" name="quantity<?php echo $i+1?>">
+							<input type="text" placeholder="Quantité" name="quantity">
 							<br>
 							<br>
 						</div>
-						<?php $i++; }?>
 						
 						<?php
 						if($type->datefin == 1){
@@ -71,15 +58,12 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 						<div class="form-group">
 							<label>Texte <?php echo $i+1 ?> :</label>
 							<br>
-							<input type="text" placeholder="Text" name="text<?php echo $i+1?>">
+							<input type="text" placeholder="Text" name="text<?php echo $i?>">
 							<br>
 							<br>
 						</div>
 						<?php $i++; }?>
 
-						<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo " $event "; ?>';" value="Retour" />
-						<input type="submit" id="creer" class="btn btn-primary" value="Creer">
-						<?php echo csrf_field(); ?>
 				</div>
 				<div class="col-6">
 					<div class="card md-3">
@@ -88,12 +72,11 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 						</div>
 						<div class="card-body">
 							<?php
-
+							$i = 0;
 							$participants = App\Http\Controllers\ControllerParticipants::getParticipants($event);
 								foreach($participants as $participant){
-									echo "<li class='list-group-item'><input type='checkbox' name='participants[]' value=.$participant->utilisateur_id.>".$participant->pseudo."</li></a>";
-
-
+									echo "<li class='list-group-item'><input type='checkbox' name='participants[]' value=$participant->utilisateur_id>".$participant->pseudo."</li></a>";
+									$i++;
 								}
 
 							?>
@@ -101,6 +84,30 @@ $tasks = ControllerTypeTache::getTypeTask($utilisateur);
 					</div>
 				</div>
 			</div>
+			
+			<div class='col-12'>
+			<?php 
+			$i = 0;
+			while($i < $type->photo){
+				echo'
+				<fieldset>
+				  <p>
+					<label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Envoyer l\'image :</label>
+					<input name="fichier" type="file" id="fichier_a_uploader" name="photo'.$i.'" />
+				  </p>
+				</fieldset>
+				';
+				$i++;
+			}
+			?>
+			
+						
+			<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo " $event "; ?>';" value="Retour" />
+			<input type="submit" id="creer" class="btn btn-primary" value="Creer">
+			<?php echo csrf_field(); ?>
+			</div>
+
+			
 			</form>
 		</div>
 	</div>
