@@ -167,6 +167,15 @@ CREATE TABLE `typetache` (
   `quantite` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `typetache`
+--
+
+INSERT INTO `typetache` (`typetache_id`, `nomtypetache`, `photo`, `texte`, `datefin`, `quantite`) VALUES
+(1, 'Basic', 0, 0, 0, 0),
+(2, 'Quantitative', 0, 0, 0, 1),
+(3, 'Datée', 0, 0, 1, 0);
+
 -- --------------------------------------------------------
 
 --
