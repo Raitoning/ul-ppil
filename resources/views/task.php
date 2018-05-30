@@ -83,7 +83,7 @@
                                                                             </div>
 
                                                                                 <div class='col-auto'>
-                                                                                    <input type='button' class='btn btn-danger' onclick='location.href=\"/".$util->utilisateur_id."\";' value='Supprimer' />
+                                                                                    <input type='button' class='btn btn-danger' onclick='location.href=\"/event/task/supprParticipant/".$tache_id."/".$util->utilisateur_id."\";' value='Supprimer' />
                                                                                 </div>
                                                                             </li>
                                                                         </div>
@@ -108,7 +108,7 @@
 
                                 </div>
                             </div>
-                            
+
                             <?php 
                                 if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
                                     echo

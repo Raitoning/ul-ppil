@@ -36,10 +36,10 @@ class NotifController extends Controller
         $nouvelleNotif = 0;
         $notifications = notification::where('id_recepteur','=',$utilisateur_id)->get();
         foreach ($notifications as $notif) {
-        	if ($notif->vu == 0) {
-        		$nouvelleNotif++;
-        		
-        	}
+          if ($notif->vu == 0) {
+            $nouvelleNotif++;
+            
+          }
         }
       return $nouvelleNotif;
     }
@@ -48,8 +48,8 @@ class NotifController extends Controller
         $utilisateur_id = $utilisateur;
         $notifications = notification::where('id_recepteur','=',$utilisateur_id)->get();
         foreach ($notifications as $notif) {
-        	$notif->vu = 1;
-        	$notif->save();
+          $notif->vu = 1;
+          $notif->save();
         }
     }
 
@@ -170,6 +170,16 @@ class NotifController extends Controller
       [$id_emetteur, $id_recepteur, 'tache', 'suppression', '', $id_tache]);
     }
 
+    public static function notifDesinscTache($id_emetteur, $id_recepteur, $id_tache){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'tache', 'desinscription', '', $id_tache]);
+    }
+
+    public static function notifSupprUserTache($id_emetteur, $id_recepteur, $id_tache){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'tache', 'suppression', 'invitation', $id_tache]);
+    }
+
     public function supprimerNotif($id_notif){
      DB::delete('delete from notification where notification_id = (?)', [$id_notif]);
      return redirect('notices/');
@@ -216,13 +226,14 @@ class NotifController extends Controller
         break ;
 
         case 'tache':
-          $tache = DB::table('tache')->where('tache_id', $notification->id_module)->first();
-          $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_id)->first();
-          $this->notifAccordEvenement($notif->id_recepteur, $notif->id_emetteur,$tache->tache_id) ;
+          $tache = DB::table('tache')->where('tache_id', $notif->id_module)->first();
+          $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_evenement_id)->first();
 
-          //TODO: ajout utilisateur a la tache
+          controllerTache::accordParticipation($notif->id_recepteur, $tache->tache_id);
+          $this->notifAccordTache($notif->id_recepteur, $notif->id_emetteur, $tache->tache_id);
         break;
       }
+      $this->supprimerNotif($notif->notification_id) ;
       return redirect('notices/');
     }
 
@@ -261,13 +272,12 @@ class NotifController extends Controller
         break ;
 
         case 'tache':
-          $tache = DB::table('tache')->where('tache_id', $notification->id_module)->first();
-          $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_id)->first();
-          $this->notifRefusEvenement($notif->id_recepteur, $notif->id_emetteur,$tache->tache_id) ;
+          $tache = DB::table('tache')->where('tache_id', $notif->id_module)->first();
+          $this->notifRefusTache($notif->id_recepteur, $notif->id_emetteur,$tache->tache_id) ;
 
-          //TODO: ajout utilisateur a la tache
         break;
       }
+      $this->supprimerNotif($notif->notification_id) ;
       return redirect('notices/');
     }
 
@@ -354,7 +364,7 @@ class NotifController extends Controller
         case 'tache':
 
           $tache = DB::table('tache')->where('tache_id', $notification->id_module)->first();
-          $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_id)->first();
+          $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_evenement_id)->first();
           switch($notification->action){
             case 'ajout':
               $message .= 'vous a assigné la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule ;
@@ -371,6 +381,9 @@ class NotifController extends Controller
             break;
             case 'refus':
               $message .= 'a refusé de participer à la tâche ' .$tache->nom.' de l\'événement '.$evenement->intitule;
+            break;
+            case 'desinscription':
+              $message .= 'ne participe plus à la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule;
             break;
           }
         break;

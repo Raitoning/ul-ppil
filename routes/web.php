@@ -170,6 +170,9 @@ Route::get('/modifTask/{tache_id}',function($tache_id){
 
 Route::post('/modifTask/{tache_id}','ControllerTache@modifierTache');
 
+Route::get('/event/task/supprParticipant/{id_task}/{id_user}','ControllerTache@supprParticipants');
+Route::get('/event/task/desinscription/{task_id}','ControllerTache@desinscription');
+
 
 
 

@@ -39,6 +39,7 @@ class ControllerTache extends Controller
       $tache->delete();
 
 		}
+
 		public static function affecterUserTache($tache){
 			$tache_id = $tache->tache_id;
 			$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
@@ -46,16 +47,22 @@ class ControllerTache extends Controller
 			$quantite = 0; // Quentite de contribution si on est en type avec quentite
 			$tache->utilisateur()->attach($utilisateur_id,['quantite'=>$quantite]);
 		}
+
+
 		public static function creerText(){
 			$text = new text();
 			$text->texte = $request; // Le text a ajoutée ( /!\ max 255char)
 			$text->save();
 		}
+
+
 		public static function creerPhoto(){
 		$photo = new photo();
 		$photo->url ='salusaluttest' ; // L'URL de la photo ajoutée ( /!\ max 255char)
 		$photo->save();
 		}
+
+
 		public static function ajouterTextTache( $tache,$text){
 			$tache_id = $tache->tache_id;
 			$text_id = $text->text_id;
@@ -171,8 +178,9 @@ class ControllerTache extends Controller
 				
 
 				foreach($request->participants as $user){
-					$p = utilisateur::where('utilisateur_id','=',$user)->first();
-					$p->tache()->attach($tmp->tache_id,['quantite' => 0]);
+					NotifController::notifAjoutTache(Session::get('utilisateur')->utilisateur_id, $user,$tmp->tache_id) ;
+					/*$p = utilisateur::where('utilisateur_id','=',$user)->first();
+					$p->tache()->attach($tmp->tache_id,['quantite' => 0]);*/
 				}
 				
 				
@@ -190,6 +198,45 @@ class ControllerTache extends Controller
 			}	
 
 		}
+
+
+		public static function accordParticipation($id_user, $id_task){
+			if(Session::has('utilisateur')){
+
+				//ajout de l'utilisateur à la tache
+				$p = utilisateur::where('utilisateur_id','=',$id_user)->first();
+				$p->tache()->attach($id_task,['quantite' => 0]);
+				
+				return redirect('/event/task/'.$id_task);
+				
+			}
+		}
+
+		public static function desinscription($task_id){
+			if(Session::has('utilisateur')){
+					$task = tache::where('tache_id','=',$task_id)->first();
+
+					$event = evenement::where('evenement_id','=',$task->evenement_evenement_id)->first();
+					$proprietaire = $event->utilisateur()->wherePivot('droit', 'proprietaire')->first();
+
+					$task->utilisateur()->detach(Session::get('utilisateur')->utilisateur_id);
+					NotifController::notifDesinscTache(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $task_id) ;
+					return redirect('/event/task/'.$task_id);
+			}
+			
+		}
+
+		public static function supprParticipants($task_id, $user_id){
+			if(Session::has('utilisateur')){
+					$task = tache::where('tache_id','=',$task_id)->first();
+
+					$task->utilisateur()->detach($user_id);
+					NotifController::notifSupprUserTache(Session::get('utilisateur')->utilisateur_id, $user_id, $task_id) ;
+					return redirect('/event/task/'.$task_id);
+			}
+			
+		}
+
 
 		public static function getParticipants($task_id){
 			$task = tache::where('tache_id',$task_id)->first();
