@@ -20,7 +20,7 @@
 
 			<div class="card-header bg-info text-white">
 
-				<h5>Évènements Publics</h5>
+				<h5>Événements Publics</h5>
 			</div>
 
 			<div class="card-body">

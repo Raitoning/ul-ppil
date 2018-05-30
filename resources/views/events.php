@@ -16,7 +16,7 @@
 
 				<div class="card-header bg-info text-white">
 
-					<h5>Mes évènements</h5>
+					<h5>Mes événements</h5>
 				</div>
 
 				<div class="card-body">
@@ -47,7 +47,7 @@
 
 				<div class="card-header bg-info text-white">
 
-					<h5 class="card-title">Évènements publics</h5>
+					<h5 class="card-title">Événements publics</h5>
 				</div>
 
 				<div class="card-body">

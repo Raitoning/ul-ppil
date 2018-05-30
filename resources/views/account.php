@@ -15,7 +15,7 @@
 
 			<div class="card-header bg-info text-white">
 
-				<h5>Option du compte</h5>
+				<h5>Options du compte</h5>
 			</div>
 
 			<div class="card-body">
@@ -79,7 +79,7 @@
 					<br>
 					<br>
 
-					<label>Reception d'email pour chaque notification: </label>
+					<label>Réception d'email pour chaque notification: </label>
 
 					<div class="form-check form-check-inline">
 

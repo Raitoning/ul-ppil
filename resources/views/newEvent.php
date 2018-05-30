@@ -13,7 +13,7 @@
 		<div class="card md-6">
 
 			<div class="card-header bg-info text-white">
-				<h5>Nouvel évènement</h5>
+				<h5>Nouvel événement</h5>
 			</div>
 
 			<?php if(Session::has('erreurInscription')){
@@ -30,7 +30,7 @@
 
 					<div class="form-group">
 
-						<label>Nom de l'évènement:</label>
+						<label>Nom de l'événement:</label>
 						<input type="text" class="form-control" placeholder="Nom de l'évènement*" name="name" maxlength="255">
 					</div>
 
@@ -88,7 +88,7 @@
 
 					<?php echo csrf_field(); ?>
 
-					<button type="submit" id="register" class="btn btn-success" value="creer l'evenement">Créer l'evenement</button </form>
+					<button type="submit" id="register" class="btn btn-success" value="crer l'evenement">Créer l'événement</button </form>
 			</div>
 		</div>
 	</div>

@@ -19,9 +19,9 @@
 
 					<h5 class="card-title">Menu principal</h5>
 
-					<a class="card-link" href="newEvent">Créer un nouvel évènement</a>
+					<a class="card-link" href="newEvent">Créer un nouvel événement</a>
 					<br>
-					<a class="card-link" href="events">Évènements</a>
+					<a class="card-link" href="events">Événements</a>
 					<br>
 					<a class="card-link" href="contacts">Contacts</a>
 					<br>
@@ -29,7 +29,7 @@
 					<br>
 					<a class="card-link" href="notices">Notifications</a>
 					<br>
-					<a class="card-link" href="ajoutTypeTache">Creer type tache</a>
+		        	<a href="taskType">Mes types de tâche</a>
 					<br>
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 
 				<div class="card-header bg-info text-white">
 
-					<h5>Évènements à venir</h5>
+					<h5>Événements à venir</h5>
 				</div>
 
 				<div class="card-body">

@@ -20,12 +20,12 @@ use App\Http\Controllers\ControllerTache;
 
 			<div class="card-header bg-info text-white">
 
-				<h5>Détails de l'évènement</h5>
+				<h5>Détails de l'événement</h5>
 			</div>
 
 			<div class="card-body">
 
-				<p class="card-text">Nom évènement:
+				<p class="card-text">Nom de l'événement:
 
 					<?php
 					//affichage du nom de l'évènement
@@ -36,7 +36,7 @@ use App\Http\Controllers\ControllerTache;
 
 				</p>
 
-				<p class="card-text">Description de l'évènement:
+				<p class="card-text">Description de l'événement:
 
 					<?php
 						//affichage descriptif de l'evenement
@@ -45,7 +45,7 @@ use App\Http\Controllers\ControllerTache;
 					?>
 				</p>
 
-				<p class="card-text">Cet évènement aura lieu à :
+				<p class="card-text">Cet événement aura lieu à :
 
 					<?php
 						//affichage lieu de l'evenement

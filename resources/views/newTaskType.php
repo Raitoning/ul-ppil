@@ -5,7 +5,7 @@ $event = substr($link, strrpos($link, '/') + 1);
 
 <div class="col-2">
 
-	<input type="button" class="btn btn-primary" onclick="location.href='accueil'" value="Retour" />
+	<input type="button" class="btn btn-primary" onclick="location.href='taskType'" value="Retour" />
 </div>
 
 <br>
@@ -28,13 +28,13 @@ $event = substr($link, strrpos($link, '/') + 1);
 					<div class="form-group ">
 
 						<label>Nom du type tâche :</label>
-						<input type="text" class="form-control" placeholder="Type de tache" name="nom">
+						<input type="text" class="form-control" placeholder="Type de tache" name="nom" required>
 					</div>
 
 					<div class="form-group">
 
 						<label for="text-input">Nombre de champs textuel</label>
-						<input class="form-control" type="number" min="0" value="0" id="text-input" name="text">
+						<input class="form-control" type="number" min="0" value="0" id="text-input" name="text" >
 					</div>
 
 					<div class="form-group">
@@ -61,12 +61,12 @@ $event = substr($link, strrpos($link, '/') + 1);
 
 						<div class="col-md-auto">
 
-							<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo " $event "; ?>';" value="Retour" />
+							<input type="button" class="btn btn-primary" onclick="location.href='/taskType';" value="Retour" />
 						</div>
 
 						<div class="col-md-auto">
 
-							<input type="submit" id="creer" class="btn btn-success" value="Creer">
+							<input type="submit" id="creer" class="btn btn-success" value="Créer">
 
 							<?php echo csrf_field(); ?>
 						</div>
