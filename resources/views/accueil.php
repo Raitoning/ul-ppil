@@ -34,7 +34,7 @@ $utilisateur = Session::get('utilisateur')->utilisateur_id;
 					use App\Http\Controllers\NotifController;
 					$vu = NotifController::ifVuNotif($utilisateur);
 					if ($vu>0) {
-						echo "<a class='card-link' href='notices' style='color:#f00'>Notifications : $vu</a>";
+						echo "<a class='card-link' href='notices'>Notifications <span class='badge badge-danger'>$vu</span></a>";
 					}
 						else {
 							echo "<a class='card-link' href='notices'>Notifications</a>";
