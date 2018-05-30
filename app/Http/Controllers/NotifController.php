@@ -27,8 +27,32 @@ class NotifController extends Controller
       foreach($notifications as $notification){
         $notices[] = $notification;
       }
+      $this-> vuNotifications($user->utilisateur_id);
       return view('notices', ['notices' => $notices]);
     }
+
+    public static function ifVuNotif($utilisateur){
+        $utilisateur_id = $utilisateur;
+        $nouvelleNotif = 0;
+        $notifications = notification::where('id_recepteur','=',$utilisateur_id)->get();
+        foreach ($notifications as $notif) {
+        	if ($notif->vu == 0) {
+        		$nouvelleNotif++;
+        		
+        	}
+        }
+      return $nouvelleNotif;
+    }
+
+    public static function vuNotifications($utilisateur){
+        $utilisateur_id = $utilisateur;
+        $notifications = notification::where('id_recepteur','=',$utilisateur_id)->get();
+        foreach ($notifications as $notif) {
+        	$notif->vu = 1;
+        	$notif->save();
+        }
+    }
+
     public static function notifAjoutContact($id_emetteur, $id_recepteur){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'contact', 'ajout', 'invitation', null]);
@@ -95,7 +119,7 @@ class NotifController extends Controller
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'droit', 'ajout', '', $id_evenement]);
     }
-  
+
     public static function notifAccordDroit($id_emetteur, $id_recepteur, $id_evenement){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'droit', 'accord', '', $id_evenement]);
@@ -156,11 +180,11 @@ class NotifController extends Controller
       $notif = DB::table('notification')->where('notification_id', $id_notif)->first();
 
       switch($notif->module){
-        
+
         case 'contact':
           $this->notifAccordContact($notif->id_recepteur, $notif->id_emetteur) ;
         break;
-        
+
         case 'evenement':
           $evenement = DB::table('evenement')->where('evenement_id', $notif->id_module)->first();
           switch($notif->action){
@@ -206,11 +230,11 @@ class NotifController extends Controller
       $notif = DB::table('notification')->where('notification_id', $id_notif)->first();
 
       switch($notif->module){
-        
+
         case 'contact':
           $this->notifRefusContact($notif->id_recepteur, $notif->id_emetteur) ;
         break;
-        
+
         case 'evenement':
           $evenement = DB::table('evenement')->where('evenement_id', $notif->id_module)->first();
           switch($notif->action){
@@ -354,4 +378,3 @@ class NotifController extends Controller
       return $message;
     }
 }
-
