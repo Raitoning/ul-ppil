@@ -3,6 +3,13 @@ $link = $_SERVER['PHP_SELF'];
 $event = substr($link, strrpos($link, '/') + 1);
 ?>
 
+<div class="col-2">
+
+	<input type="button" class="btn btn-primary" onclick="location.href='/taskType';" value="Retour" />
+</div>
+
+<br>
+
 <div class="content justify-content-center d-flex">
 
 	<div class="col-10">
@@ -27,7 +34,7 @@ $event = substr($link, strrpos($link, '/') + 1);
 					<div class="form-group">
 
 						<label for="text-input">Nombre de champs textuel</label>
-						<input class="form-control" type="number" min="0" value="0" id="text-input" name="text" >
+						<input class="form-control" type="number" min="0" value="0" id="text-input" name="text">
 					</div>
 
 					<div class="form-group">
@@ -51,11 +58,6 @@ $event = substr($link, strrpos($link, '/') + 1);
 					<br>
 
 					<div class="row">
-
-						<div class="col-md-auto">
-
-							<input type="button" class="btn btn-primary" onclick="location.href='/taskType';" value="Retour" />
-						</div>
 
 						<div class="col-md-auto">
 
