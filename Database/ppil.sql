@@ -172,7 +172,7 @@ CREATE TABLE `typetache` (
 --
 
 INSERT INTO `typetache` (`typetache_id`, `nomtypetache`, `photo`, `texte`, `datefin`, `quantite`) VALUES
-(1, 'Basic', 0, 0, 0, 0),
+(1, 'Basique', 0, 0, 0, 0),
 (2, 'Quantitative', 0, 0, 0, 1),
 (3, 'Datée', 0, 0, 1, 0);
 
