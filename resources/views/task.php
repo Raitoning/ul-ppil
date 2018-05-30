@@ -59,12 +59,66 @@
                                 <div id="participants">
 
                                     <label>Participants:
+                                        <ul class="list-group">
+                                                <?php   
+
+                                                    $utilisateurs = ControllerTache::getParticipants($tache_id);
+                                                    
+                                                    if(ControllerTache::estProprio($tache_id,Session::get('utilisateur')->utilisateur_id)) {
+
+                                                        foreach($utilisateurs as $util) {
+
+                                                            if($util->utilisateur_id != Session::get('utilisateur')->utilisateur_id) {
+
+                                                                echo "<form action='droits' method='post'>
+
+                                                                    <li class='list-group-item list-group-item-action'>
+
+                                                                        <div class='row'>
+
+                                                                            <div class='col-auto'>
+
+                                                                                ".$util->pseudo."
+
+                                                                            </div>
+
+                                                                                <div class='col-auto'>
+                                                                                    <input type='button' class='btn btn-danger' onclick='location.href=\"/".$util->utilisateur_id."\";' value='Supprimer' />
+                                                                                </div>
+                                                                            </li>
+                                                                        </div>
+
+                                                                        <input type='hidden' name='id_event' value=''>
+                                                                        <input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
+                                                                    </form>
+                                                                ";
+                                                            }
+                                                        }
+                                                    } else {
+
+                                                        foreach($utilisateurs as $util){
+
+                                                            echo "<li class='list-group-item list-group-item-action'>".$util->pseudo."</li>";
+                                                        }
+                                                    }
+                                                ?>
+                                            </ul>
                                         <br>
                                     </label>
 
                                 </div>
                             </div>
+                            
+                            <?php 
+                                if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
+                                    echo
+                                    "<div class=\"col-md-auto\">
+                                        <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
+                                    </div>" ;
+                                }
+                            ?>
                         </div>
+
                     </div>
                 </div>
 

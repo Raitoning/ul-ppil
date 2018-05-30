@@ -187,10 +187,33 @@ class ControllerTache extends Controller
 				}*/
 
 				return redirect('/event/'.$event);
-			}
-			
-			
+			}	
 
+		}
+
+		public static function getParticipants($task_id){
+			$task = tache::where('tache_id',$task_id)->first();
+
+		    $utilisateurs = $task->utilisateur;
+			return $utilisateurs;
+		}
+
+		public static function participe($user_id, $task_id){
+			$participants = ControllerTache::getParticipants($task_id);
+
+		foreach ($participants as $participant) {
+			if($participant->utilisateur_id == $user_id){
+				return true ;
+			}
+		}
+
+		return false ;
+		}
+
+		public static function estProprio($task_id, $user_id){
+
+			$task = tache::where('tache_id',$task_id)->first();
+			return ControllerParticipants::estProprio($task->evenement_evenement_id, $user_id) ;
 		}
 }
 ?>
