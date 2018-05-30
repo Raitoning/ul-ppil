@@ -138,7 +138,25 @@ class ControllerEvenement extends Controller
 		return redirect('/events/');
 	}
 
-
+	public static function getPlannedUserEvents(){
+		
+		$res = array();
+		$utilisateur_id = Session::get('utilisateur')->utilisateur_id;
+		$user = utilisateur::where('utilisateur_id', '=', $utilisateur_id)->first();
+		foreach ($user->evenement as $event) {
+		    //Chaque evenements de l'utilisateur (variable $user->evenement) dans la variable $event 
+		    if(!is_null($event->dateFin)){
+		    	if(!(strtotime($event->dateDebut) < time()-(1 * 23 * 58 * 60))){
+					array_push($res,$event);	
+		    	}
+		    }else{
+		    	array_push($res,$event);
+		    }
+		    
+		}
+		return $res;
+	}
+	
 	public static function getUserEvents(){
 		
 		$res = array();

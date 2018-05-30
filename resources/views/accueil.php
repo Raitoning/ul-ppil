@@ -48,7 +48,7 @@
 
 					<?php
 							use App\Http\Controllers\ControllerEvenement;
-							$liste = ControllerEvenement::getUserEvents();
+							$liste = ControllerEvenement::getPlannedUserEvents();
 							
 							foreach($liste as $affichage){
 								echo "
