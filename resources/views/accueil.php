@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?>
+<?php
+include 'header.php';
+$utilisateur = Session::get('utilisateur')->utilisateur_id;
+?>
 
 <div class="content justify-content-center d-flex">
 
@@ -27,7 +30,18 @@
 					<br>
 					<a class="card-link" href="account">Options du compte</a>
 					<br>
-					<a class="card-link" href="notices">Notifications</a>
+					<?php
+					use App\Http\Controllers\NotifController;
+					$vu = NotifController::ifVuNotif($utilisateur);
+					if ($vu>0) {
+						echo "<a class='card-link' href='notices' style='color:#f00'>Notifications : $vu</a>";
+					}
+						else {
+							echo "<a class='card-link' href='notices'>Notifications</a>";
+					 }?>
+
+
+
 					<br>
 		        	<a href="taskType">Mes types de tâche</a>
 					<br>
@@ -49,18 +63,18 @@
 					<?php
 							use App\Http\Controllers\ControllerEvenement;
 							$liste = ControllerEvenement::getPlannedUserEvents();
-							
+
 							foreach($liste as $affichage){
 								echo "
 								<div class='card md-3'>
-		
+
 									<div class='card-header bg-secondary text-white'>
-										
+
 										".$affichage->intitule."
 									</div>
-								
+
 									<div class='card-body'>
-										
+
 										<p>Date de début: ".$affichage->dateDebut."</p>
 									</div>
 							</div>
