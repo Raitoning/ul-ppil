@@ -1,0 +1,16 @@
+Rapport Divers 02 (Lucas)
+
+	- Inscription :
+		
+		- Erreur 01 : On peut s'inscrire avec des mdp ou pseudo de seulement 1 caractéres.
+			
+			- Correction : Imposer un nombre minimum de caractéres
+
+	- Option du compte : 
+
+		- Erreur 01 : Encore le problème du champs Nom d'utilisateur qui n'affiche que le premier mot du pseudo
+
+		- Erreur 02 : Choisir Amis pour Recevoir les notification met la valeur "amis" au lieu d'"ami" dans la colonne recevoirInvitation.
+
+
+	
