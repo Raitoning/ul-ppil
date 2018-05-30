@@ -1,0 +1,22 @@
+Rapport Divers 03 (Lucas)
+
+
+	- Evenement :
+		
+		- Ajout de participant :
+
+			- Note 01 : Ce serai mieux de réutiliser la nouvelle page des contact pour l'ajout de participant (surtout pour la recherche d'utilisateurs) 
+
+
+
+		- Demander à changer ses droits :
+
+			- Erreur 01 : Ca vient peut-être de chez moi mais lorsque un utilisateur demande à changer ses droits sur un événement je suis redirigé sur une page d'erreur
+				
+				- Message d'erreur : Sorry, the page you are looking for could not be found.  NotFoundHttpException in RouteCollection.php line 179
+
+		
+		
+		- Changement de droits : 
+	
+			- Erreur 01 : Donner ses droits de propriétaire semble seulement donner des droits d'édition (et le propriétaire reste le même)
