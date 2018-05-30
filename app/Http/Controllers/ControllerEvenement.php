@@ -158,7 +158,7 @@ class ControllerEvenement extends Controller
 		return $res;
 	}
 
-	public static function getPublicsEvents(){
+	public static function getPublicsEventsUsers(){
 		$res = array();
 		$events = evenement::where('public', '=', 1)->get();
 		foreach ($events as $event) {
@@ -171,6 +171,21 @@ class ControllerEvenement extends Controller
 			    	array_push($res,$event);
 			    }
 			}
+		}
+		return $res;
+	}
+
+	public static function getPublicsEvents(){
+		$res = array();
+		$events = evenement::where('public', '=', 1)->get();
+		foreach ($events as $event) {
+		    if(!is_null($event->dateFin)){
+		    	if(!($event->suppressionAutomatique == 1) && (strtotime($event->dateFin) > time()+(1 * 23 * 58 * 60))){
+					array_push($res,$event);	
+		    	}
+		    }else{
+		    	array_push($res,$event);
+		    }
 		}
 		return $res;
 	}

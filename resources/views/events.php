@@ -54,7 +54,7 @@
 
 					<?php
 						//affichage evenements publics
-						$events = ControllerEvenement::getPublicsEvents();
+						$events = ControllerEvenement::getPublicsEventsUsers();
 						foreach($events as $event){
 							echo "<div class='card'>
 								<div class='card-header bg-secondary'>
