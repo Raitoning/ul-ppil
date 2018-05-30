@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2018 at 02:22 PM
+-- Generation Time: May 30, 2018 at 05:08 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -44,7 +44,7 @@ CREATE TABLE `evenement` (
   `notification` int(1) NOT NULL,
   `intitule` varchar(255) NOT NULL,
   `dateDebut` date NOT NULL,
-  `dateFin` date,
+  `dateFin` date DEFAULT NULL,
   `description` varchar(255) NOT NULL,
   `lieu` varchar(255) NOT NULL,
   `suppressionAutomatique` int(1) NOT NULL DEFAULT '0'
@@ -69,13 +69,14 @@ CREATE TABLE `evenement_utilisateur` (
 --
 
 CREATE TABLE `notification` (
-  `notification_id` int(11) NOT NULL,
+  `notification_id` int(3) NOT NULL,
   `id_emetteur` int(11) NOT NULL,
   `id_recepteur` int(11) NOT NULL,
+  `vu` int(1) NOT NULL DEFAULT '0',
   `module` varchar(30) NOT NULL,
   `action` varchar(30) NOT NULL,
   `type` varchar(30) NOT NULL,
-  `id_module` int(11)
+  `id_module` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
