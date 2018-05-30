@@ -266,6 +266,32 @@ $tache = tache::where('tache_id','=',$tache_id)->first();
 $tache->utilisateur()->detach([$utilisateur_id]);
 
 //----------------------------------------------------------------------------------------------------------------//
+//----------------------------------------Nouvelle notification---------------------------------------------------//
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$nouvelleNotif = false;
+$notifications = notification::where('id_recepteur','=',$utilisateur_id)->get();
+foreach ($notifications as $notif) {
+	if ($notif->vu == 0) {
+		$nouvelleNotif = true;
+		break;
+	}
+}
+if ($nouvelleNotif) {
+	// Afficher le lien de notification en rouge
+}
+
+//----------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------Voir les notification-----------------------------------------------//
+
+$utilisateur_id = ID_DE_LUTILISATEUR;
+$notifications = notification::where('id_recepteur','=',$utilisateur_id)->get();
+foreach ($notifications as $notif) {
+	$notif->vu = 1;
+	$notif->save();
+}
+
+//----------------------------------------------------------------------------------------------------------------//
 //---------------------------------Acces aux champs des lien (eviter d'utiliser)----------------------------------//
 
 $evenement_id = 1;
