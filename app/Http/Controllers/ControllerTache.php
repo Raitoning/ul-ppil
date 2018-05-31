@@ -198,6 +198,40 @@ class ControllerTache extends Controller
 
 		}
 
+		public static function getUserEvent($event, $id_task){
+			$eventP = ControllerParticipants::getParticipants($event);
+			$tacheP = ControllerTache::getParticipants($id_task) ;
+
+			$participants = array();
+			$res = true ;
+
+			foreach ($eventP as $e) {
+				foreach ($tacheP as $t) {
+					if($e->utilisateur_id == $t->utilisateur_id){
+						$res = false ;
+					}
+				}
+				if( $res ){
+						array_push($participants,$e);
+				}
+				$res = true ;
+			}
+
+			return $participants ;
+		}
+
+		public function ajouter($id_task, $id_user){
+			if(Session::get('utilisateur')->utilisateur_id == $id_user){
+				$tache = tache::where('tache_id','=',$id_task)->first();
+				$p = utilisateur::where('utilisateur_id','=',$id_user)->first();
+				$p->tache()->attach($id_task,['quantite' => 0]);
+			}else{
+				NotifController::notifAjoutTache(Session::get('utilisateur')->utilisateur_id, $id_user, $id_task);	
+			}
+
+				return redirect('/event/task/ajoutParticipant/'.$id_task);
+		}
+
 		public function supprimerTache($task_id){
 			$tache = $this->getTaskInfo($task_id) ;
 			$event = $tache->evenement_evenement_id ; 

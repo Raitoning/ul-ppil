@@ -111,7 +111,7 @@
                                                                     <input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
                                                                 </form>
                                                             ";
-                                                            
+
                                                         }
                                                     } else {
 
@@ -135,6 +135,11 @@
                                         echo
                                         "<div class=\"col-md-auto\">
                                             <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='/event/task/valide/". $tache_id. "';\" value=\"Valider la tâche\" />
+                                        </div>" ;
+
+                                        echo
+                                        "<div class=\"col-md-auto\">
+                                            <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='/event/task/ajoutParticipant/". $tache_id. "';\" value=\"Ajouter participants\" />
                                         </div>" ;
                                     }
                                     if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
