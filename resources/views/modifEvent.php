@@ -37,7 +37,7 @@
 						
 							<div class="newEvent"><br>
 							
-								<div class="col-6">
+								<div class="col-10">
 								
 									<div class="form-group">
 									
