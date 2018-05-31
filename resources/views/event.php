@@ -92,7 +92,7 @@ use App\Http\Controllers\ControllerTache;
 							
 							if(! ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && ! ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id) && controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
 								echo "<div class=\"col-md-auto\">
-									<input type=\"button\" class=\"btn btn-success mt-1\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander à changer mes droits\" />
+									<input type=\"button\" class=\"btn btn-success mt-1\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander des droits\" />
 								</div>" ;
 							}
 							
