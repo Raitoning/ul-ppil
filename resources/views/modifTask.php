@@ -14,7 +14,7 @@ $event = ControllerTache::getEvent($id_task) ;
     <div class="col-10">
         <div class="card mb-3">
             <div class="card-header">
-                <h1>Modifictaion d'une tâche:</h1>
+                <h1>Modification d'une tâche:</h1>
             </div>
 
             <div class="card-body" style="display : flex; justify-content: space-around;">
