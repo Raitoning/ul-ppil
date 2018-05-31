@@ -49,27 +49,27 @@
 													
 														<div class='form-check form-check-inline'>
 
-															<label class='form-check-label'>
+															<label class='form-check-label mt-1'>
 																<input class='form-check-input' type='radio' name='rights' value='proprietaire' ";
 															if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "proprietaire") 
 																echo "checked";
-															echo "> Propriétaire<br>
+															echo "> Propriétaire
 															</label>
 														</div>
 
 														<div class='form-check form-check-inline'>
 
-															<label class='form-check-label'>
+															<label class='form-check-label mt-1'>
 																<input class='form-check-input' type='radio' name='rights' value='edition'";
 															if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "edition") 
 																echo "checked";
-															echo "> Edition<br>
+															echo "> Edition
 															</label>
 														</div>
 
 														<div class='form-check form-check-inline'>
 
-															<label class='form-check-label'>
+															<label class='form-check-label mt-1'>
 																<input class='form-check-input' type='radio' name='rights' value='aucun'"; 
 															if(ControllerParticipants::getDroit($event_id,$util->utilisateur_id) == "aucun") 
 																echo "checked";
@@ -84,8 +84,7 @@
 														".csrf_field()."
 														<input type='button' class='btn btn-danger' onclick='location.href=\"".$event_id."/".$util->utilisateur_id."\";' value='Supprimer' />
 													</div>
-												</li>
-											</div>
+										</li>
 
 											<input type='hidden' name='id_event' value='".$event_id."'>
 											<input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
@@ -109,10 +108,11 @@
 					if($tmp == "proprietaire" || $tmp == "edition") {
 
 						echo "<div class='col-auto'>
-							<input type='button' class='btn btn-primary' onclick='location.href=\"".$event_id."/ajoutUtilisateurs\";' value='Envoyer des invitations' />
+							<input type='button' class='btn btn-primary my-1' onclick='location.href=\"".$event_id."/ajoutUtilisateurs\";' value='Envoyer des invitations' />
 						</div>";
 					}
 				?>
+
 			</div>
 		</div>
 	</div>
