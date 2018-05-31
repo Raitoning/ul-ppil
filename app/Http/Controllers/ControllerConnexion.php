@@ -57,6 +57,8 @@ class ControllerConnexion extends Controller
 			    //Chaque evenements de l'utilisateur (variable $user->evenement) dans la variable $event 
 			    
 				if(ControllerParticipants::estProprio($event->evenement_id, $utilisateur_id)){
+					ControllerTache::supprTaches($event) ;
+					NotifController::supprNotifModule($event->evenement_id, "evenement") ;
 					$tmp = $event->utilisateur()->detach();
 					$event->delete();
 				}else{
@@ -64,6 +66,7 @@ class ControllerConnexion extends Controller
 				}
 			}
 
+			NotifController::supprNotifUser(Session::get('utilisateur')->utilisateur_id) ;
 			utilisateur::where('utilisateur_id',Session::get('utilisateur')->utilisateur_id)->delete();
 			Session::flush();
 			return redirect('/');

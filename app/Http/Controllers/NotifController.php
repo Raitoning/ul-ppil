@@ -200,6 +200,25 @@ class NotifController extends Controller
      return redirect('notices/');
     }
 
+    public static function supprNotifModule($id, $module){
+      $notifs = notification::where("module", "=", $module) ;
+
+      foreach ($notifs as $notif) {
+        if($notif->id_module == $id){
+          DB::delete('delete from notification where notification_id = (?)', [$notif->notification_id]);
+        }
+      }
+    }
+
+    public static function supprNotifUser($id_user){
+      $notifs = notification::get() ;
+
+      foreach ($notifs as $notif) {
+        if(($notif->id_emetteur == $id_user) || ($notif->id_recepteur == $id_user)){
+          DB::delete('delete from notification where notification_id = (?)', [$notif->notification_id]);
+        }
+      }
+    }
 
     public function accepterNotif($id_notif){
       $notif = DB::table('notification')->where('notification_id', $id_notif)->first();

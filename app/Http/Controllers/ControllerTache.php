@@ -205,6 +205,7 @@ class ControllerTache extends Controller
 			$tache->text()->detach() ;
 			$tache->photo()->detach() ;
 			$tache->delete() ;
+			NotifController::supprNotifModule($tache_id, "tache") ;
 
 			return redirect('/event/'.$event);
 		}
@@ -291,6 +292,20 @@ class ControllerTache extends Controller
 			$task = tache::where('tache_id',$task_id)->first();
 			$event = evenement::where('evenement_id', '=', $task->evenement_evenement_id)->first();
 			return $event ;
+		}
+
+		public static function supprTaches($event){
+			$taches = ControllerTache::getTask($event) ;
+
+			foreach ($taches as $tache) {
+				$tache = $this->getTaskInfo($task_id) ;
+				$event = $tache->evenement_evenement_id ; 
+				$tache->utilisateur()->detach() ;
+				$tache->text()->detach() ;
+				$tache->photo()->detach() ;
+				$tache->delete() ;
+				NotifController::supprNotifModule($tache_id, "tache") ;
+			}
 		}
 }
 ?>

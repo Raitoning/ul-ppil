@@ -123,16 +123,9 @@ class ControllerEvenement extends Controller
 	}
 
 	public static function supprimerEvenement($event_id){
-
-		$event = evenement::find($event_id);
-
-		$participants = ControllerParticipants::getParticipants($event_id);
-		foreach ($participants as $participant) {
-			if(Session::get('utilisateur')->utilisateur_id != $participant->utilisateur_id)
-				NotifController::notifSupprEvenement(Session::get('utilisateur')->utilisateur_id, $participant->utilisateur_id, $event_id) ;
-		}
-		$tmp = $event->utilisateur()->detach();
 		$evenement = evenement::where('evenement_id','=',$event_id)->first();
+		NotifController::supprNotifModule($evenement->evenement_id, "evenement") ;
+		$tmp = $evenement->utilisateur()->detach();
 		$evenement->delete();
 
 		return redirect('/events/');
