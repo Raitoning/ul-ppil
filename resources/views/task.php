@@ -110,24 +110,46 @@
                             </div>
 
                             <?php 
+                                if(!ControllerTache::estValide($tache_id)){
+                                    if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
+                                        echo
+                                        "<div class=\"col-md-auto\">
+                                            <input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='/event/task/modif/". $tache_id. "';\" value=\"Modifier\" />
+                                        </div>" ;
 
-                                if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
-                                    echo
-                                    "<div class=\"col-md-auto\">
-                                        <input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='/event/task/modif/". $tache_id. "';\" value=\"Modifier\" />
-                                    </div>" ;
-                                }
-                                if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
-                                    echo
-                                    "<div class=\"col-md-auto\">
-                                        <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
-                                    </div>" ;
+                                        echo
+                                        "<div class=\"col-md-auto\">
+                                            <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='/event/task/valide/". $tache_id. "';\" value=\"Valider la tâche\" />
+                                        </div>" ;
+                                    }
+                                    if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
+                                        echo
+                                        "<div class=\"col-md-auto\">
+                                            <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
+                                        </div>" ;
+                                    }else{
+                                        echo
+                                        "<div class=\"col-md-auto\">
+                                            <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='inscription/".$tache_id."';\" value=\"S'inscrire \" />
+                                        </div>" ; 
+                                    }
                                 }else{
-                                    echo
-                                    "<div class=\"col-md-auto\">
-                                        <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='inscription/".$tache_id."';\" value=\"S'inscrire \" />
-                                    </div>" ; 
+                                    
+                                    if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
+                                        echo
+                                        "<div class=\"col-md-auto\">
+                                            <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='/event/task/annuleValide/". $tache_id. "';\" value=\"Annuler la validation de la tâche\" />
+                                        </div>" ;
+                                    }
+
+                                    if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
+                                        echo
+                                        "<div class=\"col-md-auto\">
+                                            <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
+                                        </div>" ;
+                                    }
                                 }
+                                
                             ?>
                         </div>
 

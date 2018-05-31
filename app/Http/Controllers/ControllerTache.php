@@ -306,5 +306,22 @@ class ControllerTache extends Controller
 			NotifController::supprNotifModule($task_id, "tache") ;
 			}
 		}
+
+		public static function estValide($task_id){
+			$task = tache::where('tache_id',$task_id)->first();
+			 return $task->valide == 1 ;
+		}
+
+		public static function valideTache($task_id){
+			
+			tache::where('tache_id',$task_id)->update(['valide'=> 1]);
+			return redirect('/event/task/'.$task_id);
+
+		}
+
+		public static function annuleValideTache($task_id){
+			tache::where('tache_id',$task_id)->update(['valide'=> 0]);
+			return redirect('/event/task/'.$task_id);
+		}
 }
 ?>
