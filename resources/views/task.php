@@ -3,9 +3,14 @@
                     use App\Http\Controllers\ControllerEvenement;
                     use App\Http\Controllers\ControllerParticipants;
                     use App\Http\Controllers\ControllerTache;
+					use App\models\typetache;
+					use App\models\tache;
                                 
                     $taskInfo= ControllerTache::getTaskInfo($tache_id);
                     $event = ControllerTache::getEvent($tache_id);
+					
+					$type = typetache::where('typetache_id','=',$taskInfo->typetache_typetache_id)->first();
+					
                 ?>
 
                 <div class="col-2">
@@ -29,11 +34,9 @@
                                 <label>Nom de la tâche : </label>
 
                                 <?php
-                                    //affichage du nom de la tâche
 
-                                  //  foreach($tasks as $task){
                                       echo $taskInfo->nom;
-                                    //}
+
                                 ?>
 
                                 <div id="Desc">
@@ -43,19 +46,37 @@
                                     </label>
 
                                     <?php
-                                        //affichage descriptif de la tâche
                                       echo $taskInfo->description;
                                     ?>
                                 </div>
-
+								<?php if($type->quantite >= 1){ ?>
                                 <div id="quantity">
 
                                     <label>Quantité :
                                         <?php  echo $taskInfo->quantiteTotal ;?>
                                     </label>
+								</div>
+								<?php
+								}
+								$i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->text()->get();
+								$k = 1;
+								foreach($i as $o){
+									echo "<div>
+										<p> Information ".$k." : ".$o->texte."</p>
+									</div>";
+									$k++;
+								}
+								?>
 
-                                </div>
-
+								<?php
+								$i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->photo()->get();
+								foreach($i as $o){
+									echo "<div>
+										<img src='/".$o->url."'>
+									</div>";
+								}
+								?>
+								
                                 <div id="participants">
 
                                     <label>Participants:
@@ -107,6 +128,7 @@
                                     </label>
 
                                 </div>
+
                             </div>
 
                             <?php 
