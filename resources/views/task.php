@@ -1,194 +1,165 @@
-                <?php
-                    include("header.php");
-                    use App\Http\Controllers\ControllerEvenement;
-                    use App\Http\Controllers\ControllerParticipants;
-                    use App\Http\Controllers\ControllerTache;
-                    use App\models\typetache;
-                    use App\models\tache;
-                                
-                    $taskInfo= ControllerTache::getTaskInfo($tache_id);
-                    $event = ControllerTache::getEvent($tache_id);
-                    
-                    $type = typetache::where('typetache_id','=',$taskInfo->typetache_typetache_id)->first();
-                    
-                ?>
+<?php
+	include("header.php");
+	use App\Http\Controllers\ControllerEvenement;
+	use App\Http\Controllers\ControllerParticipants;
+	use App\Http\Controllers\ControllerTache;
+	use App\models\typetache;
+	use App\models\tache;
 
-                <div class="col-2">
-                    <!-- TODO: Mettre lien retour -->
-                    <input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo $event->evenement_id ; ?>'" value="Retour" />
-                </div>
+	$taskInfo= ControllerTache::getTaskInfo($tache_id);
+	$event = ControllerTache::getEvent($tache_id);
 
-                <div class="d-flex justify-content-center align-items-center container">
+	$type = typetache::where('typetache_id','=',$taskInfo->typetache_typetache_id)->first();
+?>
 
-                    <div class="col-10">
+<div class="col-2">
+	<!-- TODO: Mettre lien retour -->
+	<input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo $event->evenement_id ; ?>'" value="Retour" />
+</div>
 
-                        <div class="card mb-3">
+<br>
 
-                            <div class="card-header">
+<div class="d-flex justify-content-center container">
 
-                                <h1>Détails de la tâche</h1>
-                            </div>
+	<div class="col-10">
 
-                            <div class="card-body">
+		<div class="card md-6">
 
-                                <label>Nom de la tâche : </label>
+			<div class="card-header bg-info text-white">
 
-                                <?php
+				<h5>Détails de la tâche</h5>
+			</div>
 
-                                      echo $taskInfo->nom;
+			<div class="card-body">
 
-                                ?>
+				<p class="card-text">Nom de la tâche :
+					<?php echo $taskInfo->nom; ?>
+				</p>
 
-                                <div id="Desc">
+				<p class="card-text">Descriptif de la tâche :
+					<?php echo $taskInfo->description; ?>
+				</p>
+			
+				<?php if($type->quantite >= 1){ ?>
+					
+					<p clas="card-text">Quantité:
+						<?php echo $taskInfo->quantiteTotal ;?>
+					</p>
 
-                                    <label>Descriptif de la tâche :
-                                        <br>
-                                    </label>
+				<?php
+					}
+					$i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->text()->get();
+					$k = 1;
+					foreach($i as $o){
+						echo "<p class='card-text'>Information ".$k." : ".$o->texte."</p>";
+						$k++;
+					}
+				?>
 
-                                    <?php
-                                      echo $taskInfo->description;
-                                    ?>
-                                </div>
-                                <?php if($type->quantite >= 1){ ?>
-                                <div id="quantity">
+				<?php
+					$i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->photo()->get();
+					foreach($i as $o){
+						echo "<img class='img-thumbnail' src='/".$o->url."'>";
+					}
+				?>
 
-                                    <label>Quantité :
-                                        <?php  echo $taskInfo->quantiteTotal ;?>
-                                    </label>
-                                </div>
-                                <?php
-                                }
-                                $i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->text()->get();
-                                $k = 1;
-                                foreach($i as $o){
-                                    echo "<div>
-                                        <p> Information ".$k." : ".$o->texte."</p>
-                                    </div>";
-                                    $k++;
-                                }
-                                ?>
+				<p class="card-text">Participants:</p>
 
-                                <?php
-                                $i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->photo()->get();
-                                foreach($i as $o){
-                                    echo "<div>
-                                        <img src='/".$o->url."'>
-                                    </div>";
-                                }
-                                ?>
-                                
-                                <div id="participants">
+				<ul class="list-group">
+					<?php
 
-                                    <label>Participants:
-                                        <ul class="list-group">
-                                                <?php   
+						$utilisateurs = ControllerTache::getParticipants($tache_id);
+						
+						if(ControllerTache::estProprio($tache_id,Session::get('utilisateur')->utilisateur_id)) {
+							
+							foreach($utilisateurs as $util) {
+								
+								echo "<form action='droits' method='post'>
+								
+									<li class='list-group-item list-group-item-action'>
+								
+										<div class='row align-items-center'>
+								
+											<div class='col-auto'>
 
-                                                    $utilisateurs = ControllerTache::getParticipants($tache_id);
-                                                    
-                                                    if(ControllerTache::estProprio($tache_id,Session::get('utilisateur')->utilisateur_id)) {
+												<p class='card-text'>".$util->pseudo."</p>
+											</div>
 
-                                                        foreach($utilisateurs as $util) {
+											<div class='col-auto'>
 
-                                                            echo "<form action='droits' method='post'>
+												<input type='button' class='btn btn-danger mt-1' onclick='location.href=\"/event/task/supprParticipant/".$tache_id."/".$util->utilisateur_id."\";' value='Supprimer' />
+											</div>
+										</div>
+									</li>
 
-                                                                <li class='list-group-item list-group-item-action'>
+								<input type='hidden' name='id_event' value=''>
+								<input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
+							</form>";
+							}
+						} else {
 
-                                                                    <div class='row'>
+							foreach($utilisateurs as $util){
 
-                                                                        <div class='col-auto'>
+							echo "<li class='list-group-item list-group-item-action'>".$util->pseudo."</li>";
+							}
+						}
+					?>
+				</ul>
 
-                                                                            ".$util->pseudo."
+				<div class="row">
+					<?php 
+						if(!ControllerTache::estValide($tache_id)){
+							if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
+								echo
+								"<div class=\"col-md-auto\">
+								<input type=\"button\" class=\"btn btn-primary mt-1\" onclick=\"location.href='/event/task/modif/". $tache_id. "';\" value=\"Modifier\" />
+								</div>" ;
+								
+								echo
+								"<div class=\"col-md-auto\">
+								<input type=\"button\" class=\"btn btn-success mt-1\" onclick=\"location.href='/event/task/valide/". $tache_id. "';\" value=\"Valider la tâche\" />
+								</div>" ;
+								
+								echo
+								"<div class=\"col-md-auto\">
+								<input type=\"button\" class=\"btn btn-success mt-1\" onclick=\"location.href='/event/task/ajoutParticipant/". $tache_id. "';\" value=\"Ajouter participants\" />
+								</div>" ;
+							}
+							if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
+								if( ! is_null($taskInfo->quantiteTotal)){
+									echo "<div class=\"col-md-auto\">
+									<input type=\"button\" class=\"btn btn-primary mt-1\" onclick=\"location.href='contribution/".$tache_id."';\" value=\"Modifier ma contribution \" />
+									</div>" ;
+								}
 
-                                                                        </div>
+								echo "<div class=\"col-md-auto\">
+								<input type=\"button\" class=\"btn btn-danger mt-1\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
+								</div>" ;
+							} else {
+								echo "<div class=\"col-md-auto\">
+								<input type=\"button\" class=\"btn btn-success mt-1\" onclick=\"location.href='inscription/".$tache_id."';\" value=\"S'inscrire \" />
+								</div>" ; 
+							}
+						}else{
+							
+							if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
+								echo "<div class=\"col-md-auto\">
+								<input type=\"button\" class=\"btn btn-danger mt-1\" onclick=\"location.href='/event/task/annuleValide/". $tache_id. "';\" value=\"Annuler la validation de la tâche\" />
+								</div>" ;
+							}
+							
+							if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
+								echo "<div class=\"col-md-auto\">
+								<input type=\"button\" class=\"btn btn-danger mt-1\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
+								</div>" ;
+							}
+						}
+					
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-                                                                            <div class='col-auto'>
-                                                                                <input type='button' class='btn btn-danger' onclick='location.href=\"/event/task/supprParticipant/".$tache_id."/".$util->utilisateur_id."\";' value='Supprimer' />
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-
-                                                                    <input type='hidden' name='id_event' value=''>
-                                                                    <input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
-                                                                </form>
-                                                            ";
-
-                                                        }
-                                                    } else {
-
-                                                        foreach($utilisateurs as $util){
-
-                                                            echo "<li class='list-group-item list-group-item-action'>".$util->pseudo."</li>";
-                                                        }
-                                                    }
-                                                ?>
-                                            </ul>
-                                        <br>
-                                    </label>
-                                    <?php 
-                                if(!ControllerTache::estValide($tache_id)){
-                                    if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
-                                        echo
-                                        "<div class=\"col-md-auto\">
-                                            <input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='/event/task/modif/". $tache_id. "';\" value=\"Modifier\" />
-                                        </div>" ;
-
-                                        echo
-                                        "<div class=\"col-md-auto\">
-                                            <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='/event/task/valide/". $tache_id. "';\" value=\"Valider la tâche\" />
-                                        </div>" ;
-
-                                        echo
-                                        "<div class=\"col-md-auto\">
-                                            <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='/event/task/ajoutParticipant/". $tache_id. "';\" value=\"Ajouter participants\" />
-                                        </div>" ;
-                                    }
-                                    if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
-                                        if( ! is_null($taskInfo->quantiteTotal)){
-                                            echo
-                                            "<div class=\"col-md-auto\">
-                                                <input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='contribution/".$tache_id."';\" value=\"Modifier ma contribution \" />
-                                            </div>" ;
-
-                                        }
-
-                                        echo
-                                        "<div class=\"col-md-auto\">
-                                            <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
-                                        </div>" ;
-                                    }else{
-                                        echo
-                                        "<div class=\"col-md-auto\">
-                                            <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='inscription/".$tache_id."';\" value=\"S'inscrire \" />
-                                        </div>" ; 
-                                    }
-                                }else{
-                                    
-                                    if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
-                                        echo
-                                        "<div class=\"col-md-auto\">
-                                            <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='/event/task/annuleValide/". $tache_id. "';\" value=\"Annuler la validation de la tâche\" />
-                                        </div>" ;
-                                    }
-
-                                    if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
-                                        echo
-                                        "<div class=\"col-md-auto\">
-                                            <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
-                                        </div>" ;
-                                    }
-                                }
-                                
-                            ?>
-                                </div>
-
-                            </div>
-
-                           
-                        </div>
-
-                    </div>
-                </div>
-
-                <?php
-                    include 'footer.php'
-                ?>
+<?php include 'footer.php'?>
