@@ -25,7 +25,7 @@
 					use App\Http\Controllers\ControllerEvenement;
 					$events = ControllerEvenement::getUserEvents();
 					foreach($events as $event){
-						echo "<div class='card md-3'>
+						echo "<div class='card md-3 mt-1'>
 							<div class='card-header bg-info'>
 								<a href='event/".$event->evenement_id."' class='text-light' style='font-size:20px;'>".$event->intitule."</a>
 							</div>
@@ -56,7 +56,7 @@
 						//affichage evenements publics
 						$events = ControllerEvenement::getPublicsEventsUsers();
 						foreach($events as $event){
-							echo "<div class='card'>
+							echo "<div class='card mt-1'>
 								<div class='card-header bg-secondary'>
 									<a href='event/".$event->evenement_id."' class='text-light' style='font-size:20px;'>".$event->intitule."</a>
 								</div>
