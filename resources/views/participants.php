@@ -80,9 +80,9 @@
 
 													<div class='col-auto'>
 
-														<button type='submit' id='register' class='btn btn-success' value='Enregistrer les modifications'>Valider</button>
+														<button type='submit' id='register' class='btn btn-success mt-1' value='Enregistrer les modifications'>Valider</button>
 														".csrf_field()."
-														<input type='button' class='btn btn-danger' onclick='location.href=\"".$event_id."/".$util->utilisateur_id."\";' value='Supprimer' />
+														<input type='button' class='btn btn-danger mt-1' onclick='location.href=\"".$event_id."/".$util->utilisateur_id."\";' value='Supprimer' />
 													</div>
 										</li>
 

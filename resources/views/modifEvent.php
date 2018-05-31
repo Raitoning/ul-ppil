@@ -1,6 +1,6 @@
 <?php include("header.php"); ?>
 <div class="col-2">
-	<input type="button" class="btn btn-primary" onclick="location.href='/accueil'" value="Retour" />
+	<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='/event/".$event_id."'\"" ; ?> value="Retour" />
 </div>
 
 <br>
@@ -13,7 +13,7 @@
 		
 			<div class="card-header bg-info text-white">
 			
-				<h3>Modifier l'événement :</h3>
+				<h5>Modifier l'événement:</h5>
 			
 			</div>
 			
@@ -31,99 +31,86 @@
 					use App\Http\Controllers\ControllerEvenement;
 					$event = ControllerEvenement::getEvent($event_id);  //TODO cas général
 				?>
-					<div class="col-12">
 					
 						<form action="" method="post">
-						
-							<div class="newEvent"><br>
-							
-								<div class="col-10">
 								
-									<div class="form-group">
+							<div class="form-group">
 									
-										<label>Nom de l'événement :</label><br>
+								<label>Nom de l'événement:</label>
+								<input type="text" class="form-control" value="<?php echo $event->intitule ;?>" name="name" maxlength="255" required>
+							</div>
+									
+							<div class="form-group">
 										
-										<input type="text" class="form-control" value="<?php echo $event->intitule ;?>" name="name" maxlength="255" required><br>
-									
-									</div>
-									
-									<div class="form-group">
-										
-										<label>date de début : </label><br>
-										<input type="date" class="form-control" name="dateDeb" value=<?php echo $event->dateDebut; ?> required><br>
-										<label>date de fin : </label><br>
-										<input type="date" class="form-control" name="dateFin" value=<?php echo $event->dateFin; ?> required><br>
-									
-									</div>
-									<div class="form-group">
-									
-										<label>Type : </label>
-										<input type="radio" name="genre" value="Public" <?php if($event->public == 1) echo "checked"; ?> > Public
-						  				<input type="radio" name="genre" value="Privé" <?php if(!$event->public == 1) echo "checked"; ?> > Privé<br>
-									
-									</div>
-									<div class="form-group">
-									
-										<label>Description :</label><br>
-										<input type="text" class="form-control" name="desc" maxlength="250" value="<?php echo $event->description; ?>" required><br>
-									
-									</div>
-									<div class="form-group">
-										
-										<label>Lieu : </label><br>
-										<input type="text" class="form-control" placeholder="Lieu" name="lieu" maxlength="250" value="<?php echo $event->lieu; ?>" required><br><br>
-									
-									</div>
-								
-								</div>
-								<div id="tâches" class="card md-3">
-									
-									<div class="card-header bg-secondary text-white">
-										
-										<h3>Ensemble des tâches</h3>
-									
-									</div>
-									<div class="card-body">
-										<?php
-											//TODO: affichage tâches de l'evenement
-											/*
-											$desc = ControllerEvenement::getTasks();
-											echo $desc ;
-											*/
-										?>
-										<br>
-									</div>		
-									
-								</div>
+								<label>date de début: </label>
+								<input type="date" class="form-control" name="dateDeb" value=<?php echo $event->dateDebut; ?> required>
+							</div>
 
-								<div class="form-group">
-									
-									<input type="checkbox" name="suppr" value="suppr" <?php if($event->suppressionAutomatique == 1) echo "checked"; ?> > Supression automatique<br>
-									<?php echo csrf_field(); ?>
-								
-								</div>
-								
-								<button type="submit" id="register" class="btn btn-success" value="enregistrer les modifications" style="margin-bottom: 10px;">Enregistrer les modifications</button><br>
+							<div class="form-group">
+										
+								<label>date de fin: </label>
+								<input type="date" class="form-control" name="dateFin" value=<?php echo $event->dateFin; ?> required>
+							</div>
 
+							<p>Type: </p>
+
+							<div class="form-check">
+									
+								<input class="form-check-input" type="radio" name="genre" value="Public" <?php if($event->public == 1) echo "checked"; ?> >
+								<label class="form-check-label">Public</label>
+							</div>
+
+							<div class="form-check">
+						  		<input class="form-check-input" type="radio" name="genre" value="Privé" <?php if(!$event->public == 1) echo "checked"; ?> >
+								<label class="form-check-label">Privé</label>
+
+							</div>
+
+							<div class="form-group">
+									
+								<label>Description:</label>
+								<input type="text" class="form-control" name="desc" maxlength="250" value="<?php echo $event->description; ?>" required>
+							</div>
+
+							<div class="form-group">
+
+								<label>Lieu: </label>
+								<input type="text" class="form-control" placeholder="Lieu" name="lieu" maxlength="250" value="<?php echo $event->lieu; ?>" required>
+							</div>
+
+							<div class="form-check">
+
+								<input class="form-check-input" type="checkbox" name="suppr" value="suppr" <?php if($event->suppressionAutomatique == 1) echo "checked"; ?> >
+								<label class="form-check-label">
+									Supression automatique
+								</label>
+							</div>
+
+							<br>
+	
+							<div class="row">
+
+								<div class="col-auto">
+
+									<button type="submit" id="register" class="btn btn-success mt-1" value="enregistrer les modifications" style="margin-bottom: 10px;">Enregistrer</button><br>
+
+								</div>
 								<?php
 									use App\Http\Controllers\ControllerParticipants;
 									if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id)){
-										echo 
-										"
-										<input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='suppression/".$event_id."';\" value=\"Supprimer l'événement\" />
-										" ;
-									}	
-								?>
-
-								
-								<input type="button" class="btn btn-primary" <?php echo "onclick=\"location.href='/event/".$event_id."'\"" ; ?> value="Retour"/>	
+										echo "<div class='col-auto'>
+												<input type=\"button\" class=\"btn btn-danger mt-1\" onclick=\"location.href='suppression/".$event_id."';\" value=\"Supprimer l'événement\" />
+											</div>";
+										}	
+									?>
 							</div>
+							</div>
+
+							<?php echo csrf_field(); ?>
 						</form>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 
 
 	

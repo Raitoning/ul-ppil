@@ -87,56 +87,59 @@ use App\Http\Controllers\ControllerTache;
 				</p>
 
 				<div class="row">
+
 					<?php
 							
 							if(! ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && ! ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id) && controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
 								echo "<div class=\"col-md-auto\">
-									<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander à changer mes droits\" />
+									<input type=\"button\" class=\"btn btn-success mt-1\" onclick=\"location.href='changerDroits/".$event_id."';\" value=\"Demander à changer mes droits\" />
 								</div>" ;
 							}
 							
 							if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) || ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
 								
 								echo "<div class=_\"col-md-auto\">
-									<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='modifEvent/".$event_id."';\" value=\"Modifier l'événement\" />
+									<input type=\"button\" class=\"btn btn-primary mt-1\" onclick=\"location.href='modifEvent/".$event_id."';\" value=\"Modifier l'événement\" />
 								</div>" ;
 							}
 							
 							if(controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
 								echo "<div class=\"col-md-auto\">
-									<input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='participants/".$event_id."';\" value=\"Participants\" />
+									<input type=\"button\" class=\"btn btn-primary mt-1\" onclick=\"location.href='participants/".$event_id."';\" value=\"Participants\" />
 								</div>" ;
 							}
 							
 							if(!ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) && controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
-								echo
-								"<div class=\"col-md-auto\">
-									<input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$event_id."';\" value=\"Se désinscrire\" />
+								echo "<div class=\"col-md-auto\">
+									<input type=\"button\" class=\"btn btn-danger mt-1\" onclick=\"location.href='desinscription/".$event_id."';\" value=\"Se désinscrire\" />
 								</div>" ;
 							}
 							if(controllerEvenement::estPublic($event_id) && !controllerParticipants::participe(Session::get('utilisateur')->utilisateur_id,$event_id)){
-								echo
-								"<div class=\"col-md-auto\">
-									<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='demandeInscription/".$event_id."';\" value=\"S'inscrire\" />
+								echo"<div class=\"col-md-auto\">
+									<input type=\"button\" class=\"btn btn-success mt-1\" onclick=\"location.href='demandeInscription/".$event_id."';\" value=\"S'inscrire\" />
 								</div>" ;
 							}
 							
-							?>
-					<?php if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) || ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
+							if(ControllerParticipants::estProprio($event_id, Session::get('utilisateur')->utilisateur_id) || ControllerParticipants::estEditeur($event_id, Session::get('utilisateur')->utilisateur_id)){
 							$tasks = App\Http\Controllers\ControllerTypeTache::getTypeTask(Session::get('utilisateur')->utilisateur_id);
-							echo "<div class=\"col-md-auto\">
-								<form method='post' action='newTask/".$event_id."';\">
-									<input name='ev' type='hidden' value='".$event_id."'>
-									<select class='custom-select' name='typetache'>";
+							echo "<form class='form-inline' method='post' action='newTask/".$event_id."';\">
+
+									<div class=\"col-md-auto\">
+
+										<input name='ev' type='hidden' value='".$event_id."'>
+
+										<select class='custom-select' name='typetache'>";
 										
 										foreach ($tasks as $task) {
 											echo '<option value='.$task->typetache_id.'>'.$task->nomtypetache.'</option>';
 										}
 										echo csrf_field();
 										echo "</select>";
-										echo "<input type=\"submit\" class=\"btn btn-primary\" value='Ajouter une tache'/>
-									</form>
-								</div>" ;
+										echo "</div>";
+										echo "<div class='\"col-md-auto\"'>";
+										echo "<input type=\"submit\" class=\"btn btn-primary mt-1\" value='Ajouter une tache'/>";
+										echo "</div>
+									</form>";
 							}
 							?>
 				</div>

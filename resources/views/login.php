@@ -41,13 +41,13 @@
 
 					<div class="col-md-auto">
 
-						<input type="button" class="btn btn-success" onclick="location.href='inscription';" value="Inscription" />
+						<input type="button" class="btn btn-success mt-1" onclick="location.href='inscription';" value="Inscription" />
 
 					</div>
 
 					<div class="col-md-auto">
 
-						<input type="submit" class="btn btn-primary" onclick="location.href='publicsEvents';" id="anon" value="Accès Anonyme">
+						<input type="submit" class="btn btn-primary mt-1" onclick="location.href='publicsEvents';" id="anon" value="Accès Anonyme">
 
 					</div>
 				</div>

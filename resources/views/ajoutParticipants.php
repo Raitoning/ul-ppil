@@ -28,7 +28,7 @@
 		
 					<div class="col">
 
-						<div class="card md-3">
+						<div class="card md-3 my-1">
 
 							<div class="card-header bg-success text-white">
 
@@ -36,7 +36,7 @@
 							</div>
 
 							<div id="participants" class="mt-1">
-								<div class="h-75" style="overflow:auto;">
+								<div class="h-100" style="overflow:auto;">
 									<ul id="any_user_list" class="list-group" tabindex="0">
 										<?php 
 											$k = 0;
@@ -54,7 +54,7 @@
 		
 					<div class="col">
 
-						<div class="card md-3">
+						<div class="card md-3 my-1">
 
 							<div class="card-header bg-warning text-white">
 
@@ -62,7 +62,7 @@
 							</div>
 
 							<div id="favoris" class="mt-1">
-								<div class="h-75" style="overflow:auto;">
+								<div class="h-100" style="overflow:auto;">
 								
 									<ul id="fav_user_list" class="list-group" tabindex="0">
 										<?php 
@@ -83,7 +83,7 @@
 
 			<div class="col">
 
-				<div class="card md-3">
+				<div class="card md-3 my-1">
 
 					<div class="card-header bg-info text-white">
 					
@@ -92,7 +92,7 @@
 					</div>
 					
 					<div id="utilisateurs" class="mt-1">
-						<div class="h-75" style="overflow:auto;">
+						<div class="h-100" style="overflow:auto;">
 							<ul id="any_user_list" class="list-group" tabindex="0">
 											<?php 
 					

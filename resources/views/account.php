@@ -95,8 +95,8 @@
 
 					<!-- HACK: Déplacer le bouton en dessous-->
 					<br>
-					<input type="submit" id="register" class="btn btn-primary" value="Appliquer">
-					<input type="button" class="btn btn-danger" onclick="location.href='supprimerCompte'" value="Supprimer ce compte" />
+					<input type="submit" id="register" class="btn btn-primary mt-1" value="Appliquer">
+					<input type="button" class="btn btn-danger mt-1" onclick="location.href='supprimerCompte'" value="Supprimer ce compte" />
 
 					<?php echo csrf_field(); ?>
 				</form>
