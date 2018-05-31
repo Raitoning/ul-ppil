@@ -19,7 +19,7 @@
 
 			<div class="input-group float-right">
 
-				<input class="form-control" id="myInput" type="text" placeholder="Rechercher un utilisateur">
+				<input class="form-control mx-1 mt-1" id="myInput" type="text" placeholder="Rechercher un utilisateur">
 			</div>
 
 			<div class="card-body">
@@ -35,14 +35,14 @@
 								<h5 class="card-title">Favoris</h5>
 							</div>
 
-							<div class="card-body">
+							<div class="card-body h-75" style="overflow:auto;">
 
 								<ul id="fav_user_list" class="list-group" tabindex="0">
 									<?php 
 									$i =0;
 									$fav = App\Http\Controllers\ControllerContacts::getFavoris();
 									foreach($fav as $contact){
-										echo "<a href='supprimerContact/".$contact."'><li class='list-group-item list-group-item-action' id='fav_user".$i."' >".$contact."</li></a>" ;
+										echo "<a href='supprimerContact/".$contact."'><li class='list-group-item list-group-item-action mt-1' id='fav_user".$i."' >".$contact."</li></a>" ;
 										$i++;
 									}
 									?>
@@ -60,14 +60,14 @@
 								<h5 class="card-title">Utilisateurs</h5>
 							</div>
 
-							<div class="card-body">
+							<div class="card-body h-75" style="overflow:auto;">
 
 								<ul id="any_user_list" class="list-group" tabindex="0">
 									<?php 
 									$j =0;
 									$utils = App\Http\Controllers\ControllerContacts::getUtilisateurs();
 									foreach($utils as $util){
-										echo "<a href='ajoutContact/".$util."'><li class='list-group-item list-group-item-action' id='any_user".$j."' >".$util."</li></a>" ;
+										echo "<a href='ajoutContact/".$util."'><li class='list-group-item list-group-item-action mt-1' id='any_user".$j."' >".$util."</li></a>" ;
 										$j++;
 									}
 									?>
@@ -81,7 +81,7 @@
 	</div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
 	$(document).ready(function () {
 		$("#myInput").on("keyup", function () {
