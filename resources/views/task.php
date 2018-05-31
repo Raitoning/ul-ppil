@@ -1,11 +1,16 @@
                 <?php
-                    include 'header.php'
-
+                    include("header.php");
+                    use App\Http\Controllers\ControllerEvenement;
+                    use App\Http\Controllers\ControllerParticipants;
+                    use App\Http\Controllers\ControllerTache;
+                                
+                    $taskInfo= ControllerTache::getTaskInfo($tache_id);
+                    $event = ControllerTache::getEvent($tache_id);
                 ?>
 
                 <div class="col-2">
                     <!-- TODO: Mettre lien retour -->
-                    <input type="button" class="btn btn-primary" onclick="location.href='/events'" value="Retour" />
+                    <input type="button" class="btn btn-primary" onclick="location.href='/event/<?php echo $event->evenement_id ; ?>'" value="Retour" />
                 </div>
 
                 <div class="d-flex justify-content-center align-items-center container">
@@ -25,11 +30,6 @@
 
                                 <?php
                                     //affichage du nom de la tâche
-                                     use App\Http\Controllers\ControllerEvenement;
-                                    use App\Http\Controllers\ControllerParticipants;
-                                    use App\Http\Controllers\ControllerTache;
-                                
-                                    $taskInfo= ControllerTache::getTaskInfo($tache_id);
 
                                   //  foreach($tasks as $task){
                                       echo $taskInfo->nom;

@@ -125,6 +125,7 @@ class ControllerEvenement extends Controller
 	public static function supprimerEvenement($event_id){
 		$evenement = evenement::where('evenement_id','=',$event_id)->first();
 		NotifController::supprNotifModule($evenement->evenement_id, "evenement") ;
+		ControllerTache::supprTaches($event_id) ;
 		$tmp = $evenement->utilisateur()->detach();
 		$evenement->delete();
 

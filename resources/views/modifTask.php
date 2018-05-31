@@ -24,21 +24,21 @@ $event = ControllerTache::getEvent($id_task) ;
                         <div class="form-group">
                             <label>Nom de la tâche :</label>
                             <br>
-                            <input type="text" placeholder="Nom de la tâche" name="task">
+                            <input type="text" value="<?php echo $tache->nom; ?>" name="task" required>
                             <br>
                             <br>
                         </div>
                         <div class="form-group">
                             <label>Description :</label>
                             <br>
-                            <input type="text" placeholder="Description" name="desc">
+                            <input type="text" value="<?php echo $tache->description; ?>" name="desc" required>
                             <br>
                             <br>
                         </div>
                         <div class="form-group">
                             <label>Quantité :</label>
                             <br>
-                            <input type="text" placeholder="Quantité" name="quantity">
+                            <input type="text" value="<?php echo $tache->quantiteTotal; ?>" name="quantity">
                             <br>
                             <br>
                         </div>
@@ -49,7 +49,7 @@ $event = ControllerTache::getEvent($id_task) ;
                         <div class="form-group">
                             <label>Date de fin :</label>
                             <br>
-                            <input type="date" name="datefin">
+                            <input type="date" name="datefin" value="<?php echo $tache->datefin; ?>">
                             <br>
                             <br>
                         </div>
@@ -62,7 +62,7 @@ $event = ControllerTache::getEvent($id_task) ;
                         <div class="form-group">
                             <label>Texte <?php echo $i+1 ?> :</label>
                             <br>
-                            <input type="text" placeholder="Text" name="text<?php echo $i?>">
+                            <input type="text" value="<?php echo /*ControllerTache::getText()*/"" ; ?>" name="text<?php echo $i?> required">
                             <br>
                             <br>
                         </div>
