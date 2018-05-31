@@ -110,6 +110,13 @@
                             </div>
 
                             <?php 
+
+                                if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
+                                    echo
+                                    "<div class=\"col-md-auto\">
+                                        <input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='/event/task/modif/". $tache_id. "';\" value=\"Modifier\" />
+                                    </div>" ;
+                                }
                                 if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
                                     echo
                                     "<div class=\"col-md-auto\">

@@ -33,12 +33,6 @@ class ControllerTache extends Controller
       }
 			return $taches ;
 		}
-		public static function supprimerTache($tache){
-			$tache_id = $tache->tache_id;
-      $tache = tache::where('tache_id','=',$tache_id)->first();
-      $tache->delete();
-
-		}
 
 		public static function affecterUserTache($tache){
 			$tache_id = $tache->tache_id;
@@ -204,6 +198,17 @@ class ControllerTache extends Controller
 
 		}
 
+		public function supprimerTache($task_id){
+			$tache = $this->getTaskInfo($task_id) ;
+			$event = $tache->evenement_evenement_id ; 
+			$tache->utilisateur()->detach() ;
+			$tache->text()->detach() ;
+			$tache->photo()->detach() ;
+			$tache->delete() ;
+
+			return redirect('/event/'.$event);
+		}
+
 
 		public static function accordParticipation($id_user, $id_task){
 			if(Session::has('utilisateur')){
@@ -279,6 +284,13 @@ class ControllerTache extends Controller
 
 			$task = tache::where('tache_id',$task_id)->first();
 			return ControllerParticipants::estProprio($task->evenement_evenement_id, $user_id) ;
+		}
+
+		public static function getEvent($task_id){
+
+			$task = tache::where('tache_id',$task_id)->first();
+			$event = evenement::where('evenement_id', '=', $task->evenement_evenement_id)->first();
+			return $event ;
 		}
 }
 ?>

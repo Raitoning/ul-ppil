@@ -165,11 +165,12 @@ Route::get('/event/task/{tache_id}',function($tache_id){
     return view('task', ["tache_id" => $tache_id]);
 });
 
-Route::get('/modifTask/{tache_id}',function($tache_id){
-    return view('modifTask', ["tache_id" => $tache_id]);
+Route::get('/event/task/modif/{tache_id}',function($id_task){
+    return view('modifTask', ["id_task" => $id_task]);
 });
 
-Route::post('/modifTask/{tache_id}','ControllerTache@modifierTache');
+Route::post('/event/task/modif/{tache_id}','ControllerTache@modifierTache');
+Route::get('/event/task/suppr/{tache_id}','ControllerTache@supprimerTache');
 
 Route::get('/event/task/supprParticipant/{id_task}/{id_user}','ControllerTache@supprParticipants');
 Route::get('/event/task/inscription/{task_id}','ControllerTache@inscription');
