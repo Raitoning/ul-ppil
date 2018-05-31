@@ -174,8 +174,12 @@ class ControllerTache extends Controller
 				
 				if(!empty($request->participants))
 					foreach($request->participants as $user){
-						$p = utilisateur::where('utilisateur_id','=',$user)->first();
-						$p->tache()->attach($tmp->tache_id,['quantite' => 0]);
+						if(Session::get('utilisateur')->utilisateur_id == $user){
+							$p = utilisateur::where('utilisateur_id','=',$id_user)->first();
+							$p->tache()->attach($id_task,['quantite' => 0]);
+						}else{
+							NotifController::notifAjoutTache(Session::get('utilisateur')->utilisateur_id, $user, $tmp->tache_id);	
+						}
 					}
 				
 				
@@ -211,6 +215,19 @@ class ControllerTache extends Controller
 				return redirect('/event/task/'.$id_task);
 				
 			}
+		}
+
+		public static function inscription($task_id){
+			if(Session::has('utilisateur')){
+					$task = tache::where('tache_id','=',$task_id)->first();
+
+					$event = evenement::where('evenement_id','=',$task->evenement_evenement_id)->first();
+					$proprietaire = $event->utilisateur()->wherePivot('droit', 'proprietaire')->first();
+
+					NotifController::notifInscTache(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $task_id) ;
+					return redirect('/event/task/'.$task_id);
+			}
+			
 		}
 
 		public static function desinscription($task_id){

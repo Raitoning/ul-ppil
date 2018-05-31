@@ -115,6 +115,11 @@
                                     "<div class=\"col-md-auto\">
                                         <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />
                                     </div>" ;
+                                }else{
+                                    echo
+                                    "<div class=\"col-md-auto\">
+                                        <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='inscription/".$tache_id."';\" value=\"S'inscrire \" />
+                                    </div>" ; 
                                 }
                             ?>
                         </div>

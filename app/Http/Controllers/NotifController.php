@@ -152,15 +152,25 @@ class NotifController extends Controller
 
     public static function notifAjoutTache($id_emetteur, $id_recepteur, $id_tache){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
-      [$id_emetteur, $id_recepteur, 'tache', 'ajout', '', $id_tache]);
+      [$id_emetteur, $id_recepteur, 'tache', 'ajout', 'invitation', $id_tache]);
     }
 
     public static function notifAccordTache($id_emetteur, $id_recepteur, $id_tache){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'tache', 'accord', 'invitation', $id_tache]);
+    }
+
+    public static function notifAccordDemandeTache($id_emetteur, $id_recepteur, $id_tache){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'tache', 'accord', '', $id_tache]);
     }
 
     public static function notifRefusTache($id_emetteur, $id_recepteur, $id_tache){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'tache', 'refus', 'invitation', $id_tache]);
+    }
+
+    public static function notifRefusDemandeTache($id_emetteur, $id_recepteur, $id_tache){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'tache', 'refus', '', $id_tache]);
     }
@@ -168,6 +178,11 @@ class NotifController extends Controller
     public static function notifSuppressionTache($id_emetteur, $id_recepteur, $id_tache){
       DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
       [$id_emetteur, $id_recepteur, 'tache', 'suppression', '', $id_tache]);
+    }
+
+    public static function notifInscTache($id_emetteur, $id_recepteur, $id_tache){
+      DB::insert('insert into notification (id_emetteur, id_recepteur, module, action, type, id_module) values (?, ?, ?, ?, ?, ?)',
+      [$id_emetteur, $id_recepteur, 'tache', 'ajout', '', $id_tache]);
     }
 
     public static function notifDesinscTache($id_emetteur, $id_recepteur, $id_tache){
@@ -228,9 +243,13 @@ class NotifController extends Controller
         case 'tache':
           $tache = DB::table('tache')->where('tache_id', $notif->id_module)->first();
           $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_evenement_id)->first();
-
-          controllerTache::accordParticipation($notif->id_recepteur, $tache->tache_id);
-          $this->notifAccordTache($notif->id_recepteur, $notif->id_emetteur, $tache->tache_id);
+          if($notif->type == 'invitation'){
+            controllerTache::accordParticipation($notif->id_recepteur, $tache->tache_id);
+            $this->notifAccordTache($notif->id_recepteur, $notif->id_emetteur, $tache->tache_id);
+          }else {
+            controllerTache::accordParticipation($notif->id_emetteur, $tache->tache_id);
+            $this->notifAccordDemandeTache($notif->id_recepteur, $notif->id_emetteur, $tache->tache_id);
+          }
         break;
       }
       $this->supprimerNotif($notif->notification_id) ;
@@ -273,7 +292,11 @@ class NotifController extends Controller
 
         case 'tache':
           $tache = DB::table('tache')->where('tache_id', $notif->id_module)->first();
-          $this->notifRefusTache($notif->id_recepteur, $notif->id_emetteur,$tache->tache_id) ;
+          if($notif->type == 'invitation'){
+            $this->notifRefusTache($notif->id_recepteur, $notif->id_emetteur,$tache->tache_id) ;
+          }else {
+            $this->notifRefusDemandeTache($notif->id_recepteur, $notif->id_emetteur,$tache->tache_id) ;
+          }
 
         break;
       }
@@ -367,7 +390,11 @@ class NotifController extends Controller
           $evenement = DB::table('evenement')->where('evenement_id', $tache->evenement_evenement_id)->first();
           switch($notification->action){
             case 'ajout':
-              $message .= 'vous a assigné la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule ;
+              if($notification->type == 'invitation'){
+                $message .= 'souhaite vous assigner la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule ;
+              }else {
+                $message .= 'souhaite être assigner à la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule  ;
+              }
             break;
             case 'suppression':
             if($notification->type == 'invitation'){
@@ -377,10 +404,18 @@ class NotifController extends Controller
             }
             break;
             case 'accord':
+              if($notification->type == 'invitation'){
               $message .= 'a accepté de participer à la tâche ' .$tache->nom.' de l\'événement '.$evenement->intitule;
+              }else {
+                $message .= 'a accpeté de vous assigner à la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule  ;
+              }
             break;
             case 'refus':
-              $message .= 'a refusé de participer à la tâche ' .$tache->nom.' de l\'événement '.$evenement->intitule;
+              if($notification->type == 'invitation'){
+                $message .= 'a refusé de participer à la tâche ' .$tache->nom.' de l\'événement '.$evenement->intitule;
+              }else {
+                $message .= 'a refusé de vous assigner à la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule  ;
+              }
             break;
             case 'desinscription':
               $message .= 'ne participe plus à la tâche '.$tache->nom.' de l\'événement '.$evenement->intitule;
