@@ -131,7 +131,7 @@
 
                             </div>
 
-                            <?php 
+                           <?php 
                                 if(!ControllerTache::estValide($tache_id)){
                                     if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
                                         echo
@@ -145,6 +145,14 @@
                                         </div>" ;
                                     }
                                     if(ControllerTache::participe(Session::get('utilisateur')->utilisateur_id, $tache_id)){
+                                        if( ! is_null($taskInfo->quantiteTotal)){
+                                            echo
+                                            "<div class=\"col-md-auto\">
+                                                <input type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='contribution/".$tache_id."';\" value=\"Modifier ma contribution \" />
+                                            </div>" ;
+
+                                        }
+
                                         echo
                                         "<div class=\"col-md-auto\">
                                             <input type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='desinscription/".$tache_id."';\" value=\"Se désinscrire\" />

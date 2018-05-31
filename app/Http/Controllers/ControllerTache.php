@@ -323,5 +323,31 @@ class ControllerTache extends Controller
 			tache::where('tache_id',$task_id)->update(['valide'=> 0]);
 			return redirect('/event/task/'.$task_id);
 		}
+
+		
+
+		public static function calculQuantiteMax($id_task){
+			$tache = tache::where('tache_id',$id_task)->first() ;
+			$participants = ControllerTache::getParticipants($id_task) ;
+
+			$quantite = $tache->quantiteTotal ;
+
+			foreach ($participants as  $participant) {	
+				if(!(Session::get('utilisateur')->utilisateur_id == $participant->utilisateur_id)){
+					$contribution = $tache->utilisateur()->getExistingPivot($participant->utilisateur_id);
+					$quantite = $quantite - $contribution ;
+				}
+			}
+			return $quantite ;
+		}
+
+		public static function contributionTache(Request $request, $id_task){
+			$tache = tache::where('tache_id',$id_task)->first() ;
+			$participants = ControllerTache::getParticipants($id_task) ;
+
+			$quantite = $request->quantity ;
+			$tache->utilisateur()->updateExistingPivot(Session::get('utilisateur')->utilisateur_id, ['quantite'=>$quantite]);
+			return redirect('/event/task/'.$id_task);
+		}
 }
 ?>

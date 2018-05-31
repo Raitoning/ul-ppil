@@ -169,10 +169,16 @@ Route::get('/event/task/modif/{tache_id}',function($id_task){
     return view('modifTask', ["id_task" => $id_task]);
 });
 
+Route::get('/event/task/contribution/{tache_id}',function($id_task){
+    return view('contribution', ["id_task" => $id_task]);
+});
+
 Route::post('/event/task/modif/{tache_id}','ControllerTache@modifierTache');
 Route::get('/event/task/suppr/{tache_id}','ControllerTache@supprimerTache');
 Route::get('/event/task/valide/{tache_id}','ControllerTache@valideTache');
 Route::get('/event/task/annuleValide/{tache_id}','ControllerTache@annuleValideTache');
+
+Route::post('/event/task/contribution/{tache_id}','ControllerTache@contributionTache');
 
 Route::get('/event/task/supprParticipant/{id_task}/{id_user}','ControllerTache@supprParticipants');
 Route::get('/event/task/inscription/{task_id}','ControllerTache@inscription');

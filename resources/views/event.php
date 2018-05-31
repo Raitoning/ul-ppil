@@ -76,7 +76,7 @@ use App\Http\Controllers\ControllerTache;
 					
 					
 					foreach ($tasks as $task) {
-						echo '<a class="card-link" href="task/'.$task->tache_id.'">'.$task->nom.' : '.$task->description.'</a>';
+						echo '<a class="card-link" href="task/'.$task->tache_id.'">'.$task->nom.'</a>';
 					}
 					//TODO: affichage tâches de l'evenement
 					/*
