@@ -169,8 +169,8 @@ class ControllerTache extends Controller
 				if(!empty($request->participants))
 					foreach($request->participants as $user){
 						if(Session::get('utilisateur')->utilisateur_id == $user){
-							$p = utilisateur::where('utilisateur_id','=',$id_user)->first();
-							$p->tache()->attach($id_task,['quantite' => 0]);
+							$p = utilisateur::where('utilisateur_id','=',$user)->first();
+							$p->tache()->attach($tmp->tache_id,['quantite' => 0]);
 						}else{
 							NotifController::notifAjoutTache(Session::get('utilisateur')->utilisateur_id, $user, $tmp->tache_id);	
 						}
@@ -205,7 +205,7 @@ class ControllerTache extends Controller
 			$tache->text()->detach() ;
 			$tache->photo()->detach() ;
 			$tache->delete() ;
-			NotifController::supprNotifModule($tache_id, "tache") ;
+			NotifController::supprNotifModule($task_id, "tache") ;
 
 			return redirect('/event/'.$event);
 		}
@@ -298,13 +298,12 @@ class ControllerTache extends Controller
 			$taches = ControllerTache::getTask($event) ;
 
 			foreach ($taches as $tache) {
-				$tache = $this->getTaskInfo($task_id) ;
-				$event = $tache->evenement_evenement_id ; 
-				$tache->utilisateur()->detach() ;
-				$tache->text()->detach() ;
-				$tache->photo()->detach() ;
-				$tache->delete() ;
-				NotifController::supprNotifModule($tache_id, "tache") ;
+			$event = $tache->evenement_evenement_id ; 
+			$tache->utilisateur()->detach() ;
+			$tache->text()->detach() ;
+			$tache->photo()->detach() ;
+			$tache->delete() ;
+			NotifController::supprNotifModule($task_id, "tache") ;
 			}
 		}
 }
