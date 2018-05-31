@@ -3,14 +3,14 @@
                     use App\Http\Controllers\ControllerEvenement;
                     use App\Http\Controllers\ControllerParticipants;
                     use App\Http\Controllers\ControllerTache;
-					use App\models\typetache;
-					use App\models\tache;
+                    use App\models\typetache;
+                    use App\models\tache;
                                 
                     $taskInfo= ControllerTache::getTaskInfo($tache_id);
                     $event = ControllerTache::getEvent($tache_id);
-					
-					$type = typetache::where('typetache_id','=',$taskInfo->typetache_typetache_id)->first();
-					
+                    
+                    $type = typetache::where('typetache_id','=',$taskInfo->typetache_typetache_id)->first();
+                    
                 ?>
 
                 <div class="col-2">
@@ -49,34 +49,34 @@
                                       echo $taskInfo->description;
                                     ?>
                                 </div>
-								<?php if($type->quantite >= 1){ ?>
+                                <?php if($type->quantite >= 1){ ?>
                                 <div id="quantity">
 
                                     <label>Quantité :
                                         <?php  echo $taskInfo->quantiteTotal ;?>
                                     </label>
-								</div>
-								<?php
-								}
-								$i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->text()->get();
-								$k = 1;
-								foreach($i as $o){
-									echo "<div>
-										<p> Information ".$k." : ".$o->texte."</p>
-									</div>";
-									$k++;
-								}
-								?>
+                                </div>
+                                <?php
+                                }
+                                $i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->text()->get();
+                                $k = 1;
+                                foreach($i as $o){
+                                    echo "<div>
+                                        <p> Information ".$k." : ".$o->texte."</p>
+                                    </div>";
+                                    $k++;
+                                }
+                                ?>
 
-								<?php
-								$i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->photo()->get();
-								foreach($i as $o){
-									echo "<div>
-										<img src='/".$o->url."'>
-									</div>";
-								}
-								?>
-								
+                                <?php
+                                $i = tache::where('tache_id','=',$taskInfo->tache_id)->first()->photo()->get();
+                                foreach($i as $o){
+                                    echo "<div>
+                                        <img src='/".$o->url."'>
+                                    </div>";
+                                }
+                                ?>
+                                
                                 <div id="participants">
 
                                     <label>Participants:
@@ -89,31 +89,29 @@
 
                                                         foreach($utilisateurs as $util) {
 
-                                                            if($util->utilisateur_id != Session::get('utilisateur')->utilisateur_id) {
+                                                            echo "<form action='droits' method='post'>
 
-                                                                echo "<form action='droits' method='post'>
+                                                                <li class='list-group-item list-group-item-action'>
 
-                                                                    <li class='list-group-item list-group-item-action'>
+                                                                    <div class='row'>
 
-                                                                        <div class='row'>
+                                                                        <div class='col-auto'>
 
-                                                                            <div class='col-auto'>
+                                                                            ".$util->pseudo."
 
-                                                                                ".$util->pseudo."
-
-                                                                            </div>
-
-                                                                                <div class='col-auto'>
-                                                                                    <input type='button' class='btn btn-danger' onclick='location.href=\"/event/task/supprParticipant/".$tache_id."/".$util->utilisateur_id."\";' value='Supprimer' />
-                                                                                </div>
-                                                                            </li>
                                                                         </div>
 
-                                                                        <input type='hidden' name='id_event' value=''>
-                                                                        <input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
-                                                                    </form>
-                                                                ";
-                                                            }
+                                                                            <div class='col-auto'>
+                                                                                <input type='button' class='btn btn-danger' onclick='location.href=\"/event/task/supprParticipant/".$tache_id."/".$util->utilisateur_id."\";' value='Supprimer' />
+                                                                            </div>
+                                                                        </li>
+                                                                    </div>
+
+                                                                    <input type='hidden' name='id_event' value=''>
+                                                                    <input type='hidden' name='id_user' value='".$util->utilisateur_id."'>
+                                                                </form>
+                                                            ";
+                                                            
                                                         }
                                                     } else {
 
@@ -126,12 +124,7 @@
                                             </ul>
                                         <br>
                                     </label>
-
-                                </div>
-
-                            </div>
-
-                           <?php 
+                                    <?php 
                                 if(!ControllerTache::estValide($tache_id)){
                                     if(ControllerTache::estProprio($tache_id, Session::get('utilisateur')->utilisateur_id)){
                                         echo
@@ -181,6 +174,11 @@
                                 }
                                 
                             ?>
+                                </div>
+
+                            </div>
+
+                           
                         </div>
 
                     </div>

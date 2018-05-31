@@ -230,7 +230,12 @@ class ControllerTache extends Controller
 					$event = evenement::where('evenement_id','=',$task->evenement_evenement_id)->first();
 					$proprietaire = $event->utilisateur()->wherePivot('droit', 'proprietaire')->first();
 
-					NotifController::notifInscTache(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $task_id) ;
+					if(ControllerTache::estProprio($task_id, Session::get('utilisateur')->utilisateur_id)){
+						$p = utilisateur::where('utilisateur_id','=',Session::get('utilisateur')->utilisateur_id)->first();
+						$p->tache()->attach($task_id,['quantite' => 0]);
+					}else{
+						NotifController::notifInscTache(Session::get('utilisateur')->utilisateur_id, $proprietaire->utilisateur_id, $task_id) ;
+					}
 					return redirect('/event/task/'.$task_id);
 			}
 			
