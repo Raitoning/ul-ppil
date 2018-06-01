@@ -4,10 +4,13 @@ use App\Http\Controllers\ControllerTypeTache;
 use App\Http\Controllers\ControllerParticipants;
 use App\Http\Controllers\ControllerEvenement;
 use App\Http\Controllers\ControllerTache;
+use App\models\text;
+use App\models\tache;
 $utilisateur = Session::get('utilisateur')->utilisateur_id;
 $tache = ControllerTache::getTaskInfo($id_task) ;
 $type = ControllerTypeTache::getType($tache->typetache_typetache_id);
 $event = ControllerTache::getEvent($id_task) ;
+Session::put('typeTache',$type);
 ?>
 
 <div class="d-flex justify-content-center align-items-center container">
@@ -56,43 +59,28 @@ $event = ControllerTache::getEvent($id_task) ;
                         <?php } ?>
                         
                         <?php
-                        $i = 0;
-                        while($i < $type->texte){
+						$i = 0;
+						$y = tache::where('tache_id','=',$id_task)->first()->text()->where('tache_tache_id','=',$id_task)->get();
+                        foreach($y as $text){
                             ?>
                         <div class="form-group">
                             <label>Texte <?php echo $i+1 ?> :</label>
                             <br>
-                            <input type="text" value="<?php echo /*ControllerTache::getText()*/"" ; ?>" name="text<?php echo $i?> required">
+                            <input type="text" value="<?php echo $text->texte; ?>" name="text<?php echo $i; ?>" >
                             <br>
                             <br>
                         </div>
                         <?php $i++; }?>
 
                 </div>
-                <div class="col-6">
-                    <div class="card md-3">
-                        <div class="card-header">
-                            <h2>Participants</h2>
-                        </div>
-                        <div class="card-body">
-                            <?php
-                           /* $i = 0;
-                            $participants = App\Http\Controllers\ControllerParticipants::getParticipants($event);
-                                foreach($participants as $participant){
-                                    echo "<li class='list-group-item'><input type='checkbox' name='participants[]' value=$participant->utilisateur_id>".$participant->pseudo."</li></a>";
-                                    $i++;
-                                }
-                                */
-                            ?>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             
             <div class='col-12'>
             <?php 
             $i = 0;
-            while($i < $type->photo){
+			$y = tache::where('tache_id','=',$id_task)->first()->photo()->where('tache_tache_id','=',$id_task)->get();
+            foreach($y as $photo){
                 echo'
                   <p>
                     <label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Envoyer l\'image :</label>

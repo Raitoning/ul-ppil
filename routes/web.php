@@ -213,3 +213,4 @@ Route::get('/notices/supprimerNotif/{notif_id}','NotifController@supprimerNotif'
 Route::get('/notices/accepterNotif/{notif_id}','NotifController@accepterNotif');
 Route::get('/notices/refuserNotif/{notif_id}','NotifController@refuserNotif');
 Route::post('/event/newTask/{event}/photo','ControllerTache@ajouterTache');
+Route::post('/event/task/modif/{id_task}/photo','ControllerTache@modifier');

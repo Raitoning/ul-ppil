@@ -388,5 +388,65 @@ class ControllerTache extends Controller
 			$tache->utilisateur()->updateExistingPivot(Session::get('utilisateur')->utilisateur_id, ['quantite'=>$quantite]);
 			return redirect('/event/task/'.$id_task);
 		}
+		
+		public static function modifier(Request $request, $id_task){
+			$event = ControllerTache::getEvent($id_task);
+			$tmp = tache::where('tache_id','=',$id_task)->first();
+			$tmp->nom = $request->task;
+			$tmp->description = $request->desc;
+			if(Session::has('typeTache')){
+				if(Session::get('typeTache')->datefin >= 1)
+					$tmp->dateFin = $request->datefin;
+				
+				if(Session::get('typeTache')->quantite >= 1){
+					$tmp->quantiteTotal = $request->quantity;
+				}
+				
+				
+				$tmp->evenement_evenement_id = ControllerTache::getEvent($id_task)->evenement_id;
+				$tmp->typetache_typetache_id = Session::get('typeTache')->typetache_id;
+				
+				$tmp->update();
+				
+				//text
+				$tmp->text()->detach();
+				$i = 0;
+				while($i < Session::get('typeTache')->texte){
+					$t = new text();
+					$t->texte = $request->{'text'.$i};
+					
+					
+					$t->save();
+					$tache = tache::where('tache_id','=',$tmp->tache_id)->first();
+					$tache->text()->attach($t->text_id);
+					
+					$i++;
+				}
+				
+				
+				$i = 0;
+				$tmp->photo()->detach();
+		
+				
+				while($i < Session::get('typeTache')->photo){
+
+						$photo = $request->file('photo'.$i);
+						$photo->move('images',$event->evenement_id.$i.$tmp->tache_id.$request->file('photo'.$i)->getClientOriginalName());
+						
+						$photoinsert = new photo();
+						$photoinsert->url = 'images/'.$event->evenement_id.$i.$tmp->tache_id.$request->file('photo'.$i)->getClientOriginalName();
+						$photoinsert->save();
+						
+						$tache = tache::where('tache_id','=',$tmp->tache_id)->first();
+						$tmp->photo()->attach($photoinsert->photo_id);
+						
+						$i++;
+				}
+				Session::forget('typeTache');
+
+			}	
+			
+			return redirect('/event/'.$event->evenement_id);
+		}
 }
 ?>
