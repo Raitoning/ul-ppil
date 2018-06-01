@@ -19,3 +19,13 @@ Si tout le monde respecte ces règles, le projet avancera de manière _**optimal
 # Si vous êtes un enseignant
 
 N'hésitez surtout pas à visiter les pages des [Issues](https://github.com/Raitoning/ul-ppil/issues) (tâches à réaliser et leur répartition), le [Forum de discussion](https://github.com/Raitoning/ul-ppil/issues/5), le [Projet](https://github.com/Raitoning/ul-ppil/projects/1), ou encore le [graphe d'avancement du depôt](https://github.com/Raitoning/ul-ppil/network).
+
+# Comment installer le projet ?
+
+1. Installer EasyPHP (serveur Apache, MySQL) puis Composer.  
+2. Création d’un projet Laravel avec Composer.  
+3. Décompresser l’archive du site dans le dossier nouvellement créé (remplacer les fichiers).  
+4. Copier Coller le .htacces du dossier Public\ à la racine du projet.  
+5. Renommer le fichier server.php en index.php.  
+6. Créer une base de donnée nommée ppil.  
+7. Exécuter le script du  fichier ppil.sql pour créer la BDD.  
