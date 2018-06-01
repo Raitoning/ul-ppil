@@ -28,4 +28,4 @@ N'hésitez surtout pas à visiter les pages des [Issues](https://github.com/Rait
 4. Copier Coller le .htacces du dossier Public\ à la racine du projet.  
 5. Renommer le fichier server.php en index.php.  
 6. Créer une base de donnée nommée ppil.  
-7. Exécuter le script du  fichier ppil.sql pour créer la BDD.  
+7. Exécuter le script du  fichier Base_de_donnee.sql pour créer la BDD.  
